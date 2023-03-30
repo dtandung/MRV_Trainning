@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="date">
+        <input id="number" value="10" type="hidden">
+    </div>
+    <script>
+        const randomNumber = Math.floor(Math.random() * 101);
+        var userInput = document.querySelector("#number").value;
+        if (randomNumber === userInput) {
+            console.log(`Good Work`);
+        } else {
+            console.log(` ${userInput} ${randomNumber} Not Matched`);
+        }
+    </script>
+</body>
+
+</html>

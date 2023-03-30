@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="day"></div>
+    <div id="time"></div>
+    <div id="second"></div>
+
+  
+    <script>
+        function runClock() {
+            const today = new Date();
+            const day = today.getDay();
+            const hour = today.getHours();
+            const minute = today.getMinutes();
+            const second = today.getSeconds();
+            var ListDay = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ Nhật"];
+            document.getElementById("day").innerHTML = `Hôm Nay Là: ${ListDay[day]}`;
+            var moment = (hour >= 12) ? "pm" : "am";
+            document.getElementById("time").innerHTML = `Current Time: ${hour}h  : ${minute}m : ${second}s ${moment}`;
+        }
+        runClock()
+        var timer = setInterval(runClock, 500);
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+</body>
+
+</html>

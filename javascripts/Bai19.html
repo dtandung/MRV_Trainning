@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function check(num) {
+            const num1 = Math.abs(100 - num);
+            const num2 = Math.abs(400 - num);
+            num1 < 20 ? console.log(`${num} nằm trong khoảng 20 của 100`) : console.log(`${num} không nằm trong khoảng 20 của 100`)
+            num2 < 20 ? console.log(`${num} nằm trong khoảng 20 của 400`) : console.log(`${num} không nằm trong khoảng 20 của 400`)
+        }
+        check(85)
+    </script>
+</body>
+
+</html>

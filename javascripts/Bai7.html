@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p id="result"></p>
+
+    <script>
+        let result = document.querySelector("#result");
+        var dayFrom = 2014;
+        var dayEnd = 2050;
+        var ArrayYear = [];
+        for (var i = dayFrom; i <= dayEnd; i++) {
+            var date = new Date(i, 0, 1)
+            if (date.getDay() === 0) {
+                console.log(i)
+                // ArrayYear.push(i);
+            }
+        }
+        // ArrayYear.map((year) =>{
+        //     result.innerHTML = `<span>${year}</span>`
+        // })
+        // console.log(ArrayYear)
+    </script>
+</body>
+
+</html>
