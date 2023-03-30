@@ -12,5 +12,5 @@ public interface CommonService<T> {
 
 	boolean delete(T data) throws SQLException;
 
-	T Get(int id) throws SQLException;
+	T get(int id) throws SQLException;
 }

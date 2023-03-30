@@ -7,16 +7,17 @@ import com.dtd.dao.BookDAOImpl;
 import com.dtd.dao.CommonDAO;
 import com.dtd.dto.BookDTO;
 
-
 public class BookServiceImpl implements CommonService<BookDTO> {
 	private CommonDAO<BookDTO> bookdao;
-	
+
+//	private BookDAOImpl bookdao = new BookDAOImpl();
+
 	
 	public BookServiceImpl() {
 		super();
-		// TODO Auto-generated constructor stub
+		this.bookdao = new BookDAOImpl();
 	}
-
+	
 	@Override
 	public ArrayList<BookDTO> list() throws SQLException {
 		// TODO Auto-generated method stub
@@ -42,12 +43,9 @@ public class BookServiceImpl implements CommonService<BookDTO> {
 	}
 
 	@Override
-	public BookDTO Get(int id) throws SQLException {
+	public BookDTO get(int id) throws SQLException {
 		// TODO Auto-generated method stub
-		return this.bookdao.Get(id);
+		return this.bookdao.get(id);
 	}
-
-
-
 
 }

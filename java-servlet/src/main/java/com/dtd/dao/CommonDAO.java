@@ -8,5 +8,5 @@ public interface CommonDAO <T> {
 	int add (T data) throws SQLException;
 	boolean update (T data) throws SQLException;
 	boolean delete (T data) throws SQLException;
-	T Get(int id) throws SQLException;
+	T get(int id) throws SQLException;
 }

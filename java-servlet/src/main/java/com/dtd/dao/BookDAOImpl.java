@@ -11,6 +11,13 @@ import com.dtd.dto.BookDTO;
 
 public class BookDAOImpl implements CommonDAO<BookDTO> {
 	private Connection jdbcConnection;
+	
+	
+	public BookDAOImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 
 	@Override
@@ -38,7 +45,7 @@ public class BookDAOImpl implements CommonDAO<BookDTO> {
 	}
 
 	@Override
-	public BookDTO Get(int id) throws SQLException {
+	public BookDTO get(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		BookDTO bok = null;
 		String sql = "SELECT * FROM books WHERE BookID = ?";
@@ -63,6 +70,7 @@ public class BookDAOImpl implements CommonDAO<BookDTO> {
 		
 		resultSet.close();
 		statement.close();
+		
 		MysqlCon.disconnect(jdbcConnection);
 		
 		return bok;

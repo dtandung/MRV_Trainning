@@ -28,7 +28,7 @@ public class StudentDAOImpl implements CommonDAO<StudentDTO> {
 	}
 
 	@Override
-	public StudentDTO Get(int id) throws SQLException {
+	public StudentDTO get(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
