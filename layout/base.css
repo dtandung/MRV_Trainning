@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(235, 227, 227);
+}
+.layout{ 
+    margin:100px auto;  
+    width: 1000px;
+    background-color: gainsboro;
+}
+.main-header{
+    display: flex;
+    border: solid 1px;
+    padding: 10px 20px 10px 15px;
+}
+.logo-header{
+    background-color: rgb(241, 209, 151);
+    width: 100px;
+    margin-right: 50px;
+    padding: 15px 15px 0;
+    height: 50px;
+}
+.menu-header{
+    background-color: rgb(241, 209, 151);
+    width: 100%;
+    padding: 15px 15px 0;
+}
+.main-content{
+    border: solid 1px;
+    height: auto;
+    padding: 15px 15px 10px 20px;
+    border-bottom: none;
+    border-top: none;
+}
+.section-content_1{
+    display: flex;
+    margin-bottom: 10px;
+    height: 100px;
+
+}
+.section-content-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+    background-color:  rgb(241, 209, 151);
+    width: 230px;
+    
+}
+.section-content-slide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color:  rgb(241, 209, 151);
+    
+}
+.section_content_2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    background-color:  rgb(241, 209, 151);
+    height: 100px;
+}
+.main-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px;
+    height: 50px;
+    padding: 10px;
+}
