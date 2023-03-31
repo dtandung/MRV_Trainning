@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class BorrowsController
  */
 @WebServlet("/BorrowsController")
-public class BorrowsController extends HttpServlet {
+public class BorrowController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BorrowsController() {
+    public BorrowController() {
         super();
         // TODO Auto-generated constructor stub
     }

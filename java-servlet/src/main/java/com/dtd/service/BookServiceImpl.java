@@ -14,38 +14,43 @@ public class BookServiceImpl implements CommonService<BookDTO> {
 
 	
 	public BookServiceImpl() {
-		super();
 		this.bookdao = new BookDAOImpl();
 	}
 	
 	@Override
 	public ArrayList<BookDTO> list() throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.bookdao.list();
 	}
 
 	@Override
-	public int add(BookDTO data) throws SQLException {
+	public boolean add(BookDTO data) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.bookdao.add(data);
 	}
 
 	@Override
 	public boolean update(BookDTO data) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		return this.bookdao.update(data);
 	}
 
 	@Override
-	public boolean delete(BookDTO data) throws SQLException {
+	public boolean delete(int id) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		return this.bookdao.delete(id);
 	}
 
 	@Override
 	public BookDTO get(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		return this.bookdao.get(id);
+	}
+
+	@Override
+	public boolean inUsed(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return this.bookdao.inUsed(id);
 	}
 
 }

@@ -10,9 +10,9 @@ public class StudentDAOImpl implements CommonDAO<StudentDTO> {
 
 
 	@Override
-	public int add(StudentDTO data) throws SQLException {
+	public boolean add(StudentDTO data) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		return false;
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class StudentDAOImpl implements CommonDAO<StudentDTO> {
 	}
 
 	@Override
-	public boolean delete(StudentDTO data) throws SQLException {
+	public boolean delete(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -37,6 +37,12 @@ public class StudentDAOImpl implements CommonDAO<StudentDTO> {
 	public ArrayList<StudentDTO> list() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean inUsed(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

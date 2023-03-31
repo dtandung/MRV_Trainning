@@ -5,12 +5,12 @@
     <welcome-file>homePageController</welcome-file>
   </welcome-file-list>
   <servlet>
-  	<servlet-name>homePageController</servlet-name>
-  	<servlet-class>com.dtd.controller.homePageController</servlet-class>
+  	<servlet-name>BookController</servlet-name>
+  	<servlet-class>com.dtd.controller.BookController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>homePageController</servlet-name>
-  	<url-pattern>/students</url-pattern>
+  	<servlet-name>BookController</servlet-name>
+  	<url-pattern>/book</url-pattern>
   </servlet-mapping>
   
   <context-param>

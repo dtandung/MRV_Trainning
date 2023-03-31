@@ -20,8 +20,8 @@ public class MysqlCon {
 		} catch (ClassNotFoundException e) {
 			throw new SQLException(e);
 		}
-		jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3307/bookstore", "root", "123456");
-		System.out.println("Connected");
+		jdbcConnection = DriverManager.getConnection("jdbc:mysql://localhost:3307/Bookstore", "root", "123456");
+		//System.out.println("Connected");
 		return jdbcConnection;
 	}
 
