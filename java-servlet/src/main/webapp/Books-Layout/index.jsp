@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
-
+<title>Book Management</title>
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/Kukku-Icon.png">
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -38,10 +39,11 @@
 							<td>${book.quantity }</td>
 							<td class="text-center">
 								<a href="book?action=edit&id=${book.bookID}"class="btn-sm btn-primary" title="Sửa"><i class="fa-solid fa-pen-to-square"></i></a>
-								
+									
 								<c:if test="${book.isUsedBook() == true }">
-									<a href="book?action=delete&id=${book.bookID}" class="btn-sm btn-danger" title="Xoá"><i class="fa-solid fa-trash"></i></a>
+									<a href="book?action=delete&id=${book.bookID}" class="btn-sm btn-danger" title="Xoá" onclick="return confirm('Xóa sách này khỏi hệ thống?')"><i class="fa-solid fa-trash"></i></a>
 								</c:if>
+	
 							</td>
 						</tr>
 					</c:forEach>

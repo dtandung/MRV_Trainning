@@ -16,12 +16,12 @@ import com.dtd.dto.BookDTO;
 import com.dtd.model.Book;
 import com.dtd.service.BookServiceImpl;
 import com.dtd.service.CommonService;
-import com.dtd.utils.ConvertBookUtils;
+import com.dtd.utils.ConvertUtils;
 
 /**
  * Servlet implementation class BooksController
  */
-@WebServlet("/BooksController")
+@WebServlet("/BookController")
 public class BookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -100,7 +100,7 @@ public class BookController extends HttpServlet {
 	private void delete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		if (!(bookService.inUsed(id))) {
+		if (bookService.inUsed(id)) {
 			bookService.delete(id);
 		}
 		response.sendRedirect("book");
@@ -138,12 +138,12 @@ public class BookController extends HttpServlet {
 			throws ServletException, IOException, SQLException {
 		ArrayList<BookDTO> listBook = this.bookService.list();
 		
-		List<Book> listBookTemp = new ArrayList<Book>();
+		ArrayList<Book> listBookTemp = new ArrayList<Book>();
 
 		listBook.forEach((book) -> {
 			try {
 				boolean isUseBook = bookService.inUsed(book.getBookID());						
-				Book bookTemp = ConvertBookUtils.insertToBook(book, isUseBook);		
+				Book bookTemp = ConvertUtils.insertToBook(book, isUseBook);		
 				listBookTemp.add(bookTemp);
 				
 			} catch (SQLException e) {

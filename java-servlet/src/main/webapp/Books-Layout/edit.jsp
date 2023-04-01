@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>Book Management</title>
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/Kukku-Icon.png">
 </head>
 
 <body>
@@ -51,7 +53,7 @@
 				
 				<div class="form-group">
 					<label>Quantity</label> <input
-						type="text" class="form-control" id="Quantity" name="Quantity" value="${book.quantity }"
+						type="number" min="1" class="form-control" id="Quantity" name="Quantity" value="${book.quantity }"
 						placeholder="Quantity" >
 				</div>
 

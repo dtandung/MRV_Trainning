@@ -1,28 +1,22 @@
-package com.dtd.dto;
+package com.dtd.model;
 
-public class StudentDTO {
+public class Student {
 	private int StudentID;
 	private String Name;
 	private int Age;
 	private boolean Gender;
-	
-	
-	public StudentDTO() {
+	private boolean isUsedStudent;
+	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public StudentDTO(int studentID, String name, int age, boolean gender) {
+	public Student(int studentID, String name, int age, boolean gender, boolean isUsedStudent) {
 		super();
 		StudentID = studentID;
 		Name = name;
 		Age = age;
 		Gender = gender;
-	}
-	public StudentDTO(String name, int age, boolean gender) {
-		super();
-		Name = name;
-		Age = age;
-		Gender = gender;
+		this.isUsedStudent = isUsedStudent;
 	}
 	public int getStudentID() {
 		return StudentID;
@@ -48,8 +42,12 @@ public class StudentDTO {
 	public void setGender(boolean gender) {
 		Gender = gender;
 	}
-	
-	
+	public boolean isUsedStudent() {
+		return isUsedStudent;
+	}
+	public void setUsedStudent(boolean isUsedStudent) {
+		this.isUsedStudent = isUsedStudent;
+	}
 	
 	
 }

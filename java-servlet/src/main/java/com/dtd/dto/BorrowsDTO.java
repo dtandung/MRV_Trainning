@@ -8,6 +8,12 @@ public class BorrowsDTO {
 	private int BookID;
 	private int Quantity;
 	private Date BorrowDate;
+	
+	
+	public BorrowsDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public BorrowsDTO(int borrowID, int studentID, int bookID, int quantity, Date borrowDate) {
 		super();
 		BorrowID = borrowID;

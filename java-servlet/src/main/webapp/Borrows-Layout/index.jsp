@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>Borrows Management</title>
+   <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -12,6 +14,15 @@
 		<div class="box body">
 			<div class=" d-flex justify-content-between bg-secondary  p-3">
 				<h2>Borrow Management</h2>
+				
+				 <div class="form-group">
+                            <select class="selectpicker form-control" data-live-search="true">
+                                <option>Hot Dog, Fries and a Soda</option>
+                                <option>Burger, Shake and a Smile</option>
+                                <option>Sugar, Spice and all things nice</option>
+                            </select>
+                 </div>
+				
 				<a href="book?action=new"
 					class="btn btn-success btn-flat d-flex align-items-center"
 					title="bổ sung"><i class="fa-solid fa-plus"></i> Add Borrow</a>
@@ -44,5 +55,6 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 </body>
 </html>
