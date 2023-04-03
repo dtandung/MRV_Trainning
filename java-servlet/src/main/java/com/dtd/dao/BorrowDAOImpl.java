@@ -180,7 +180,7 @@ public class BorrowDAOImpl implements BorrowDAO<BorrowDTO> {
 			statement.close();
 
 			MysqlCon.disconnect(jdbcConnection);
-		} else {
+		}else {
 			String sql3 = " select br.BorrowID, br.BorrowDate, st.StudentID, bo.BookID, br.Quantity "
 					+ "from borrows as br left join books as bo on br.BookID = bo.BookID "
 					+ "left join students as st on br.StudentID = st.StudentID "

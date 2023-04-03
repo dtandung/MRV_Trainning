@@ -126,7 +126,6 @@ public class BorrowController extends HttpServlet {
 		String key = request.getParameter("SearchValue");
 		String startDay = request.getParameter("startDate");
 		String endDay = request.getParameter("endDate");
-		System.out.println("key"+key);
 		if(key == null)
 			key = "";
 
