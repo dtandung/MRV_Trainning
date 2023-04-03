@@ -63,12 +63,12 @@ public class BorrowController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		String action = request.getParameter("action") != null ? request.getParameter("action") : "none";
-		String uri = request.getServletPath();
+//		String uri = request.getServletPath();
 
 		try {
-			if (uri.contains("search")) {
-				this.getSearchListBorrow(request, response);
-			} else {
+//			if (uri.contains("search")) {
+//				this.getSearchListBorrow(request, response);
+//			} else {
 
 				switch (action) {
 				case "new":
@@ -100,14 +100,11 @@ public class BorrowController extends HttpServlet {
 				case "update":
 					// this.updateStudent(request, response);
 					break;
-//				case "search":
-//					this.getSearchListBorrow(request, response);
-//					break;
 				default:
 					this.getListBorrow(request, response);
 					break;
 				}
-			}
+			//}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -123,53 +120,23 @@ public class BorrowController extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void getSearchListBorrow(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
-	
-			try {
-				ArrayList<StudentDTO> listStu = this.studentService.list();
-				ArrayList<BookDTO> listBook = this.bookService.list();
-
-				String name = request.getParameter("SearchValue");
-				String startDay = request.getParameter("startDate");
-				String endDay = request.getParameter("endDate");
-				
-//				DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-//				java.sql.Date startDate = (java.sql.Date) df.parse(startDay);
-//				java.sql.Date  endDate = (java.sql.Date) df.parse(endDay);
-//
-//				System.out.println("startDay" + startDate);
-//				System.out.println("endDay" + endDate);
-				if(name == null) {
-					name = "";
-				}else if(startDay == null || endDay == null) {
-					startDay = "";
-					endDay = "";
-				}
-				ArrayList<BorrowDTO> listBorrow = this.borrowService.findList(name,startDay,endDay);
-
-				request.setAttribute("listBook", listBook);
-				request.setAttribute("listStu", listStu);
-				request.setAttribute("listBorrow", listBorrow);
-
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/Borrows-Layout/index.jsp");
-				dispatcher.forward(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-				// TODO: handle exception
-			}
-
-	}
 
 	private void getListBorrow(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-		ArrayList<BorrowDTO> listBorrow = this.borrowService.list();
+		String key = request.getParameter("SearchValue");
+		String startDay = request.getParameter("startDate");
+		String endDay = request.getParameter("endDate");
+		System.out.println("key"+key);
+		if(key == null)
+			key = "";
+
+		ArrayList<BorrowDTO> listBorrow = this.borrowService.list(key, startDay, endDay);
 		ArrayList<StudentDTO> listStu = this.studentService.list();
 		ArrayList<BookDTO> listBook = this.bookService.list();
 		request.setAttribute("listBook", listBook);
 		request.setAttribute("listStu", listStu);
 		request.setAttribute("listBorrow", listBorrow);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("./Borrows-Layout/index.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Borrows-Layout/index.jsp");
 		dispatcher.forward(request, response);
 	}
 

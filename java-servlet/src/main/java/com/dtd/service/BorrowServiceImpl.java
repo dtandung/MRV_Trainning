@@ -18,9 +18,9 @@ public class BorrowServiceImpl implements BorrowService<BorrowDTO>{
 	}
 
 	@Override
-	public ArrayList<BorrowDTO> list() throws SQLException {
+	public ArrayList<BorrowDTO> list(String searchValue, String startDay, String endDay) throws SQLException {
 		// TODO Auto-generated method stub
-		return this.borrowdao.list();
+		return this.borrowdao.list(searchValue, startDay, endDay);
 	}
 
 	@Override

@@ -28,7 +28,7 @@
 
 			<div class="p-3">
 				<div class="top-body">
-					<form class="row" action="borrow/search" method="get">
+					<form class="row" action="borrow?action=none" method="get">
 						<!-- Date Picker -->
 						<div class="form-group mb-4 col-sm-3">
 							<div class="datepicker date input-group">
