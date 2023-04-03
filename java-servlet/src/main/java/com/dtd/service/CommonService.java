@@ -2,6 +2,7 @@ package com.dtd.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public interface CommonService<T> {
 	ArrayList<T> list() throws SQLException;
@@ -15,4 +16,5 @@ public interface CommonService<T> {
 	T get(int id) throws SQLException;
 
 	boolean inUsed(int id) throws SQLException;
+	
 }

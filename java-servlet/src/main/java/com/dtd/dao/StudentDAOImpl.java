@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.dtd.dto.BookDTO;
 import com.dtd.dto.StudentDTO;
@@ -98,12 +99,12 @@ public class StudentDAOImpl implements CommonDAO<StudentDTO> {
 	public ArrayList<StudentDTO> list() throws SQLException {
 		ArrayList<StudentDTO> liststu = new ArrayList<StudentDTO>();
 		
-		String sql = "SELECT * FROM students";
+		String sql = "SELECT * FROM students ORDER BY StudentID DESC";
 		
 		jdbcConnection = MysqlCon.connectDb();
 		
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-		ResultSet resultSet = statement.executeQuery(sql);
+		ResultSet resultSet = statement.executeQuery();
 		
 		while (resultSet.next()) {
 			int StudentID = resultSet.getInt("StudentID");
@@ -142,5 +143,8 @@ public class StudentDAOImpl implements CommonDAO<StudentDTO> {
 		else 
 			return false;
 	}
+
+
+
 
 }

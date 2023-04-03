@@ -36,8 +36,6 @@
 				<li class="nav-item"><a class="nav-link" href="BookController">Books</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="BorrowController">Borrows</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="SearchBorrowController">Search Borrows</a></li>
 			</ul>
 		</div>
 	</nav>

@@ -1,8 +1,8 @@
 package com.dtd.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
-public class BorrowsDTO {
+public class BorrowDTO {
 	private int BorrowID;
 	private int StudentID;
 	private int BookID;
@@ -10,11 +10,11 @@ public class BorrowsDTO {
 	private Date BorrowDate;
 	
 	
-	public BorrowsDTO() {
+	public BorrowDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BorrowsDTO(int borrowID, int studentID, int bookID, int quantity, Date borrowDate) {
+	public BorrowDTO(int borrowID, int studentID, int bookID, int quantity, Date borrowDate) {
 		super();
 		BorrowID = borrowID;
 		StudentID = studentID;
@@ -22,7 +22,7 @@ public class BorrowsDTO {
 		Quantity = quantity;
 		BorrowDate = borrowDate;
 	}
-	public BorrowsDTO(int studentID, int bookID, int quantity, Date borrowDate) {
+	public BorrowDTO(int studentID, int bookID, int quantity, Date borrowDate) {
 		super();
 		StudentID = studentID;
 		BookID = bookID;

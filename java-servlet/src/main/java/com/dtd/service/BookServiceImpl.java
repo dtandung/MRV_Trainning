@@ -2,6 +2,7 @@ package com.dtd.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.dtd.dao.BookDAOImpl;
 import com.dtd.dao.CommonDAO;
@@ -52,5 +53,7 @@ public class BookServiceImpl implements CommonService<BookDTO> {
 		// TODO Auto-generated method stub
 		return this.bookdao.inUsed(id);
 	}
+
+
 
 }

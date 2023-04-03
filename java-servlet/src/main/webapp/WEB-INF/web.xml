@@ -22,6 +22,16 @@
   	<url-pattern>/student</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>BorrowController</servlet-name>
+  	<servlet-class>com.dtd.controller.BorrowController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>BorrowController</servlet-name>
+  	<url-pattern>/borrow</url-pattern>
+  	<url-pattern>/borrow/search</url-pattern>
+  </servlet-mapping>
+  
   <context-param>
 	<param-name>dbURL</param-name>
 	<param-value>jdbc:mysql://localhost:3306/bookstore</param-value>

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.dtd.dto.BookDTO;
@@ -21,19 +22,19 @@ public class BookDAOImpl implements CommonDAO<BookDTO> {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	
 
 	@Override
 	public ArrayList<BookDTO> list() throws SQLException {
 		// TODO Auto-generated method stub
 		ArrayList<BookDTO> listbook = new ArrayList<BookDTO>();
 		
-		String sql = "SELECT * FROM books";
+		String sql = "SELECT * FROM books ORDER BY BookID DESC";
 		
 		jdbcConnection = MysqlCon.connectDb();
 		
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-		ResultSet resultSet = statement.executeQuery(sql);
+		ResultSet resultSet = statement.executeQuery();
 		
 		while (resultSet.next()) {
 			int BookID = resultSet.getInt("BookID");
@@ -166,5 +167,7 @@ public class BookDAOImpl implements CommonDAO<BookDTO> {
 		}
 		
 	}
+
+
 
 }
