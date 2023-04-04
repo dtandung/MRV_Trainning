@@ -18,13 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.dtd.dto.BookDTO;
 import com.dtd.dto.BorrowDTO;
 import com.dtd.dto.StudentDTO;
-import com.dtd.model.Student;
+
 import com.dtd.service.BookServiceImpl;
 import com.dtd.service.BorrowService;
 import com.dtd.service.BorrowServiceImpl;
 import com.dtd.service.CommonService;
 import com.dtd.service.StudentServiceImpl;
-import com.dtd.utils.ConvertUtils;
 
 /**
  * Servlet implementation class BorrowsController
@@ -32,7 +31,6 @@ import com.dtd.utils.ConvertUtils;
 @WebServlet("/BorrowController")
 public class BorrowController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	private BorrowService<BorrowDTO> borrowService;
 	private CommonService<StudentDTO> studentService;
 	private CommonService<BookDTO> bookService;
@@ -70,41 +68,37 @@ public class BorrowController extends HttpServlet {
 //				this.getSearchListBorrow(request, response);
 //			} else {
 
-				switch (action) {
-				case "new":
-					ArrayList<StudentDTO> listStu = this.studentService.list();
-					ArrayList<BookDTO> listBook = this.bookService.list();
-					request.setAttribute("listBook", listBook);
-					request.setAttribute("listStu", listStu);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("./Borrows-Layout/edit.jsp");
-					dispatcher.forward(request, response);
-					break;
-				case "insert":
-					int studentID = Integer.parseInt(request.getParameter("StudentID"));
-					int bookID = Integer.parseInt(request.getParameter("BookID"));
-					int quantity = Integer.parseInt(request.getParameter("Quantity"));
-					long millis = System.currentTimeMillis();
-					java.sql.Date borrowDate = new java.sql.Date(millis);
+			switch (action) {
+			case "new":
+				ArrayList<StudentDTO> listStu = this.studentService.list();
+				ArrayList<BookDTO> listBook = this.bookService.list();
+				request.setAttribute("listBook", listBook);
+				request.setAttribute("listStu", listStu);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("./Borrows-Layout/edit.jsp");
+				dispatcher.forward(request, response);
+				break;
+			case "insert":
 
+				int studentID = Integer.parseInt(request.getParameter("StudentID"));
+				int bookID = Integer.parseInt(request.getParameter("BookID"));
+				int quantity = Integer.parseInt(request.getParameter("Quantity"));
+				long millis = System.currentTimeMillis();
+				java.sql.Date borrowDate = new java.sql.Date(millis);
+
+				BookDTO bok = new BookDTO();
+				bok = this.bookService.get(bookID);
+
+				if (quantity < bok.getQuantity()) {
 					BorrowDTO newBorrow = new BorrowDTO(studentID, bookID, quantity, borrowDate);
 					this.borrowService.add(newBorrow);
-					response.sendRedirect("borrow");
-
-					break;
-				case "delete":
-					// this.delete(request, response);
-					break;
-				case "edit":
-					// this.showEditForm(request, response);
-					break;
-				case "update":
-					// this.updateStudent(request, response);
-					break;
-				default:
-					this.getListBorrow(request, response);
-					break;
 				}
-			//}
+				response.sendRedirect("borrow");
+				break;
+			default:
+				this.getListBorrow(request, response);
+				break;
+			}
+			// }
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -120,18 +114,25 @@ public class BorrowController extends HttpServlet {
 		doGet(request, response);
 	}
 
-
 	private void getListBorrow(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		String key = request.getParameter("SearchValue");
 		String startDay = request.getParameter("startDate");
 		String endDay = request.getParameter("endDate");
-		if(key == null)
+
+		if (key == null)
 			key = "";
+		if (startDay == null)
+			startDay = "";
+		if (endDay == null)
+			endDay = "";
 
 		ArrayList<BorrowDTO> listBorrow = this.borrowService.list(key, startDay, endDay);
 		ArrayList<StudentDTO> listStu = this.studentService.list();
 		ArrayList<BookDTO> listBook = this.bookService.list();
+		request.setAttribute("searchValue", key);
+		request.setAttribute("startDate", startDay);
+		request.setAttribute("endDate", endDay);
 		request.setAttribute("listBook", listBook);
 		request.setAttribute("listStu", listStu);
 		request.setAttribute("listBorrow", listBorrow);

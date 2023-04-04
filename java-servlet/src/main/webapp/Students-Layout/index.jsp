@@ -11,9 +11,9 @@
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div class="box">
-		<div class="box body">
-			<div class=" d-flex justify-content-between bg-secondary  p-3">
-				<h2>Student Management</h2>
+		<div class="box-body">
+			<div class=" d-flex justify-content-between title-page  p-3">
+				<h2 class="text-white">Student Management</h2>
 				<a href="student?action=new"
 					class="btn btn-success btn-flat d-flex align-items-center"
 					title="bổ sung"><i class="fa-solid fa-plus"></i> Add New
@@ -47,7 +47,7 @@
 								<a href="student?action=edit&id=${student.studentID}"class="btn-sm btn-primary" title="Sửa"><i class="fa-solid fa-pen-to-square"></i></a>
 									
 								<c:if test="${student.isUsedStudent() == true }">
-									<a href="student?action=delete&id=${student.studentID}" class="btn-sm btn-danger" title="Xoá" onclick="return confirm('Xóa sách này khỏi hệ thống?')"><i class="fa-solid fa-trash"></i></a>
+									<a href="student?action=delete&id=${student.studentID}" class="btn-sm btn-danger" title="Xoá" onclick="return confirm('Xóa sinh viên này khỏi hệ thống?')"><i class="fa-solid fa-trash"></i></a>
 								</c:if>
 								</td>
 							</tr>

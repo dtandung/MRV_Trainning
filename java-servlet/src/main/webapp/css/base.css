@@ -1,0 +1,36 @@
+/*-- navbar start --*/
+#navbarNav .nav-item.active .nav-link{
+	font-weight: bold;
+	background-color: #906C4C;
+	color: white;
+	border-radius: 10px;
+}
+/*-- navbar end --*/
+/*-- datepicker start --*/
+.datepicker  input:focus {
+	outline: none;
+	box-shadow: none;
+}
+/*-- datepicker end --*/
+/*-- cursor start --*/
+.cursor-pointer {
+	cursor: pointer;
+}
+/*-- cursor end --*/
+/*-- message validation start --*/
+.studentForm label.error {
+	color: red;
+}
+.bookForm label.error {
+	color: red;
+}
+.borrowForm label.error{
+	color: red;
+}
+/*-- message validation end --*/
+.box{
+	margin-top:66px !important;
+}
+.box-body .title-page{
+	background: grey ;
+}

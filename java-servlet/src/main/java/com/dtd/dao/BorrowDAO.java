@@ -9,5 +9,5 @@ public interface BorrowDAO <T> {
 
 	boolean add(T data) throws SQLException;
 	
-	ArrayList<T> findList(String searchValue, String startDay, String endDay) throws SQLException;
+	boolean updateQuantity (int id , int quantity) throws SQLException;
 }

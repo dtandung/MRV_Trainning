@@ -28,16 +28,17 @@ public class BorrowServiceImpl implements BorrowService<BorrowDTO>{
 		// TODO Auto-generated method stub
 		if(data.getQuantity() == 0) 
 			return false;
+		updateQuantity(data.getBookID(), data.getQuantity());
 		return this.borrowdao.add(data);
 	}
 
-
-
-	
 	@Override
-	public ArrayList<BorrowDTO> findList(String searchValue, String startDay, String endDay) throws SQLException {
+	public boolean updateQuantity(int id, int quantity) throws SQLException {
 		// TODO Auto-generated method stub
-		return this.borrowdao.findList(searchValue, startDay, endDay);
+		return this.borrowdao.updateQuantity(id, quantity);
 	}
+
+
+
 
 }

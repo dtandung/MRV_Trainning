@@ -7,20 +7,17 @@
 <title>Borrows Management</title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/Kukku-Icon.png">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
 </head>
-<base href="/BookStore/">
+
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div class="box">
-		<div class="box body">
-			<div class=" d-flex justify-content-between bg-secondary  p-3">
-				<h2>Borrow Management</h2>
-
-
+		<div class="box-body">
+			<div class=" d-flex justify-content-between p-3 title-page">
+				<h2 class="text-white">Borrow Management</h2>
 				<a href="borrow?action=new"
 					class="btn btn-success btn-flat d-flex align-items-center"
 					title="bổ sung"><i class="fa-solid fa-plus"></i> Add Borrow</a>
@@ -32,29 +29,30 @@
 						<!-- Date Picker -->
 						<div class="form-group mb-4 col-sm-3">
 							<div class="datepicker date input-group">
-								<input type="text" placeholder="Start Day" class="form-control" name="startDate"
-									id="fecha1">
+								<input type="text" placeholder="Start Day" class=" form-control date-start cursor-pointer"
+									name="startDate" id="dt1" value="${startDate}" >
 								<div class="input-group-append">
-									<span class="input-group-text"><i class="fa fa-calendar"></i></span>
+									<span class="input-group-text"><i class="fa fa-calendar cursor-pointer"></i></span>
 								</div>
 							</div>
 						</div>
 						<!-- // Date Picker -->
 						<!-- Date Picker -->
-						<div class="form-group mb-4 col-sm-3">
+						<div class="form-group mb-4 col-sm-3 ">
 							<div class="datepicker date input-group">
-								<input type="text" placeholder="End Day" class="form-control" name="endDate"
-									id="fecha1">
+								<input type="text" placeholder="End Day" class="form-control date-end cursor-pointer"
+									name="endDate" id="dt2" value="${endDate }" >
 								<div class="input-group-append">
-									<span class="input-group-text"><i class="fa fa-calendar"></i></span>
+									<span class="input-group-text"><i class="fa fa-calendar cursor-pointer"></i></span>
 								</div>
 							</div>
 						</div>
 						<!-- // Date Picker -->
 						<div class="col-sm-6 mb-4 input-group ">
 							<input type="text" name="SearchValue" class="form-control"
-								placeholder="Nhập tên sách hoặc sinh viên cần tìm"> <span
-								class="input-group-btn" autofocus>
+								placeholder="Nhập tên sách hoặc sinh viên cần tìm"
+								value="${searchValue }"> <span class="input-group-btn"
+								autofocus>
 								<button type="submit" name="search" id="search-btn"
 									class="btn btn-flat btn-info">
 									<i class="fa fa-search"></i>
@@ -72,7 +70,7 @@
 							<th>StutdentID</th>
 							<th>Stutdent Name</th>
 							<th>Quantity</th>
-							
+
 						</tr>
 					</thead>
 					<tbody>
@@ -92,7 +90,7 @@
 									</c:if>
 								</c:forEach>
 								<td>${borrow.quantity}</td>
-								
+
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -100,11 +98,9 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/base.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/base.js"></script>
 </body>
 </html>

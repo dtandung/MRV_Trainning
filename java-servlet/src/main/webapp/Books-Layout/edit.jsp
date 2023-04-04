@@ -24,10 +24,10 @@
 		</c:choose>
 		<div class="box-body w-100 row justify-content-center">
 		  	<c:if test="${book != null}">
-				<form action="book?action=update" method="post" class="col-8">
+				<form action="book?action=update" method="post" class="bookForm col-8">
 	        </c:if>
 	        <c:if test="${book == null}">
-				<form action="book?action=insert" method="post" class="col-8">
+				<form action="book?action=insert" method="post" class="bookForm col-8">
 	        </c:if>
 	        <c:if test="${book != null}">
        			<input type="hidden" name="id" class="input-field" value="<c:out value='${book.bookID}'/>"/> 
@@ -41,7 +41,7 @@
 				
 				<div class="form-group">
 					<label>TotalPage</label> <input
-						type="text" class="form-control" id="TotalPage" name="TotalPage" value="${book.totalPage }"
+						type="number" class="form-control" id="TotalPage" name="TotalPage" value="${book.totalPage }"
 						placeholder="TotalPage" >
 				</div>
 				
@@ -65,5 +65,6 @@
 			</form>
 		</div>
 	</div>
+	<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/base.js"></script> --%>
 </body>
 </html>
