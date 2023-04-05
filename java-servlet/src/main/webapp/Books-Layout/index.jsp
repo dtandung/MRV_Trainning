@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Book Management</title>
-<link rel="icon"
-	href="${pageContext.request.contextPath}/img/Kukku-Icon.png">
-</head>
+<%@ include file="../common/header.jsp"%>
 <body>
-	<%@ include file="../common/header.jsp"%>
+	<%@ include file="../common/navbar.jsp"%>
 	<div class="box">
 		<div class="box-body">
 			<div class=" d-flex justify-content-between title-page  p-3">
@@ -31,27 +23,45 @@
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="book" items="${listBook}">
-						<tr>
-							<td>${book.name}</td>
-							<td>${book.totalPage }</td>
-							<td>${book.type }</td>
-							<td>${book.quantity }</td>
-							<td class="text-center">
-								<a href="book?action=edit&id=${book.bookID}"class="btn-sm btn-primary" title="Sửa"><i class="fa-solid fa-pen-to-square"></i></a>
-									
-								<c:if test="${book.isUsedBook() == true }">
-									<a href="book?action=delete&id=${book.bookID}" class="btn-sm btn-danger" title="Xoá" onclick="return confirm('Xóa sách này khỏi hệ thống?')"><i class="fa-solid fa-trash"></i></a>
-								</c:if>
-	
-							</td>
-						</tr>
-					</c:forEach>
+						<c:forEach var="book" items="${listBook}">
+							<tr>
+								<td>${book.name}</td>
+								<td>${book.totalPage }</td>
+								<td>${book.type }</td>
+								<td>${book.quantity }</td>
+								<td class="text-center"><a
+									href="book?action=edit&id=${book.bookID}"
+									class="btn-sm btn-primary" title="Sửa"><i
+										class="fa-solid fa-pen-to-square"></i></a> <c:if
+										test="${book.isUsedBook() == true }">
+										<a href="book?action=delete&id=${book.bookID}"
+											class="btn-sm btn-danger" title="Xoá"
+											onclick="return confirm('Xóa sách này khỏi hệ thống?')"><i
+											class="fa-solid fa-trash"></i></a>
+									</c:if></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
+	<%@ include file="../common/script.jsp"%>
+	<!-- alert action start-->
+	<c:if test="${sessionScope['success'] != null }">
+		<script type="text/javascript">
+			Swal.fire({
+				position : 'center',
+				icon : 'success',
+				title : 'Thành công !!!',
+				showConfirmButton : false,
+				timer : 2000
+			})
+		</script>
+		<%
+		session.removeAttribute("success");
+		%>
+	</c:if>
+	<!-- alert action end-->	
 </body>
-
 </html>

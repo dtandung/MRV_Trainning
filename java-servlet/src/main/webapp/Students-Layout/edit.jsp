@@ -1,17 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Student Management</title>
-<link rel="icon"
-	href="${pageContext.request.contextPath}/img/Kukku-Icon.png">
-</head>
-
+<%@ include file="../common/header.jsp"%>
 <body>
-	<%@ include file="../common/header.jsp"%>
+	<%@ include file="../common/navbar.jsp"%>
 	<div class="box box-primary container-fluid ">
 		<c:choose>
 			<c:when test="${student != null }">
@@ -89,7 +80,6 @@
 			</form>
 		</div>
 	</div>
-	<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/base.js"></script> --%>
-	
+	<%@ include file="../common/script.jsp"%>
 </body>
 </html>

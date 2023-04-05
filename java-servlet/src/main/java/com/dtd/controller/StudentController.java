@@ -105,8 +105,10 @@ public class StudentController extends HttpServlet {
 	private void delete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		int id = Integer.parseInt(request.getParameter("id"));
+		javax.servlet.http.HttpSession session = request.getSession();
 		if (studentService.inUsed(id)) {
 			studentService.delete(id);
+			session.setAttribute("success", "success");
 		}
 		response.sendRedirect("student");
 
@@ -124,6 +126,7 @@ public class StudentController extends HttpServlet {
 	private void updateStudent(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
 		try {
+		    javax.servlet.http.HttpSession session = request.getSession();
 			int id = Integer.parseInt(request.getParameter("id"));
 			String name = request.getParameter("Name");
 			int age = Integer.parseInt(request.getParameter("Age"));
@@ -137,6 +140,7 @@ public class StudentController extends HttpServlet {
 			StudentDTO newStudent = new StudentDTO(id, name, age, gender);
 			if (newStudent != null) {
 				this.studentService.update(newStudent);
+				session.setAttribute("success", "success");
 				response.sendRedirect("student");
 			}
 			showEditForm(request, response);

@@ -18,141 +18,145 @@ import com.dtd.service.BookServiceImpl;
 import com.dtd.service.CommonService;
 import com.dtd.utils.ConvertUtils;
 
+
 /**
  * Servlet implementation class BooksController
  */
 @WebServlet("/BookController")
 public class BookController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	private CommonService<BookDTO> bookService;
+  private CommonService<BookDTO> bookService;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+  /**
+   * @see HttpServlet#HttpServlet()
+   */
 
-	/**
-	 * @throws SQLException
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+  /**
+   * @throws SQLException
+   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+   */
 
-	@Override
-	public void init() throws ServletException {
-		// TODO Auto-generated method stub
-		this.bookService = new BookServiceImpl();
-	}
+  @Override
+  public void init() throws ServletException {
+    // TODO Auto-generated method stub
+    this.bookService = new BookServiceImpl();
+  }
 
-	public BookController() {
+  public BookController() {
 
-	}
+  }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		String action = request.getParameter("action") != null ? request.getParameter("action") : "none";
-		try {
-			switch (action) {
-			case "new":
-				RequestDispatcher dispatcher = request.getRequestDispatcher("./Books-Layout/edit.jsp");
-				dispatcher.forward(request, response);
-				break;
-			case "insert":
-				String name = request.getParameter("Name");
-				int totalPage = Integer.parseInt(request.getParameter("TotalPage"));
-				String type = request.getParameter("Type");
-				int quantity = Integer.parseInt(request.getParameter("Quantity"));
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    // TODO Auto-generated method stub
+    request.setCharacterEncoding("utf-8");
+    response.setCharacterEncoding("utf-8");
+    String action =
+        request.getParameter("action") != null ? request.getParameter("action") : "none";
+    try {
+      switch (action) {
+        case "new":
+          RequestDispatcher dispatcher = request.getRequestDispatcher("./Books-Layout/edit.jsp");
+          dispatcher.forward(request, response);
+          break;
+        case "insert":
+          String name = request.getParameter("Name");
+          int totalPage = Integer.parseInt(request.getParameter("TotalPage"));
+          String type = request.getParameter("Type");
+          int quantity = Integer.parseInt(request.getParameter("Quantity"));
 
-				BookDTO newBook = new BookDTO(name, totalPage, type, quantity);
-				this.bookService.add(newBook);
-				response.sendRedirect("book");
-				break;
-			case "delete":
-				delete(request, response);
-				break;
-			case "edit":
-				this.showEditForm(request, response);
-				break;
-			case "update":
-				this.updateBook(request, response);
-				break;
-			default:
-				this.getListBook(request, response);
-				break;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+          BookDTO newBook = new BookDTO(name, totalPage, type, quantity);
+          this.bookService.add(newBook);
+          response.sendRedirect("book");
+          break;
+        case "delete":
+          delete(request, response);
+          break;
+        case "edit":
+          this.showEditForm(request, response);
+          break;
+        case "update":
+          this.updateBook(request, response);
+          break;
+        default:
+          this.getListBook(request, response);
+          break;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+  /**
+   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+   */
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    // TODO Auto-generated method stub
+    doGet(request, response);
+  }
 
-	private void delete(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		if (bookService.inUsed(id)) {
-			bookService.delete(id);
-		}
-		response.sendRedirect("book");
+  private void delete(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException, SQLException {
+    int id = Integer.parseInt(request.getParameter("id"));
+    javax.servlet.http.HttpSession session = request.getSession();
+    if (bookService.inUsed(id)) {
+      bookService.delete(id);
+      session.setAttribute("success", "success");
+    }
+    response.sendRedirect("book");
 
-	}
+  }
 
-	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		BookDTO existingBook = this.bookService.get(id);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("./Books-Layout/edit.jsp");
-		request.setAttribute("book", existingBook);
-		dispatcher.forward(request, response);
-	}
+  private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException, SQLException {
+    int id = Integer.parseInt(request.getParameter("id"));
+    BookDTO existingBook = this.bookService.get(id);
+    RequestDispatcher dispatcher = request.getRequestDispatcher("./Books-Layout/edit.jsp");
+    request.setAttribute("book", existingBook);
+    dispatcher.forward(request, response);
+  }
 
-	private void updateBook(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-		try {
-			int id = Integer.parseInt(request.getParameter("id"));
-			String name = request.getParameter("Name");
-			int totalPage = Integer.parseInt(request.getParameter("TotalPage"));
-			String type = request.getParameter("Type");
-			int quantity = Integer.parseInt(request.getParameter("Quantity"));
+  private void updateBook(HttpServletRequest request, HttpServletResponse response)
+      throws SQLException, IOException {
+    try {
+      javax.servlet.http.HttpSession session = request.getSession();
+      int id = Integer.parseInt(request.getParameter("id"));
+      String name = request.getParameter("Name");
+      int totalPage = Integer.parseInt(request.getParameter("TotalPage"));
+      String type = request.getParameter("Type");
+      int quantity = Integer.parseInt(request.getParameter("Quantity"));
 
-			BookDTO newBook = new BookDTO(id, name, totalPage, type, quantity);
-			this.bookService.update(newBook);
-			System.out.println(newBook.getName());
-			response.sendRedirect("book");
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-	}
+      BookDTO newBook = new BookDTO(id, name, totalPage, type, quantity);
+      this.bookService.update(newBook);
+      session.setAttribute("success", "success");
+      System.out.println(newBook.getName());
+      response.sendRedirect("book");
+    } catch (Exception e) {
+      // TODO: handle exception
+      e.printStackTrace();
+    }
+  }
 
-	private void getListBook(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
-		ArrayList<BookDTO> listBook = this.bookService.list();
-		
-		ArrayList<Book> listBookTemp = new ArrayList<Book>();
+  private void getListBook(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException, SQLException {
+    ArrayList<BookDTO> listBook = this.bookService.list();
 
-		listBook.forEach((book) -> {
-			try {
-				boolean isUseBook = bookService.inUsed(book.getBookID());						
-				Book bookTemp = ConvertUtils.insertToBook(book, isUseBook);		
-				listBookTemp.add(bookTemp);
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
-		request.setAttribute("listBook", listBookTemp);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("./Books-Layout/index.jsp");
-		dispatcher.forward(request, response);
-	}
+    ArrayList<Book> listBookTemp = new ArrayList<Book>();
+
+    listBook.forEach((book) -> {
+      try {
+        boolean isUseBook = bookService.inUsed(book.getBookID());
+        Book bookTemp = ConvertUtils.insertToBook(book, isUseBook);
+        listBookTemp.add(bookTemp);
+      } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    });
+    request.setAttribute("listBook", listBookTemp);
+    RequestDispatcher dispatcher = request.getRequestDispatcher("./Books-Layout/index.jsp");
+    dispatcher.forward(request, response);
+  }
 }

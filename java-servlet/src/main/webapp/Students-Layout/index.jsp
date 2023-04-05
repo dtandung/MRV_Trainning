@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Student Management</title>
-<link rel="icon"
-	href="${pageContext.request.contextPath}/img/Kukku-Icon.png">
-</head>
+<%@ include file="../common/header.jsp"%>
 <body>
-	<%@ include file="../common/header.jsp"%>
+	<%@ include file="../common/navbar.jsp"%>
 	<div class="box">
 		<div class="box-body">
 			<div class=" d-flex justify-content-between title-page  p-3">
@@ -43,13 +36,16 @@
 									</c:otherwise>
 								</c:choose>
 
-								<td class="text-center">
-								<a href="student?action=edit&id=${student.studentID}"class="btn-sm btn-primary" title="Sửa"><i class="fa-solid fa-pen-to-square"></i></a>
-									
-								<c:if test="${student.isUsedStudent() == true }">
-									<a href="student?action=delete&id=${student.studentID}" class="btn-sm btn-danger" title="Xoá" onclick="return confirm('Xóa sinh viên này khỏi hệ thống?')"><i class="fa-solid fa-trash"></i></a>
-								</c:if>
-								</td>
+								<td class="text-center"><a
+									href="student?action=edit&id=${student.studentID}"
+									class="btn-sm btn-primary" title="Sửa"><i
+										class="fa-solid fa-pen-to-square"></i></a> <c:if
+										test="${student.isUsedStudent() == true }">
+										<a href="student?action=delete&id=${student.studentID}"
+											class="btn-sm btn-danger" title="Xoá"
+											onclick="return confirm('Xóa sinh viên này khỏi hệ thống?')"><i
+											class="fa-solid fa-trash"></i></a>
+									</c:if></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -57,5 +53,22 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="../common/script.jsp"%>
+	<!-- alert action start-->
+	<c:if test="${sessionScope['success'] != null }">
+		<script type="text/javascript">
+			Swal.fire({
+				position : 'center',
+				icon : 'success',
+				title : 'Thành công !!!',
+				showConfirmButton : false,
+				timer : 2000
+			})
+		</script>
+		<%
+		session.removeAttribute("success");
+		%>
+	</c:if>
+	<!-- alert action end-->
 </body>
 </html>

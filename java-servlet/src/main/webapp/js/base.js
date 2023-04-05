@@ -1,10 +1,10 @@
 /*======= Active Navbar START ======== */
 $(".nav-item a").on("click", function() {
-		$(".nav-item.active").removeClass("active");
-		$(this).parent().addClass("active");
-	}).filter(function() {
-		return window.location.href.indexOf($(this).attr('href').trim()) > -1;
-	}).click();
+	$(".nav-item.active").removeClass("active");
+	$(this).parent().addClass("active");
+}).filter(function() {
+	return window.location.href.indexOf($(this).attr('href').trim()) > -1;
+}).click();
 /*======= Active Navbar END ======== */
 
 /*======= Select DatePicker START ======== */
@@ -74,7 +74,7 @@ $().ready(function() {
 			"Name": {
 				required: true,
 				validForStudent: true,
-				maxlength:50
+				maxlength: 50
 			},
 			"Gender": {
 				required: true
@@ -83,15 +83,15 @@ $().ready(function() {
 		messages: {
 			"Age": {
 				required: "*Please enter age",
-				min:"*Age must be greater than 5",
+				min: "*Age must be greater than 5",
 				max: "*Age exceeding the permissible",
 				number: "*Number must be entered",
-				digits:"*Please enter only positive integer digits"
+				digits: "*Please enter only positive integer digits"
 			},
 			"Name": {
 				required: "*Please enter name",
-				validForStudent:"*Incorrectly formatted name",
-				maxlength:"*Name must be less than 50 characters",
+				validForStudent: "*Incorrectly formatted name",
+				maxlength: "*Name must be less than 50 characters",
 			},
 			"Gender": {
 				required: "*Please select gender"
@@ -122,7 +122,7 @@ $().ready(function() {
 			},
 			"Name": {
 				required: true,
-				validForBook:true
+				validForBook: true
 			},
 			"Type": {
 				required: true,
@@ -139,20 +139,20 @@ $().ready(function() {
 			"TotalPage": {
 				required: "*Please enter total page",
 				number: "*Number must be entered",
-				digits:"*Please enter only positive integer digits"
+				digits: "*Please enter only positive integer digits"
 			},
 			"Name": {
 				required: "*Please enter name",
-				validForBook:"*Incorrectly formatted name",
+				validForBook: "*Incorrectly formatted name",
 			},
 			"Type": {
 				required: "*Please enter type",
-				validForBook:"*Incorrectly formatted type",
+				validForBook: "*Incorrectly formatted type",
 			},
 			"Quantity": {
 				required: "*Please enter quantity",
 				number: "*Number must be entered",
-				digits:"*Please enter only positive integer digits"
+				digits: "*Please enter only positive integer digits"
 			},
 		},
 
@@ -162,6 +162,31 @@ $().ready(function() {
 
 /*======= Borrow Form Validate START ======== */
 $().ready(function() {
+
+
+	$("#formBorrow").submit(function(e) {
+		e.preventDefault();
+		var data = $(this).serializeArray();
+		var link = $(this).prop("action");
+
+		$.ajax({
+			url: link,
+			type: "POST",
+			data: data,
+			error: function() {
+				alert("Your request is not valid!");
+			},
+			success: function(result) {
+				if (result === "borrow") {
+					window.location.href = result
+				} else
+					$("#ajaxGetUserServletResponse").html(result)
+			}
+		});
+
+	});
+
+
 
 	$(".borrowForm").validate({
 		onfocusout: false,
@@ -194,7 +219,7 @@ $().ready(function() {
 			"Quantity": {
 				required: "*Please enter your quantity",
 				number: "*Number must be entered",
-				digits:"*Please enter only positive integer digits"
+				digits: "*Please enter only positive integer digits"
 			},
 			"StudentName": {
 				required: "*Please select the student ID to display the student name",

@@ -1,19 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Borrows Management</title>
-<link rel="icon"
-	href="${pageContext.request.contextPath}/img/Kukku-Icon.png">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
-</head>
-
+<%@ include file="../common/header.jsp"%>
 <body>
-	<%@ include file="../common/header.jsp"%>
+	<%@ include file="../common/navbar.jsp"%>
 	<div class="box">
 		<div class="box-body">
 			<div class=" d-flex justify-content-between p-3 title-page">
@@ -29,10 +18,12 @@
 						<!-- Date Picker -->
 						<div class="form-group mb-4 col-sm-3">
 							<div class="datepicker date input-group">
-								<input type="text" placeholder="Start Day" class=" form-control date-start cursor-pointer"
-									name="startDate" id="dt1" value="${startDate}" >
+								<input type="text" placeholder="Start Day"
+									class=" form-control date-start cursor-pointer"
+									name="startDate" id="dt1" value="${startDate}">
 								<div class="input-group-append">
-									<span class="input-group-text"><i class="fa fa-calendar cursor-pointer"></i></span>
+									<span class="input-group-text"><i
+										class="fa fa-calendar cursor-pointer"></i></span>
 								</div>
 							</div>
 						</div>
@@ -40,10 +31,12 @@
 						<!-- Date Picker -->
 						<div class="form-group mb-4 col-sm-3 ">
 							<div class="datepicker date input-group">
-								<input type="text" placeholder="End Day" class="form-control date-end cursor-pointer"
-									name="endDate" id="dt2" value="${endDate }" >
+								<input type="text" placeholder="End Day"
+									class="form-control date-end cursor-pointer" name="endDate"
+									id="dt2" value="${endDate }">
 								<div class="input-group-append">
-									<span class="input-group-text"><i class="fa fa-calendar cursor-pointer"></i></span>
+									<span class="input-group-text"><i
+										class="fa fa-calendar cursor-pointer"></i></span>
 								</div>
 							</div>
 						</div>
@@ -98,9 +91,6 @@
 			</div>
 		</div>
 	</div>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/base.js"></script>
+	<%@ include file="../common/script.jsp"%>
 </body>
 </html>
