@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="../common/header.jsp"%>
+<%@ include file="../common/head.jsp"%>
 <body>
 	<%@ include file="../common/navbar.jsp"%>
 	<div class="box box-primary container-fluid ">

@@ -17,11 +17,12 @@ public class BorrowDAOImpl implements BorrowDAO<BorrowDTO> {
 		ArrayList<BorrowDTO> listbor = new ArrayList<BorrowDTO>();
 
 		jdbcConnection = MysqlCon.connectDb();
+		
 		if (startDay == "" && endDay == "" && searchValue.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
 			String sql3 = " select br.BorrowID, br.BorrowDate, st.StudentID, bo.BookID, br.Quantity "
 					+ "from borrows as br left join books as bo on br.BookID = bo.BookID "
-					+ "left join students as st on br.StudentID = st.StudentID " + "where br.BorrowDate = ?";
-
+					+ "left join students as st on br.StudentID = st.StudentID " 
+					+ "where br.BorrowDate = ?";
 			PreparedStatement statement = jdbcConnection.prepareStatement(sql3);
 			statement.setString(1, searchValue);
 

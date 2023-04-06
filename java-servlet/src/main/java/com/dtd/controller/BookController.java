@@ -11,9 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 import com.dtd.dto.BookDTO;
 import com.dtd.model.Book;
+import com.dtd.service.BookService;
 import com.dtd.service.BookServiceImpl;
 import com.dtd.service.CommonService;
 import com.dtd.utils.ConvertUtils;
@@ -27,6 +28,7 @@ public class BookController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   private CommonService<BookDTO> bookService;
+  private BookService bookService2;
 
   /**
    * @see HttpServlet#HttpServlet()
@@ -41,6 +43,7 @@ public class BookController extends HttpServlet {
   public void init() throws ServletException {
     // TODO Auto-generated method stub
     this.bookService = new BookServiceImpl();
+    this.bookService2 = new BookServiceImpl();
   }
 
   public BookController() {
@@ -61,14 +64,7 @@ public class BookController extends HttpServlet {
           dispatcher.forward(request, response);
           break;
         case "insert":
-          String name = request.getParameter("Name");
-          int totalPage = Integer.parseInt(request.getParameter("TotalPage"));
-          String type = request.getParameter("Type");
-          int quantity = Integer.parseInt(request.getParameter("Quantity"));
-
-          BookDTO newBook = new BookDTO(name, totalPage, type, quantity);
-          this.bookService.add(newBook);
-          response.sendRedirect("book");
+          insert(request, response);
           break;
         case "delete":
           delete(request, response);
@@ -91,19 +87,40 @@ public class BookController extends HttpServlet {
   /**
    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
    */
+
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     // TODO Auto-generated method stub
     doGet(request, response);
   }
 
+  private void insert(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException, SQLException {
+    HttpSession session = request.getSession();
+    String name = request.getParameter("Name");
+    int totalPage = Integer.parseInt(request.getParameter("TotalPage"));
+    String type = request.getParameter("Type");
+    int quantity = Integer.parseInt(request.getParameter("Quantity"));
+    int check = this.bookService2.checkNameBook(name);
+    
+    if(check == 0) {
+      BookDTO newBook = new BookDTO(name, totalPage, type, quantity);
+      this.bookService.add(newBook);
+      session.setAttribute("success", "success");
+      response.setContentType("text/html;charset:UTF-8");
+      response.getWriter().write("book");
+    }else {
+      response.setContentType("text/html;charset:UTF-8");
+      response.getWriter().write("*Tên sách đã tồn tại");
+    }
+    
+  }
+
   private void delete(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException, SQLException {
     int id = Integer.parseInt(request.getParameter("id"));
-    javax.servlet.http.HttpSession session = request.getSession();
     if (bookService.inUsed(id)) {
       bookService.delete(id);
-      session.setAttribute("success", "success");
     }
     response.sendRedirect("book");
 
@@ -127,12 +144,19 @@ public class BookController extends HttpServlet {
       int totalPage = Integer.parseInt(request.getParameter("TotalPage"));
       String type = request.getParameter("Type");
       int quantity = Integer.parseInt(request.getParameter("Quantity"));
-
-      BookDTO newBook = new BookDTO(id, name, totalPage, type, quantity);
-      this.bookService.update(newBook);
-      session.setAttribute("success", "success");
-      System.out.println(newBook.getName());
-      response.sendRedirect("book");
+      int check = this.bookService2.checkNameBook(name);
+      BookDTO bok = this.bookService.get(id);
+      if(check == 1 && !name.equals(bok.getName()) ) {
+        response.setContentType("text/html;charset:UTF-8");
+        response.getWriter().write("*Tên sách đã tồn tại");
+      }else {
+        BookDTO newBook = new BookDTO(id, name, totalPage, type, quantity);
+        this.bookService.update(newBook);
+        session.setAttribute("success", "success");
+        response.setContentType("text/html;charset:UTF-8");
+        response.getWriter().write("book");
+       
+      }
     } catch (Exception e) {
       // TODO: handle exception
       e.printStackTrace();

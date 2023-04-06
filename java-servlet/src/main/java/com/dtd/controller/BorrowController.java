@@ -80,7 +80,6 @@ public class BorrowController extends HttpServlet {
           dispatcher.forward(request, response);
           break;
         case "insert":
-          HttpSession session = request.getSession();
           int studentID = Integer.parseInt(request.getParameter("StudentID"));
           int bookID = Integer.parseInt(request.getParameter("BookID"));
           int quantity = Integer.parseInt(request.getParameter("Quantity"));
@@ -100,8 +99,18 @@ public class BorrowController extends HttpServlet {
             response.getWriter().write("*Số lượng vượt quá cho phép");
           }
           break;
+        case "search":
+          getListBorrow(request, response);
+          break;
         default:
-          this.getListBorrow(request, response);
+          ArrayList<BorrowDTO> listBorrow = this.borrowService.list("", "", "");
+          ArrayList<StudentDTO> listStudent = this.studentService.list();
+          ArrayList<BookDTO> listbook = this.bookService.list();
+          request.setAttribute("listBook", listbook);
+          request.setAttribute("listStu", listStudent);
+          request.setAttribute("listBorrow", listBorrow);
+          RequestDispatcher redispatcher = request.getRequestDispatcher("/Borrows-Layout/index.jsp");
+          redispatcher.forward(request, response);
           break;
       }
       // }
@@ -124,7 +133,9 @@ public class BorrowController extends HttpServlet {
     String key = request.getParameter("SearchValue");
     String startDay = request.getParameter("startDate");
     String endDay = request.getParameter("endDate");
-
+    ArrayList<BorrowDTO> listBorrow = this.borrowService.list(key, startDay, endDay);
+    ArrayList<StudentDTO> listStu = this.studentService.list();
+    ArrayList<BookDTO> listBook = this.bookService.list();
     if (key == null)
       key = "";
     if (startDay == null)
@@ -134,33 +145,26 @@ public class BorrowController extends HttpServlet {
     
     if (key.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
       if (ConvertUtils.validDate(key)) {
-        ArrayList<BorrowDTO> listBorrow = this.borrowService.list(key, startDay, endDay);
-        ArrayList<StudentDTO> listStu = this.studentService.list();
-        ArrayList<BookDTO> listBook = this.bookService.list();
         request.setAttribute("searchValue", key);
         request.setAttribute("startDate", startDay);
         request.setAttribute("endDate", endDay);
         request.setAttribute("listBook", listBook);
         request.setAttribute("listStu", listStu);
         request.setAttribute("listBorrow", listBorrow);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Borrows-Layout/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Borrows-Layout/search.jsp");
         dispatcher.forward(request, response);
       } else {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Borrows-Layout/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Borrows-Layout/search.jsp");
         dispatcher.forward(request, response);
       }
     }
-    
-    ArrayList<BorrowDTO> listBorrow = this.borrowService.list(key, startDay, endDay);
-    ArrayList<StudentDTO> listStu = this.studentService.list();
-    ArrayList<BookDTO> listBook = this.bookService.list();
     request.setAttribute("searchValue", key);
     request.setAttribute("startDate", startDay);
     request.setAttribute("endDate", endDay);
     request.setAttribute("listBook", listBook);
     request.setAttribute("listStu", listStu);
     request.setAttribute("listBorrow", listBorrow);
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/Borrows-Layout/index.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/Borrows-Layout/search.jsp");
     dispatcher.forward(request, response);
   }
 }

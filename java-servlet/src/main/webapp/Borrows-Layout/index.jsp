@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="../common/header.jsp"%>
+<%@ include file="../common/head.jsp"%>
 <body>
 	<%@ include file="../common/navbar.jsp"%>
 	<div class="box">
@@ -14,7 +14,8 @@
 
 			<div class="p-3">
 				<div class="top-body">
-					<form class="row" action="borrow?action=none" method="get">
+					<form id="formSearchBorrow" class="row"
+						action="borrow?action=search" method="get">
 						<!-- Date Picker -->
 						<div class="form-group mb-4 col-sm-3">
 							<div class="datepicker date input-group">
@@ -63,30 +64,9 @@
 							<th>StutdentID</th>
 							<th>Stutdent Name</th>
 							<th>Quantity</th>
-
 						</tr>
 					</thead>
-					<tbody>
-						<c:forEach var="borrow" items="${listBorrow}">
-							<tr>
-								<td>${borrow.bookID}</td>
-								<c:forEach var="book" items="${listBook}">
-									<c:if test="${borrow.bookID eq book.bookID }">
-										<td>${book.name}</td>
-									</c:if>
-								</c:forEach>
-								<td>${borrow.borrowDate}</td>
-								<td>${borrow.studentID}</td>
-								<c:forEach var="item" items="${listStu}">
-									<c:if test="${borrow.studentID eq item.studentID }">
-										<td>${item.name }</td>
-									</c:if>
-								</c:forEach>
-								<td>${borrow.quantity}</td>
-
-							</tr>
-						</c:forEach>
-					</tbody>
+					<div id="searchResult"></div>
 				</table>
 			</div>
 		</div>

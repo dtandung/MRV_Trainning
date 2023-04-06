@@ -11,6 +11,12 @@
 	outline: none;
 	box-shadow: none;
 }
+/* .datepicker .datepicker-dropdown::before {
+	top: 190px!important;
+    left: 369.525px;
+    z-index: 10;
+    display: block;
+} */
 /*-- datepicker end --*/
 /*-- cursor start --*/
 .cursor-pointer {

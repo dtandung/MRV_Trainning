@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="../common/header.jsp"%>
+<%@ include file="../common/head.jsp"%>
 <body>
 	<%@ include file="../common/navbar.jsp"%>
 	<div class="box">
@@ -41,9 +41,9 @@
 									class="btn-sm btn-primary" title="Sửa"><i
 										class="fa-solid fa-pen-to-square"></i></a> <c:if
 										test="${student.isUsedStudent() == true }">
-										<a href="student?action=delete&id=${student.studentID}"
-											class="btn-sm btn-danger" title="Xoá"
-											onclick="return confirm('Xóa sinh viên này khỏi hệ thống?')"><i
+										<a id="${student.studentID}" name="${student.name}"
+											href="student?action=delete&id=${student.studentID}"
+											class="btn-sm btn-danger deleteStudent" title="Xoá"><i
 											class="fa-solid fa-trash"></i></a>
 									</c:if></td>
 							</tr>
@@ -54,6 +54,7 @@
 		</div>
 	</div>
 	<%@ include file="../common/script.jsp"%>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!-- alert action start-->
 	<c:if test="${sessionScope['success'] != null }">
 		<script type="text/javascript">

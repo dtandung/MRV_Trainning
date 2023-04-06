@@ -12,10 +12,12 @@ $(function() {
 	$('.datepicker').datepicker({
 		language: "es",
 		autoclose: true,
+		inline: true,
 		format: "yyyy-mm-dd",
 	});
 
 });
+
 /*======= Select DatePicker END ======== */
 
 /*======= Select Search Date Validate START ======== */
@@ -53,7 +55,38 @@ function select() {
 /*======= Student Form Get StudentName When Select StudentID END ======== */
 
 /*======= Student Form Validate START ======== */
-$().ready(function() {
+$(document).ready(function() {
+
+	$(".deleteStudent").click(function(e) {
+		e.preventDefault();
+		var id = $(this).prop("id");
+		var link = $(this).prop("href");
+		var name = $(this).prop("name");
+		swal({
+			title: "Are you sure?",
+			text: "DELETE "+ name,
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		})
+			.then((willDelete) => {
+				if (willDelete) {
+					$.ajax({
+						url: link,
+						type: "post",
+						data: {
+							id: id,
+						},
+						success: function(data) {
+							$(".deleteStudent").closest('tr').remove();
+						}
+					});
+				} else {
+					swal(name+" is safe!");
+				}
+			});
+	});
+
 	const regexName = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂ ưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$/;
 	jQuery.validator.addMethod("validForStudent", function(value, element) {
 		// allow any non-whitespace characters as the host part
@@ -103,7 +136,77 @@ $().ready(function() {
 /*======= Student Form Validate END ======== */
 
 /*======= Book Form Validate START ======== */
-$().ready(function() {
+$(document).ready(function() {
+
+	$("#formBook").submit(function(e) {
+		e.preventDefault();
+		var data = $(this).serializeArray();
+		var link = $(this).prop("action");
+		console.log(data)
+		console.log(link)
+		$.ajax({
+			url: link,
+			type: "POST",
+			data: data,
+			error: function() {
+				alert("Your request is not valid!");
+			},
+			success: function(result) {
+				console.log(result)
+				if (result === "book") {
+					window.location.href = result
+				} else
+					$("#errorBook").html(result)
+			}
+		});
+	});
+	/*$(".deleteBook").click(function(e) {
+		e.preventDefault();
+		var id = $(this).prop("id");
+		var link = $(this).prop("href");
+		if (confirm("Xóa sách này khỏi hệ thống?")) {
+			$.ajax({
+				url: link,
+				type: "post",
+				data: {
+					id: id,
+				},
+				success: function(data) {
+					$(".deleteBook").closest('tr').remove();
+				}
+			});
+		}
+	});*/
+
+	$(".deleteBook").click(function(e) {
+		e.preventDefault();
+		var id = $(this).prop("id");
+		var link = $(this).prop("href");
+		var name = $(this).prop("name");
+		swal({
+			title: "Are you sure?",
+			text: "DELETE "+name,
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		})
+			.then((willDelete) => {
+				if (willDelete) {
+					$.ajax({
+						url: link,
+						type: "post",
+						data: {
+							id: id,
+						},
+						success: function(data) {
+							$(".deleteBook").closest('tr').remove();
+						}
+					});
+				} else {
+					swal(name+" is safe!");
+				}
+			});
+	});
 	const regexName = /^[^-\s][0-9a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂ ưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/;
 	jQuery.validator.addMethod("validForBook", function(value, element) {
 		// allow any non-whitespace characters as the host part
@@ -161,7 +264,29 @@ $().ready(function() {
 /*======= Book Form Validate END ======== */
 
 /*======= Borrow Form Validate START ======== */
-$().ready(function() {
+$(document).ready(function() {
+
+	$("#formSearchBorrow").submit(function(e) {
+		e.preventDefault();
+		var data = $(this).serializeArray();
+		var link = $(this).prop("action");
+		var page = "search.jsp"
+		$.ajax({
+			url: link,
+			type: "POST",
+			data: data,
+			dataType: 'html',
+			error: function() {
+				alert("Your request is not valid!");
+			},
+			success: function(result) {
+				console.log(result)
+				$("#searchResult").html(result)
+			}
+		});
+
+	});
+
 
 
 	$("#formBorrow").submit(function(e) {

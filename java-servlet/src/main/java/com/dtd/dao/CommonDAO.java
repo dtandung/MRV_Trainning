@@ -19,5 +19,4 @@ public interface CommonDAO<T> {
 
 	boolean inUsed(int id) throws SQLException;
 	
-	
 }

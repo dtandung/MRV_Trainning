@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<!-- sweet alert -->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/public/share/assets/plugins/sweet-alert/sweetalert.min.js"></script>
-<script
-	src="/public/share/assets/js/pages/sweet-alert/sweet-alert-data.js"></script>
-<!-- sweet alert end -->
+
 
 <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -21,23 +16,26 @@
 	crossorigin="anonymous"></script>
 <!-- end jquery cdn -->
 
+<!-- sweet alert -->
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/public/share/assets/plugins/sweet-alert/sweetalert.min.js"></script>
+<script
+	src="/public/share/assets/js/pages/sweet-alert/sweet-alert-data.js"></script>
+<!-- sweet alert end -->
 <!-- select live search cdn -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 <!-- end select live search cdn -->
-
 <!-- jquery validation cdn -->
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
 	type="text/javascript"></script>
 <!-- end jquery validation cdn -->
-
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/base.js"></script>
 <!-- boostrap datepicker start -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <!-- boostrap datepicker end -->
-
-
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/base.js"></script>

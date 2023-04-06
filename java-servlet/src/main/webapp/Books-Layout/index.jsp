@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="../common/header.jsp"%>
+<%@ include file="../common/head.jsp"%>
 <body>
 	<%@ include file="../common/navbar.jsp"%>
 	<div class="box">
@@ -12,7 +12,7 @@
 					title="bổ sung"><i class="fa-solid fa-plus"></i> Add New Book</a>
 			</div>
 			<div class="p-3">
-				<table class=" table table-bordered table-hover table-striped">
+				<table id="tableBook" class=" table table-bordered table-hover table-striped">
 					<thead>
 						<tr class="bg-white">
 							<th>Name</th>
@@ -27,16 +27,16 @@
 							<tr>
 								<td>${book.name}</td>
 								<td>${book.totalPage }</td>
-								<td>${book.type }</td>
+								<td>${book.type }</td>	
 								<td>${book.quantity }</td>
 								<td class="text-center"><a
 									href="book?action=edit&id=${book.bookID}"
 									class="btn-sm btn-primary" title="Sửa"><i
 										class="fa-solid fa-pen-to-square"></i></a> <c:if
 										test="${book.isUsedBook() == true }">
-										<a href="book?action=delete&id=${book.bookID}"
-											class="btn-sm btn-danger" title="Xoá"
-											onclick="return confirm('Xóa sách này khỏi hệ thống?')"><i
+										<a id="${book.bookID}" href="book?action=delete&id=${book.bookID}" name="${book.name}"
+											class="btn-sm btn-danger deleteBook" title="Xoá"
+											><i
 											class="fa-solid fa-trash"></i></a>
 									</c:if></td>
 							</tr>
@@ -47,6 +47,7 @@
 		</div>
 	</div>
 	<%@ include file="../common/script.jsp"%>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!-- alert action start-->
 	<c:if test="${sessionScope['success'] != null }">
 		<script type="text/javascript">

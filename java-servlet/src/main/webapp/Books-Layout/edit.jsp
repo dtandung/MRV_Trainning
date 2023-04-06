@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="../common/header.jsp"%>
+<%@ include file="../common/head.jsp"%>
 <body>
 	<%@ include file="../common/navbar.jsp"%>
 	<div class="box box-primary container-fluid ">
@@ -14,11 +14,11 @@
 		</c:choose>
 		<div class="box-body w-100 row justify-content-center">
 			<c:if test="${book != null}">
-				<form action="book?action=update" method="post"
+				<form id="formBook" action="book?action=update" method="post"
 					class="bookForm col-8">
 			</c:if>
 			<c:if test="${book == null}">
-				<form action="book?action=insert" method="post"
+				<form id="formBook" action="book?action=insert" method="post"
 					class="bookForm col-8">
 			</c:if>
 			<c:if test="${book != null}">
@@ -31,7 +31,7 @@
 					id="Name" name="Name" value="${book.name}" placeholder="Name"
 					autofocus>
 			</div>
-
+			<div class="text-danger" id="errorBook"></div>
 			<div class="form-group">
 				<label>TotalPage</label> <input type="number" class="form-control"
 					id="TotalPage" name="TotalPage" value="${book.totalPage }"

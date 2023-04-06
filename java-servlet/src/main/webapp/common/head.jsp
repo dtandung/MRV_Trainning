@@ -22,12 +22,12 @@
 <!-- link select live search boostrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-<!-- link datepicker boostrap -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
 <!-- link file css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/base.css" />
+<!-- link datepicker boostrap -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
 <!-- link ajax -->
 <script src="https://code.jquery.com/jquery-1.10.2.js"
 	type="text/javascript"></script>
