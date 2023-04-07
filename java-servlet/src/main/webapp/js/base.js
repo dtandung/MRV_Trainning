@@ -270,14 +270,14 @@ $(document).ready(function() {
 		e.preventDefault();
 		var data = $(this).serializeArray();
 		var link = $(this).prop("action");
+		console.log(link)
 		var page = "search.jsp"
 		$.ajax({
 			url: link,
 			type: "POST",
 			data: data,
-			dataType: 'html',
 			error: function() {
-				alert("Your request is not valid!");
+				
 			},
 			success: function(result) {
 				console.log(result)

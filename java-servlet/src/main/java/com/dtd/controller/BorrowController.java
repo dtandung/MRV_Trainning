@@ -133,14 +133,14 @@ public class BorrowController extends HttpServlet {
     String key = request.getParameter("SearchValue");
     String startDay = request.getParameter("startDate");
     String endDay = request.getParameter("endDate");
-    ArrayList<BorrowDTO> listBorrow = this.borrowService.list(key, startDay, endDay);
+    
     ArrayList<StudentDTO> listStu = this.studentService.list();
     ArrayList<BookDTO> listBook = this.bookService.list();
-    if (key == null)
+    if (key == null || key== "")
       key = "";
-    if (startDay == null)
+    if (startDay == null || startDay == "")
       startDay = "";
-    if (endDay == null)
+    if (endDay == null || endDay == "")
       endDay = "";
     
     if (key.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
@@ -150,6 +150,7 @@ public class BorrowController extends HttpServlet {
         request.setAttribute("endDate", endDay);
         request.setAttribute("listBook", listBook);
         request.setAttribute("listStu", listStu);
+        ArrayList<BorrowDTO> listBorrow = this.borrowService.list(key, startDay, endDay);
         request.setAttribute("listBorrow", listBorrow);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/Borrows-Layout/search.jsp");
         dispatcher.forward(request, response);
@@ -163,7 +164,9 @@ public class BorrowController extends HttpServlet {
     request.setAttribute("endDate", endDay);
     request.setAttribute("listBook", listBook);
     request.setAttribute("listStu", listStu);
+    ArrayList<BorrowDTO> listBorrow = this.borrowService.list(key, startDay, endDay);
     request.setAttribute("listBorrow", listBorrow);
+    
     RequestDispatcher dispatcher = request.getRequestDispatcher("/Borrows-Layout/search.jsp");
     dispatcher.forward(request, response);
   }
