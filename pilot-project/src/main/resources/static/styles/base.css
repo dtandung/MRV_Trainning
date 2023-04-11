@@ -1,0 +1,44 @@
+body{
+	background-color: #f3f4f6
+}
+:focus {
+	outline: 0 !important;
+	box-shadow: none !important;
+}
+
+header {
+	background: #4a90e2;
+	height: 50px;
+	margin-bottom: 15px;
+}
+header .main-logo {
+	font-size: 30px;
+	color: #fff;
+	font-weight: 700;
+	text-transform: uppercase;
+	padding-top: 2px;
+}
+header .nav-link {
+	background-color: #fff;
+	margin-left: 8px;
+	margin-top: 4px;
+	width: 100px;
+	text-align: center;
+	font-weight: 600;
+	border-radius: 3px;
+	border: 1px solid;
+}
+header .nav-link {
+	color: #333;
+}
+header .nav-link.active {
+	background-color: coral;
+	color: #fff;
+}
+
+.main-content{
+	background-color: white;
+	padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+}
