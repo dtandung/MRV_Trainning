@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Book Management</title>
 <%@ include file="../common/head.jsp"%>
+</head>
 <body>
 	<%@ include file="../common/navbar.jsp"%>
 	<div class="box">

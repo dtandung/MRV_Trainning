@@ -62,7 +62,8 @@ public class StudentController extends HttpServlet {
 				String name = request.getParameter("Name");
 				int age = Integer.parseInt(request.getParameter("Age"));
 				String genderTemp = request.getParameter("Gender");
-
+		        javax.servlet.http.HttpSession session = request.getSession();
+		        
 				boolean gender = false;
 				if (genderTemp.equals("1")) {
 					gender = true;
@@ -71,8 +72,8 @@ public class StudentController extends HttpServlet {
 				}
 				StudentDTO newStudent = new StudentDTO(name, age, gender);
 				this.studentService.add(newStudent);
+				session.setAttribute("success", "success");
 				response.sendRedirect("student");
-
 				break;
 			case "delete":
 				this.delete(request, response);
@@ -105,10 +106,8 @@ public class StudentController extends HttpServlet {
 	private void delete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		javax.servlet.http.HttpSession session = request.getSession();
 		if (studentService.inUsed(id)) {
 			studentService.delete(id);
-			session.setAttribute("success", "success");
 		}
 		response.sendRedirect("student");
 

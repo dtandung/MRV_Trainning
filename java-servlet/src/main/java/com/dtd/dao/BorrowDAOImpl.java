@@ -22,7 +22,8 @@ public class BorrowDAOImpl implements BorrowDAO<BorrowDTO> {
 			String sql3 = " select br.BorrowID, br.BorrowDate, st.StudentID, bo.BookID, br.Quantity "
 					+ "from borrows as br left join books as bo on br.BookID = bo.BookID "
 					+ "left join students as st on br.StudentID = st.StudentID " 
-					+ "where br.BorrowDate = ?";
+					+ "where br.BorrowDate = ?"
+					+ "order by br.BorrowDate DESC";
 			PreparedStatement statement = jdbcConnection.prepareStatement(sql3);
 			statement.setString(1, searchValue);
 
@@ -43,7 +44,8 @@ public class BorrowDAOImpl implements BorrowDAO<BorrowDTO> {
 					+ "from borrows as br left join books as bo on br.BookID = bo.BookID "
 					+ "left join students as st on br.StudentID = st.StudentID "
 					+ "where (st.StudentID like ? or st.Name like ?  or bo.BookID like ? or bo.Name like ?)"
-					+ "and (br.BorrowDate between ? AND ?)";
+					+ "and (br.BorrowDate between ? AND ?)"
+					+ "order by br.BorrowDate DESC";
 			PreparedStatement statement = jdbcConnection.prepareStatement(sql);
 			statement.setString(1, searchValue);
 			statement.setString(2, "%" + searchValue + "%");
@@ -75,7 +77,8 @@ public class BorrowDAOImpl implements BorrowDAO<BorrowDTO> {
 					+ "from borrows as br left join books as bo on br.BookID = bo.BookID "
 					+ "left join students as st on br.StudentID = st.StudentID "
 					+ "where st.StudentID like ? or st.Name like ?  or bo.BookID like ? or bo.Name like ?"
-					+ "or br.BorrowDate = ?";
+					+ "or br.BorrowDate = ?"
+					+ "order by br.BorrowDate DESC";
 			PreparedStatement statement = jdbcConnection.prepareStatement(sql2);
 			statement.setString(1, searchValue);
 			statement.setString(2, "%" + searchValue + "%");
@@ -103,7 +106,8 @@ public class BorrowDAOImpl implements BorrowDAO<BorrowDTO> {
 			String sql4 = " select br.BorrowID, br.BorrowDate, st.StudentID, bo.BookID, br.Quantity "
 					+ "from borrows as br left join books as bo on br.BookID = bo.BookID "
 					+ "left join students as st on br.StudentID = st.StudentID "
-					+ "where (st.StudentID like ? or st.Name like ?  or bo.BookID like ? or bo.Name like ?)";
+					+ "where (st.StudentID like ? or st.Name like ?  or bo.BookID like ? or bo.Name like ?)"
+					+ "order by br.BorrowDate DESC";
 			PreparedStatement statement = jdbcConnection.prepareStatement(sql4);
 			statement.setString(1, searchValue);
 			statement.setString(2, "%" + searchValue + "%");

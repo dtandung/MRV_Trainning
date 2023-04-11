@@ -5,6 +5,8 @@ $(".nav-item a").on("click", function() {
 }).filter(function() {
 	return window.location.href.indexOf($(this).attr('href').trim()) > -1;
 }).click();
+
+
 /*======= Active Navbar END ======== */
 
 /*======= Select DatePicker START ======== */
@@ -64,7 +66,7 @@ $(document).ready(function() {
 		var name = $(this).prop("name");
 		swal({
 			title: "Are you sure?",
-			text: "DELETE "+ name,
+			text: "DELETE " + name,
 			icon: "warning",
 			buttons: true,
 			dangerMode: true,
@@ -78,11 +80,11 @@ $(document).ready(function() {
 							id: id,
 						},
 						success: function(data) {
-							$(".deleteStudent").closest('tr').remove();
+							$(`#${id}`).parent().parent().remove();
 						}
 					});
 				} else {
-					swal(name+" is safe!");
+					swal(name + " is safe!");
 				}
 			});
 	});
@@ -185,7 +187,7 @@ $(document).ready(function() {
 		var name = $(this).prop("name");
 		swal({
 			title: "Are you sure?",
-			text: "DELETE "+name,
+			text: "DELETE " + name,
 			icon: "warning",
 			buttons: true,
 			dangerMode: true,
@@ -199,11 +201,11 @@ $(document).ready(function() {
 							id: id,
 						},
 						success: function(data) {
-							$(".deleteBook").closest('tr').remove();
+							$(`#${id}`).parent().parent().remove();
 						}
 					});
 				} else {
-					swal(name+" is safe!");
+					swal(name + " is safe!");
 				}
 			});
 	});
@@ -271,13 +273,12 @@ $(document).ready(function() {
 		var data = $(this).serializeArray();
 		var link = $(this).prop("action");
 		console.log(link)
-		var page = "search.jsp"
 		$.ajax({
 			url: link,
 			type: "POST",
 			data: data,
 			error: function() {
-				
+
 			},
 			success: function(result) {
 				console.log(result)
