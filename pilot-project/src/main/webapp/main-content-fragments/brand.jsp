@@ -12,7 +12,7 @@
 		</div>
 		<div class="search-area__btns">
 			<div class="search-area__btn">
-				<button class="btn btn-primary" id="searchBrandBtn"><i class="fas fa-search"></i>&nbsp;Search</button>
+				<button class="btn btn-info" id="searchBrandBtn"><i class="fas fa-search"></i>&nbsp;Search</button>
 			</div>
 			<div class="search-area__btn">
 				<button class="btn btn-secondary" id="clearSearchFieldBtn"><i class="fas fa-times"></i>&nbsp;Clear</button>

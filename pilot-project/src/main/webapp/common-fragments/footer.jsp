@@ -10,3 +10,6 @@
 <script src="<c:url value='/plugins/underscore/underscore-min.js'/>"></script>
 <script src="<c:url value='/scripts/base.js'/>"></script>
 <!-- Common Import JS END -->
+<!-- boostrap datepicker start -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>

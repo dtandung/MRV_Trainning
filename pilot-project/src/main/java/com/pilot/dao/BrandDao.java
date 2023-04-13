@@ -22,43 +22,45 @@ import com.pilot.entity.BrandEntity;
  *
  */
 @Repository
-public interface BrandDao extends JpaRepository<BrandEntity, Long>, JpaSpecificationExecutor<BrandEntity> {
+public interface BrandDao
+    extends JpaRepository<BrandEntity, Long>, JpaSpecificationExecutor<BrandEntity> {
 
-	BrandEntity findByBrandId(Long brandId);
+  BrandEntity findByBrandId(Long brandId);
 
-	BrandEntity findByBrandName(String brandName);
+  BrandEntity findByBrandName(String brandName);
 
-	BrandEntity findByBrandNameAndBrandIdNot(String brandName, Long brandId);
+  BrandEntity findByBrandNameAndBrandIdNot(String brandName, Long brandId);
 
-	/**
-	 * Get search criteria for query to search products
-	 * 
-	 * @param searchConditionsMap
-	 * @return Specification<BrandEntity>
-	 */
-	public static Specification<BrandEntity> getSearchCriteria(Map<String, Object> searchConditionsMap) {
+  /**
+   * Get search criteria for query to search brands
+   * 
+   * @param searchConditionsMap
+   * @return Specification<BrandEntity>
+   */
+  public static Specification<BrandEntity> getSearchCriteria(
+      Map<String, Object> searchConditionsMap) {
 
-		return new Specification<BrandEntity>() {
-			private static final long serialVersionUID = 1L;
+    return new Specification<BrandEntity>() {
+      private static final long serialVersionUID = 1L;
 
-			@Override
-			public Predicate toPredicate(Root<BrandEntity> brandRoot, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+      @Override
+      public Predicate toPredicate(Root<BrandEntity> brandRoot, CriteriaQuery<?> query,
+          CriteriaBuilder criteriaBuilder) {//Predicate là một mệnh đề điều kiện trong câu lệnh truy vấn.
 
-				List<Predicate> predicates = new ArrayList<>();
-				if (searchConditionsMap != null) {
+        List<Predicate> predicates = new ArrayList<>();
+        if (searchConditionsMap != null) {
 
-					String keyword = (String) searchConditionsMap.get("keyword");
+          String keyword = (String) searchConditionsMap.get("keyword");
 
-					// Keyword Predicate
-					if (StringUtils.isNotEmpty(keyword)) {
-						predicates.add(criteriaBuilder.or(
-								criteriaBuilder.like(brandRoot.get("brandName"), "%" + keyword + "%"),
-								criteriaBuilder.like(brandRoot.get("description"), "%" + keyword + "%")
-						));
-					}
-				}
-				return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-			}
-		};
-	}
+          // Keyword Predicate
+          if (StringUtils.isNotEmpty(keyword)) {
+            predicates.add(criteriaBuilder.or(
+                criteriaBuilder.like(brandRoot.get("brandName"), "%" + keyword + "%"),
+                criteriaBuilder.like(brandRoot.get("description"), "%" + keyword + "%")));
+          }
+        }
+        return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+      }
+    };
+  }
 }

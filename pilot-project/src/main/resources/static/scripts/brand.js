@@ -22,6 +22,8 @@ var Brand = (function() {
 				keyword: $("#keyword").val(),
 				currentPage: Number(_self.currentPageNumber)
 			}
+			
+			console.log(JSON.stringify(searchData));
 
 			$.ajax({
 				url : "/brand/api/search",

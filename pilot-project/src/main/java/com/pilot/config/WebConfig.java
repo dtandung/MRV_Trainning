@@ -18,7 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 		// Resources controlled
 		registry.addResourceHandler("/**")
-				.addResourceLocations("classpath:/static/", "file:/opt/sample-project/")
+				.addResourceLocations("classpath:/static/", "file:/opt/pilot-project/")
 				.setCacheControl(CacheControl.maxAge(10, TimeUnit.DAYS).cachePublic());
 	}
 }

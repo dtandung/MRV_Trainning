@@ -32,7 +32,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String password = authentication.getCredentials().toString();
 		UsernamePasswordAuthenticationToken usernamePassAuthToken = null;
 
-		// UserInfoEntity loginUserInfo = userInfoService.login(username, password);
+		//UserInfoEntity loginUserInfo = userInfoService.login(username, password);
 		if (username.equals(password)) {
 			List<GrantedAuthority> grantedAuths = new ArrayList<>();
 			grantedAuths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));

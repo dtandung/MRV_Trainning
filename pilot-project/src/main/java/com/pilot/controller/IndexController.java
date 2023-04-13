@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 
  */
 @Controller
-@RequestMapping(value = { "/product" })
+@RequestMapping(value = { "/" })
 public class IndexController {
 
 	@GetMapping
 	public String initPage() {
-		return "tiles.product";
+		return "tiles.dmx";
 	}
 }

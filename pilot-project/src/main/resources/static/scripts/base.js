@@ -14,8 +14,10 @@ $(document).ready(function() {
 	$("header .nav-link").each(function() {
 		let _self = $(this);
 		if (pathName.includes(_self.attr("href"))) {
-			_self.parent().addClass("active");
+			_self.addClass("active");
+			_self.siblings().removeClass("active");
 		}
+		
 	});
 
 	// Upload image preview
