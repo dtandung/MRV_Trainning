@@ -126,10 +126,10 @@ public class BrandServiceImpl implements BrandService {
 		return brandDao.findByBrandId(brandId);
 	}
 
-	@Override
-	public List<BrandEntity> getAll() {
-		return brandDao.findAll(Sort.by(Sort.Direction.DESC, "brandId"));
-	}
+//	@Override
+//	public List<BrandEntity> getAll() {
+//		return brandDao.findAll(Sort.by(Sort.Direction.DESC, "brandId"));
+//	}
 
 	@Override
 	public BrandEntity findByBrandName(String brandName) {

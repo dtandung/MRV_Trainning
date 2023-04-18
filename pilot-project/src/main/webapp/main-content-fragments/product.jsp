@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jstl/fmt_rt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="main-content">
 	<div class="sub-header">
@@ -14,20 +15,24 @@
 		<div class="search-area__select-fields">
 			<div class="search-area__select-fields-price-from">
 				<b>Price From:</b> <select class="form-select"
-					aria-label="Default select example">
-					<option selected>1.000.000</option>
-					<option value="1">One</option>
-					<option value="2">Two</option>
-					<option value="3">Three</option>
+					aria-label="Default select example" id="fromPrice">
+					<option value = "0" selected>--Select from Price--</option>
+					<option value="2000000">Dưới - 2.000.000</option>
+					<option value="4000000">4.000.000</option>
+					<option value="6000000">6.000.000</option>
+					<option value="8000000">8.000.000</option>
+					<option value="10000000">10.000.000</option>
 				</select>
 			</div>
 			<div class="search-area__select-fields-price-to">
 				<b>Price To:</b> <select class="form-select"
-					aria-label="Default select example">
-					<option selected>5.000.000</option>
-					<option value="1">One</option>
-					<option value="2">Two</option>
-					<option value="3">Three</option>
+					aria-label="Default select example" id="toPrice">
+					<option value ="0"selected>--Select to Price--</option>
+					<option value="12000000">12.000.000</option>
+					<option value="14000000">14.000.000</option>
+					<option value="16000000">16.000.000</option>
+					<option value="18000000">18.000.000</option>
+					<option value="20490000">20.000.000 - Trên</option>
 				</select>
 			</div>
 		</div>
@@ -64,23 +69,6 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td class='text-center'>1</td>
-				<td class='text-center'>Iphone 7</td>
-				<td class='text-center'>100</td>
-				<td class='text-center'>150.000</td>
-				<td class='text-center'>Apple</td>
-				<td class='text-center'>11-04-2023</td>
-				<td class='text-center'><a href='' data-toggle='lightbox'
-					data-max-width='1000'><img class='img-fluid'
-						src='/images/dmx/TCL-TV-690-300-690x300.png'></td>
-
-				<td class='action-btns text-center'><a
-					class='edit-btn btn-sm btn-primary' data-id=''><i
-						class='fas fa-edit text-white'></i></a> | <a
-					class='delete-btn btn-sm btn-danger' data-name='' data-id=''><i
-						class='fas fa-trash-alt text-white'></i></a></td>
-			</tr>
 		</tbody>
 	</table>
 	<div class="d-flex justify-content-center">
@@ -91,7 +79,7 @@
 	<div class="modal fade bd-example-modal-lg" id="productInfoModal">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
-				<form id="brandInfoForm" role="form" enctype="multipart/form-data">
+				<form id="productInfoForm" role="form" enctype="multipart/form-data">
 					<div class="modal-header">
 						<h5 class="modal-title">Add Product</h5>
 						<button type="button" class="close" data-dismiss="modal"
@@ -101,9 +89,11 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group d-none row">
-							<label>Product ID</label> <input type="text" class="form-control"
-								name="productId" id="productId" placeholder="Product ID"
-								readonly>
+							<label class="col-sm-3">Product ID</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" name="productId"
+									id="productId" placeholder="Product ID" readonly>
+							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-3" for="productName">Product Name <span
@@ -126,17 +116,14 @@
 									placeholder="Price">
 							</div>
 						</div>
-						<div class="form-group row"></div>
 						<div class="form-group row">
-							<label class="col-sm-3" for="brandName">Brand Name <span
+							<label class="col-sm-3" for="brand">Brand Name <span
 								class="required-mask">(*)</span></label>
 							<div class="col-sm-9">
-								<select class="form-control" id="brandName" name="brandName"
+								<select class="form-control" id="brand" name="brand"
 									aria-label="Default select example">
-									<option selected>Brand Name</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
+									<option>--Select Brand Name--</option>
+
 								</select>
 							</div>
 						</div>
@@ -144,19 +131,14 @@
 							<label class="col-sm-3" for="openingForSale">Opening For
 								Sale <span class="required-mask">(*)</span>
 							</label>
-							<div class="form-group row">
-								<label class="col-sm-3" for="openingForSale">Opening For
-									Sale <span class="required-mask">(*)</span>
-								</label>
-								<div class="col-sm-9">
-									<div class="datepicker date input-group">
-										<input type="text" placeholder="Opening For Sale"
-											class="form-control date-end cursor-pointer"
-											name="openingForSale" id="openingForSale">
-										<div class="input-group-append">
-											<span class="input-group-text"><i
-												class="fa fa-calendar cursor-pointer"></i></span>
-										</div>
+							<div class="col-sm-9">
+								<div class="datepicker date input-group">
+									<input type="text" placeholder="Opening For Sale"
+										class="form-control cursor-pointer" name="saleDate"
+										id="saleDate">
+									<div class="input-group-append">
+										<span class="input-group-text"><i
+											class="fa fa-calendar cursor-pointer"></i></span>
 									</div>
 								</div>
 							</div>
@@ -170,18 +152,19 @@
 							</div>
 						</div>
 						<div class="form-group row d-flex justify-content-center"
-							id="brandLogo">
+							id="productLogo">
 							<label class="col-sm-3" for="logo">Logo <span
 								class="required-mask">(*)</span></label>
 							<div class="col-sm-9">
 								<div class="image-upload-wrap">
 									<input class="file-upload-input" type='file'
-										onchange="readURL(this);" name="logoFiles" accept="image/*" />
+										onchange="readURL(this)" name="imageFiles" accept="image/*" />
 									<div class="drag-text">
 										<h3>Drag and drop a file or select add Image</h3>
 									</div>
 								</div>
-								<input type="hidden" class="old-img" id="logo" name="logo">
+								<input type="hidden" class="old-img" id="imageProduct"
+									name="image">
 								<div class="file-upload-content">
 									<div id="logoImg">
 										<img class="img-fluid img-thumbnail file-upload-image" src="#"
@@ -207,54 +190,6 @@
 		</div>
 	</div>
 </div>
-<!-- Modal Add and Edit Product -->
-<div class="modal fade" id="productInfoModal">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<form id="productInfoForm" role="form" enctype="multipart/form-data">
-				<div class="modal-header">
-					<h5 class="modal-title">Add Product</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-group d-none">
-						<label>Brand ID</label> <input type="text" class="form-control"
-							name="brandId" id="brandId" placeholder="Brand ID" readonly>
-					</div>
-					<div class="form-group">
-						<label for="brandName">Brand Name <span
-							class="required-mask">(*)</span></label> <input type="text"
-							class="form-control" id="brandName" name="brandName"
-							placeholder="Brand Name">
-					</div>
-					<div class="form-group" id="brandLogo">
-						<label for="logo">Logo <span class="required-mask">(*)</span></label>
-						<div class="preview-image-upload" id="logoImg">
-							<img src="<c:url value='/images/common/image-demo.png'/>"
-								alt="image">
-						</div>
-						<input type="file" class="form-control upload-image"
-							name="logoFiles" accept="image/*" /> <input type="hidden"
-							class="old-img" id="logo" name="logo">
-					</div>
-					<div class="form-group">
-						<label for="description">Description</label>
-						<textarea name="description" id="description" cols="30" rows="3"
-							class="form-control" placeholder="Description"></textarea>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-primary" id="saveProductBtn">Save</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
 <!-- Modal Confirm Deleting Product -->
 <div class="modal fade" id="confirmDeleteModal">
 	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -268,7 +203,7 @@
 			</div>
 			<div class="modal-body">
 				<p>
-					Do you want to delete <b id="deletedProduct"></b>?
+					Do you want to delete <b id="deletedProductName"></b>?
 				</p>
 			</div>
 			<div class="modal-footer">

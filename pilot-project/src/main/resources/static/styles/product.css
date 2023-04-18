@@ -21,7 +21,7 @@
 	display: grid;
 	justify-content: start;
 	width: 100%;
-	grid-template-columns: 41% 41% 18%;
+	grid-template-columns: 52% 30% 18%;
 	justify-content: end;
 	margin-bottom: 10px;
 }
@@ -233,7 +233,7 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error
 
 .table-bordered img {
 	max-width: 80px;
-	height: 30px
+	height: 50px
 }
 
 .pagination {

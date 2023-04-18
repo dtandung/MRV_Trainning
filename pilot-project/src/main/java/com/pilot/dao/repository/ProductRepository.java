@@ -11,10 +11,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-
+@Transactional
 public interface ProductRepository
     extends JpaRepository<ProductEntity, Long>, JpaSpecificationExecutor<ProductEntity> {
-  
-  @Query(value="select p from PRODUCT p where p.BRAND_ID = :brandId")
-  List<ProductEntity> findProductByBrandId( @Param("brandId") Long brandId);
+
+    ProductEntity findByProductName(String productName);
+    
+    ProductEntity findByProductNameAndProductIdNot(String productName, Long productId);
+    
+//    @Query(value="SELECT * FROM PRODUCT WHERE PRICE >= :fromPrice and PRICE <= toPrice ", nativeQuery = true)
+//    List<ProductEntity> findByPrice(@Param("fromPrice") String fromPrice, @Param("toPrice") String toPrice);
 }

@@ -3,7 +3,11 @@
  */
 package com.pilot.entity;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +18,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.pilot.common.util.CommonUtil;
 
 /**
  * @author Admin
@@ -40,19 +49,34 @@ public class ProductEntity {
   private double price;
 
   @Column(name = "SALE_DATE", nullable = true)
-  @Temporal(TemporalType.DATE)
-  @DateTimeFormat(pattern = "dd-MM-YYYY")
-  private Date saleDate;
+  @JsonFormat(pattern = "dd-MM-yyyy", shape = Shape.STRING)
+  private String saleDate;
 
   @Column(name = "IMAGE", length = 100, nullable = true)
   private String image;
 
   @Column(name = "DESCRIPTION", nullable = true)
   private String description;
+  
+  @Transient
+  private MultipartFile[] imageFiles;
 
   @ManyToOne
   @JoinColumn(name = "BRAND_ID", nullable = true)
   private BrandEntity brand;
+  /**
+   * @return the imageFiles
+   */
+  public MultipartFile[] getImageFiles() {
+    return imageFiles;
+  }
+
+  /**
+   * @param imageFiles the imageFiles to set
+   */
+  public void setImageFiles(MultipartFile[] imageFiles) {
+    this.imageFiles = imageFiles;
+  }
 
   /**
    * @return the productId
@@ -112,16 +136,22 @@ public class ProductEntity {
 
   /**
    * @return the saleDate
+   * @throws ParseException 
    */
-  public Date getSaleDate() {
-    return saleDate;
+  public String getSaleDate() {
+    Date dateStr = CommonUtil.cvStringToDate(saleDate, "yyyy-MM-dd");
+    String date = CommonUtil.cvDateToString(dateStr, "dd-MM-yyyy");
+    return date ;
   }
 
   /**
    * @param saleDate the saleDate to set
+   * @throws ParseException 
    */
-  public void setSaleDate(Date saleDate) {
-    this.saleDate = saleDate;
+  public void setSaleDate(String saleDate) {
+    Date dateStr = CommonUtil.cvStringToDate(saleDate, "dd-MM-yyyy");
+    String date = CommonUtil.cvDateToString(dateStr, "yyyy-MM-dd");
+    this.saleDate = date;
   }
 
   /**

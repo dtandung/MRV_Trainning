@@ -7,6 +7,7 @@ const TEMPLATE_PAGINATOR =
 		+ 	"<% }); %>"
 		+ 	"<li class='page-item <% if (nextPage == 0) { %> disabled <% } %>' data-index='<%= nextPage %>' title='Next'> > </li>"
 		+ 	"<li class='page-item <% if (lastPage == 0) { %> disabled <% } %>' data-index='<%= lastPage %>' title='Last'> >> </li>"
+
 $(document).ready(function() {
 
 	// Add "active" class for link in Header

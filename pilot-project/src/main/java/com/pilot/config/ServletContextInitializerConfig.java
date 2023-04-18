@@ -4,9 +4,7 @@ package com.pilot.config;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import com.pilot.common.constant.Constants;

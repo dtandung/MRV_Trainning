@@ -1,6 +1,6 @@
 package com.pilot.service;
 
-import java.util.List;
+
 import java.util.Map;
 
 import com.pilot.entity.BrandEntity;
@@ -20,7 +20,7 @@ public interface BrandService {
 
 	ResponseDataModel delete(Long brandId);
 
-	List<BrandEntity> getAll();
+//	List<BrandEntity> getAll();
 
 	BrandEntity findByBrandId(Long brandId);
 
