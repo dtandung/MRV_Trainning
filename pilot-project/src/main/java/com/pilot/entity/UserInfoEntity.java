@@ -1,15 +1,24 @@
 package com.pilot.entity;
 
-/**
- * This class is used to declare properties related User Info
- * 
- * @author Red Devil
- * @since 2020-10-10
- */
-public class UserInfoEntity {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+/**
+ * @author Admin
+ * @Since 18 thg 4, 2023
+ * 
+ */
+@Entity
+@Table(name = "USER")
+public class UserInfoEntity {
+    @Id
+    @Column(name = "USERNAME", nullable = false)
 	private String username;
+    @Column(name = "PASSWORD", nullable = true)
 	private String password;
+    @Column(name = "ROLE", nullable = true)
 	private String userRole;
 
 	/**

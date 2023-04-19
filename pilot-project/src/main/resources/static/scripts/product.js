@@ -66,8 +66,6 @@ var Product = (function() {
 			//Render list Brand name
 			$.each(data.brandList, function(key, value) {
 				_self.$brandName.append(_self.templateList.brandNameTemplate(value));
-				console.log("brnad" + value)
-				console.log("brnad" + data.brandList)
 			});
 
 			// Render paginator

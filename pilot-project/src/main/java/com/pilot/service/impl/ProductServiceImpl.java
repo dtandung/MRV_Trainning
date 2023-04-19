@@ -22,7 +22,6 @@ import com.pilot.common.util.FileHelper;
 import com.pilot.dao.BrandDao;
 import com.pilot.dao.ProductDao;
 import com.pilot.dao.repository.ProductRepository;
-import com.pilot.entity.BrandEntity;
 import com.pilot.entity.ProductEntity;
 import com.pilot.model.PagerModel;
 import com.pilot.model.ResponseDataModel;

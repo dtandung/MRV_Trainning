@@ -4,8 +4,6 @@ package com.pilot.common.util;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -109,6 +107,7 @@ public class CommonUtil {
 	public static String ecryptMD5(String inputStr) {
 		return DigestUtils.md5Hex(DigestUtils.md5Hex(inputStr + Constants.SALT_CONST));
 	}
+
 	
 	public static double withMathRound(double value, int places) {
 	    double scale = Math.pow(10, places);
