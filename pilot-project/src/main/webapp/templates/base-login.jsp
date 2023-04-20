@@ -10,12 +10,12 @@
 <head>
 <tiles:insertAttribute name="head" />
 <title><tiles:insertAttribute name="title" /></title>
-<%-- 	<!-- Local Import CSS START -->
+	<!-- Local Import CSS START -->
 	<tiles:importAttribute name="stylesheets" ignore="true"/>
 	<c:forEach var="css" items="${stylesheets}">
 		<link rel="stylesheet" type="text/css" href="<c:url value='${css}'/>">
 	</c:forEach>
-	<!-- Local Import CSS END --> --%>
+	<!-- Local Import CSS END -->
 </head>
 <body class="bg-light">
 	<div class="d-flex align-items-center mt-5 ">
@@ -24,11 +24,11 @@
 		</div>
 	</div>
 	<tiles:insertAttribute name="footer" />
-	<!-- Local Import JS START -->
+<%-- 	<!-- Local Import JS START -->
 	<tiles:importAttribute name="javascripts" ignore="true" />
 	<c:forEach var="js" items="${javascripts}">
 		<script src="<c:url value='${js}'/>"></script>
 	</c:forEach>
-	<!-- Local Import JS END -->
+	<!-- Local Import JS END --> --%>
 </body>
 </html>

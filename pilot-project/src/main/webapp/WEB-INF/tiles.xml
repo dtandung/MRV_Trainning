@@ -39,10 +39,12 @@
 		<put-attribute name="title" value="Login" />
 		<put-attribute name="form-login"
 			value="/main-content-fragments/login.jsp" />
-		<put-list-attribute name="javascripts"
+		<put-list-attribute name="stylesheets"
 			inherit="true">
-			<add-attribute value="/scripts/login.js" />
+			<add-attribute value="/styles/login.css" />
 		</put-list-attribute>
+		<!-- <put-list-attribute name="javascripts" inherit="true"> <add-attribute 
+			value="/scripts/login.js" /> </put-list-attribute> -->
 	</definition>
 	<!-- Login Page END -->
 	<!-- Product Page START -->

@@ -1,0 +1,13 @@
+
+
+div.error-message-invalid, div.error, label.error-message-invalid, label.error {
+	background-color: #f8d7da;
+	position: relative;
+	padding: .375rem .75rem;
+	margin-top: .5rem;
+	border: 1px solid #f5c6cb !important;
+	color: #dc3545 !important;
+	width: 100%;
+	border-radius: .25rem;
+	margin-bottom: 15px;
+}

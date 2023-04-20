@@ -17,7 +17,7 @@
 				<b>Price From:</b> <select class="form-select"
 					aria-label="Default select example" id="fromPrice">
 					<option value = "0" selected>--Select from Price--</option>
-					<option value="2000000">Dưới - 2.000.000</option>
+					<option value="2000000">2.000.000</option>
 					<option value="4000000">4.000.000</option>
 					<option value="6000000">6.000.000</option>
 					<option value="8000000">8.000.000</option>
@@ -32,7 +32,7 @@
 					<option value="14000000">14.000.000</option>
 					<option value="16000000">16.000.000</option>
 					<option value="18000000">18.000.000</option>
-					<option value="20490000">20.000.000 - Trên</option>
+					<option value="20490000">20.000.000</option>
 				</select>
 			</div>
 		</div>
