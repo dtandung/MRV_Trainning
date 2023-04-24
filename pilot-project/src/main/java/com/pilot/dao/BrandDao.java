@@ -31,6 +31,7 @@ public interface BrandDao
 
   BrandEntity findByBrandNameAndBrandIdNot(String brandName, Long brandId);
 
+
   /**
    * Get search criteria for query to search brands
    * 
@@ -45,7 +46,7 @@ public interface BrandDao
 
       @Override
       public Predicate toPredicate(Root<BrandEntity> brandRoot, CriteriaQuery<?> query,
-          CriteriaBuilder criteriaBuilder) {//Predicate là một mệnh đề điều kiện trong câu lệnh truy vấn.
+          CriteriaBuilder criteriaBuilder) {
 
         List<Predicate> predicates = new ArrayList<>();
         if (searchConditionsMap != null) {
@@ -63,4 +64,5 @@ public interface BrandDao
       }
     };
   }
+
 }

@@ -1,6 +1,8 @@
 package com.pilot.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.pilot.common.constant.Constants;
 import com.pilot.common.util.FileHelper;
 import com.pilot.dao.BrandDao;
+import com.pilot.dao.repository.ProductRepository;
+import com.pilot.dto.BrandDto;
 import com.pilot.entity.BrandEntity;
 import com.pilot.model.PagerModel;
 import com.pilot.model.ResponseDataModel;
@@ -38,9 +42,15 @@ public class BrandServiceImpl implements BrandService {
 
 	@Value("${parent.folder.images.brand}")
 	private String brandLogoFolderPath;
+	
+	@Autowired
+	ProductRepository productRepo;
 
 	@Autowired
 	BrandDao brandDao;
+	
+	@Autowired
+    BrandDto brandDto;
 
 	@Override
 	public ResponseDataModel add(BrandEntity brandEntity) {
@@ -119,6 +129,34 @@ public class BrandServiceImpl implements BrandService {
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
+	
+//	 @Override
+//  public ResponseDataModel delete(Long brandId) {
+//
+//      int responseCode = Constants.RESULT_CD_FAIL;
+//      String responseMsg = StringUtils.EMPTY;
+//      BrandEntity brandEntity = brandDao.findByBrandId(brandId);
+//      
+//      //boolean isUsedBrand = false;
+//
+//      //isUsedBrand = brandDto.isUsedBrand();
+//      //BrandDto brandDto = b
+//      try {
+//          if (brandEntity != null) {
+//              brandDao.deleteById(brandId);
+//              brandDao.flush();
+//
+//              // Remove image of brand from storage folder
+//              FileHelper.deleteFile(brandEntity.getLogo());
+//              responseMsg = "Brand is deleted successfully";
+//              responseCode = Constants.RESULT_CD_SUCCESS;
+//          }
+//      } catch(Exception e) {
+//          responseMsg = "Error when deleting brand";
+//          LOGGER.error("Error when delete brand: {}", e);
+//      }
+//      return new ResponseDataModel(responseCode, responseMsg);
+//  }
 
 	@Override
 	public BrandEntity findByBrandId(Long brandId) {
@@ -146,6 +184,17 @@ public class BrandServiceImpl implements BrandService {
 			Sort sortInfo = Sort.by(Sort.Direction.DESC, "brandId");
 			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortInfo);
 			Page<BrandEntity> brandEntitiesPage = brandDao.findAll(BrandDao.getSearchCriteria(searchDataMap), pageable);
+//			List<BrandDto> brandDtoPage = new ArrayList<BrandDto>();
+//
+//			for(BrandEntity item :brandEntitiesPage.getContent()) {
+//			  boolean rs = false;
+//			  if(brandDao.findById(item.getBrandId()) != null) {
+//			    rs =  true;
+//			  }
+//			  brandDtoPage.add(new BrandDto(item.getBrandId(), item.getBrandName(), 
+//			      item.getDescription(), item.getLogo(), rs));
+//			}
+			
 			responseMap.put("brandsList", brandEntitiesPage.getContent());
 			responseMap.put("paginationInfo", new PagerModel(pageNumber, brandEntitiesPage.getTotalPages()));
 			responseCode = Constants.RESULT_CD_SUCCESS;

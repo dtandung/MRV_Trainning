@@ -22,6 +22,6 @@ public interface ProductDao {
   
   ProductEntity findByProductNameAndProductIdNot(String productName, Long productId);
   
-  Specification<ProductEntity> getSearchCriteria(Map<String, Object> searchConditionsMap) ;
+  Specification<ProductEntity> getSearchCriteria(Map<String, Object> searchConditionsMap);
   
 }

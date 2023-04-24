@@ -27,16 +27,16 @@ public class WebSecurityConfig {
 	private CustomAuthenticationProvider authProvider;
 	
 	
-	@Autowired
-	void registerProvider(AuthenticationManagerBuilder auth) {
-	    auth.authenticationProvider(authProvider);
-	}
-	
-	@Bean
-	AuthenticationManager authenticationManager(
-	        AuthenticationConfiguration authenticationConfiguration) throws Exception {
-	    return authenticationConfiguration.getAuthenticationManager();
-	}
+//	@Autowired
+//	void registerProvider(AuthenticationManagerBuilder auth) {
+//	    auth.authenticationProvider(authProvider);
+//	}
+//	
+//	@Bean
+//	AuthenticationManager authenticationManager(
+//	        AuthenticationConfiguration authenticationConfiguration) throws Exception {
+//	    return authenticationConfiguration.getAuthenticationManager();
+//	}
 	
 	@Bean
     protected  SecurityFilterChain filterChain(HttpSecurity http) throws Exception  {

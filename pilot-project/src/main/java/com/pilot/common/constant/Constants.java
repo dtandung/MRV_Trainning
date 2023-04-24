@@ -19,6 +19,8 @@ public class Constants {
 
 	/** Date Format */
 	public static final String DATE_FORMAT_FOR_FILE_NAME = "yyyyMMdd-HHmm";
+	
+	public static final String DATE_FORMAT_FOR_ddMMyy = "dd-MM-yyyy";
 
 	/** Common property key */
 	public static final String PROP_KEY_ROOT_FOLDER = "root.storage.folder";

@@ -24,11 +24,11 @@
 		</div>
 	</div>
 	<tiles:insertAttribute name="footer" />
-<%-- 	<!-- Local Import JS START -->
+	<!-- Local Import JS START -->
 	<tiles:importAttribute name="javascripts" ignore="true" />
 	<c:forEach var="js" items="${javascripts}">
 		<script src="<c:url value='${js}'/>"></script>
 	</c:forEach>
-	<!-- Local Import JS END --> --%>
+	<!-- Local Import JS END -->
 </body>
 </html>

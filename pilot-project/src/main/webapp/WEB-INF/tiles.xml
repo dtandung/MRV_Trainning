@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
+
+	<!-- ADMIN -->
+	
 	<!-- Base Template START -->
 	<definition name="base.template"
 		template="/templates/base-template.jsp">
@@ -43,8 +46,10 @@
 			inherit="true">
 			<add-attribute value="/styles/login.css" />
 		</put-list-attribute>
-		<!-- <put-list-attribute name="javascripts" inherit="true"> <add-attribute 
-			value="/scripts/login.js" /> </put-list-attribute> -->
+		<put-list-attribute name="javascripts"
+			inherit="true">
+			<add-attribute value="/scripts/login.js" />
+		</put-list-attribute>
 	</definition>
 	<!-- Login Page END -->
 	<!-- Product Page START -->
@@ -62,21 +67,6 @@
 		</put-list-attribute>
 	</definition>
 	<!-- Product Page END -->
-	<!-- DMX Page START -->
-	<definition name="tiles.dmx" extends="base.template">
-		<put-attribute name="title" value="Điện Máy Xanh" />
-		<put-attribute name="main-content"
-			value="/main-content-fragments/dmx.jsp" />
-		<put-list-attribute name="stylesheets"
-			inherit="true">
-			<add-attribute value="/styles/dmx.css" />
-		</put-list-attribute>
-		<put-list-attribute name="javascripts"
-			inherit="true">
-			<add-attribute value="/scripts/dmx.js" />
-		</put-list-attribute>
-	</definition>
-	<!-- DMX Page END -->
 	<!-- Brand Page START -->
 	<definition name="tiles.brand" extends="base.template">
 		<put-attribute name="title" value="Brand Management" />
@@ -92,4 +82,53 @@
 		</put-list-attribute>
 	</definition>
 	<!-- Brand Page END -->
+	
+	<!-- USER -->
+
+	<!-- Base Template User START -->
+	<definition name="base.template.user"
+		template="/templates/base-template-user.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="head"
+			value="/common-fragments-user/head-user.jsp" />
+		<put-attribute name="header"
+			value="/common-fragments-user/header-user.jsp" />
+		<put-attribute name="main-content" value="" />
+		<put-attribute name="footer"
+			value="/common-fragments-user/footer-user.jsp" />
+		<put-list-attribute name="stylesheets"
+			inherit="true">
+		</put-list-attribute>
+	</definition>
+	<!-- Base Template User END -->
+	<!-- DMX Page START -->
+	<definition name="tiles.dmx" extends="base.template.user">
+		<put-attribute name="title" value="Điện Máy Xanh" />
+		<put-attribute name="main-content"
+			value="/main-content-fragments-user/dmx.jsp" />
+		<put-list-attribute name="stylesheets"
+			inherit="true">
+			<add-attribute value="/styles/dmx.css" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts"
+			inherit="true">
+			<add-attribute value="/scripts/dmx.js" />
+		</put-list-attribute>
+	</definition>
+	<!-- DMX Page END -->
+	<!-- PHONE Page START -->
+	<definition name="tiles.phone" extends="base.template.user">
+		<put-attribute name="title" value="Điện thoại" />
+		<put-attribute name="main-content"
+			value="/main-content-fragments-user/phone.jsp" />
+		<put-list-attribute name="stylesheets"
+			inherit="true">
+			<add-attribute value="/styles/phone.css" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts"
+			inherit="true">
+			<add-attribute value="/scripts/phone.js" />
+		</put-list-attribute>
+	</definition>
+	<!-- PHONE Page END -->
 </tiles-definitions>

@@ -6,7 +6,7 @@
 	<div class="container">
 		<div class="nav-menu d-flex justify-content-between">
 			<div class="d-flex">
-				<div class="main-logo">Pilot Project</div>
+				<div class="main-logo">admin</div>
 				<a class="ml-5 nav-link" href="/">Home Page</a> <a
 					class="nav-link" href="/product">Product</a> <a class="nav-link"
 					href="/brand">Brand</a>
