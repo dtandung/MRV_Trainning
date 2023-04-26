@@ -18,4 +18,5 @@ public interface ProductRepository
     
 //    @Query(value="SELECT * FROM PRODUCT WHERE PRICE >= :fromPrice and PRICE <= toPrice ", nativeQuery = true)
 //    List<ProductEntity> findByPrice(@Param("fromPrice") String fromPrice, @Param("toPrice") String toPrice);
+    
 }

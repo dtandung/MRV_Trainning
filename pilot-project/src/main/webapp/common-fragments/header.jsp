@@ -7,7 +7,7 @@
 		<div class="nav-menu d-flex justify-content-between">
 			<div class="d-flex">
 				<div class="main-logo">admin</div>
-				<a class="ml-5 nav-link" href="/">Home Page</a> <a
+				<a class="ml-5 nav-link" href="/home">Home Page</a> <a
 					class="nav-link" href="/product">Product</a> <a class="nav-link"
 					href="/brand">Brand</a>
 			</div>

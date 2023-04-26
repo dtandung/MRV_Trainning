@@ -28,4 +28,6 @@ public interface ProductService {
   ProductEntity findByProductName(String productName);
 
   ResponseDataModel searchWithPager(Map<String, Object> searchDataMap);
+  
+  ResponseDataModel getAllProduct(Map<String, Object> searchDataMap);
 }

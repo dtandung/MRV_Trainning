@@ -84,10 +84,12 @@
 	</div>
 </footer>
 <!-- Common Import JS START -->
+<script src="<c:url value='/plugins/underscore/underscore-min.js'/>"></script>
 <script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
 <script src="<c:url value='/plugins/jquery/jquery.validate.min.js'/>"></script>
-
+<script
+	src="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.js'/>"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
+<script src="<c:url value='/scripts/base-user.js'/>"></script>
 <script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js'/>"></script>

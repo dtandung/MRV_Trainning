@@ -27,6 +27,7 @@ public class Constants {
 
 	/** The number of record per each page */
 	public static final int PAGE_SIZE = 5;
+	public static final int PAGE_SIZE_USER = 10;
 
 	/** Response Code */
 	public static final int RESULT_CD_FAIL = 0;

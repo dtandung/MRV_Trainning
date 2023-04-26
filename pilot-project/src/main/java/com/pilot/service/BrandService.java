@@ -27,4 +27,6 @@ public interface BrandService {
 	BrandEntity findByBrandName(String brandName);
 
 	ResponseDataModel searchWithPager(Map<String, Object> searchDataMap);
+	
+	ResponseDataModel getAllBrand(Map<String, Object> searchDataMap);
 }

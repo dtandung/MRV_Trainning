@@ -178,4 +178,25 @@ public class ProductServiceImpl implements ProductService{
     return new ResponseDataModel(responseCode, responseMsg, responseMap);
   }
 
+  @Override
+  public ResponseDataModel getAllProduct(Map<String, Object> searchDataMap) {
+    
+    int responseCode = Constants.RESULT_CD_FAIL;
+    String responseMsg = StringUtils.EMPTY;
+    Map<String, Object> responseMap = new HashMap<>();
+    try {
+        int pageNumber = (int) searchDataMap.get("currentPage");
+        Sort sortInfo = Sort.by(Sort.Direction.DESC, "productId");
+        Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE_USER, sortInfo);
+        Page<ProductEntity> productEntitiesPage = productRepo.findAll(productDao.getSearchCriteria(searchDataMap), pageable);
+        responseMap.put("productsListUser", productEntitiesPage.getContent());
+        responseMap.put("paginationInfo", new PagerModel(pageNumber, productEntitiesPage.getTotalPages()));
+        responseCode = Constants.RESULT_CD_SUCCESS;
+    } catch (Exception e) {
+        responseMsg = e.getMessage();
+        LOGGER.error("Error when get all product: {}", e);
+    }
+    return new ResponseDataModel(responseCode, responseMsg, responseMap);
+  }
+
 }
