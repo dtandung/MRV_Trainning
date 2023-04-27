@@ -4,6 +4,7 @@
 package com.pilot.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -195,6 +196,26 @@ public class ProductServiceImpl implements ProductService{
     } catch (Exception e) {
         responseMsg = e.getMessage();
         LOGGER.error("Error when get all product: {}", e);
+    }
+    return new ResponseDataModel(responseCode, responseMsg, responseMap);
+  }
+
+  @Override
+  public ResponseDataModel findByBrandForApi(Map<String, Object> searchDataMap) {
+    int responseCode = Constants.RESULT_CD_FAIL;
+    String responseMsg = StringUtils.EMPTY;
+    List<ProductEntity> productEntity = null;
+    Map<String, Object> responseMap = new HashMap<>();
+    try {
+      long brandId = Long.parseLong(searchDataMap.get("brandId").toString());
+      productEntity = productDao.findByBrand(brandId);
+        if (productEntity != null) {
+            responseCode = Constants.RESULT_CD_SUCCESS;
+            responseMap.put("productEntity", productEntity);
+        }
+    } catch (Exception e) {
+        responseMsg = "Error when finding product by ID";
+        LOGGER.error("Error when finding product by ID: {}", e);
     }
     return new ResponseDataModel(responseCode, responseMsg, responseMap);
   }

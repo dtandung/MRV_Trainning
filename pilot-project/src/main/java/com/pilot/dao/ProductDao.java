@@ -5,6 +5,7 @@ package com.pilot.dao;
 
 
 
+import java.util.List;
 import java.util.Map;
 import org.springframework.data.jpa.domain.Specification;
 import com.pilot.entity.ProductEntity;
@@ -23,5 +24,7 @@ public interface ProductDao {
   ProductEntity findByProductNameAndProductIdNot(String productName, Long productId);
   
   Specification<ProductEntity> getSearchCriteria(Map<String, Object> searchConditionsMap);
+  
+  List<ProductEntity> findByBrand(Long brand);
   
 }

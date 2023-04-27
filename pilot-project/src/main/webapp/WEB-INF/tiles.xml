@@ -131,4 +131,19 @@
 		</put-list-attribute>
 	</definition>
 	<!-- PHONE Page END -->
+	<!-- PRODUCT OF BRAND Page START -->
+	<definition name="tiles.productofbrand" extends="base.template.user">
+		<put-attribute name="title" value="Điện thoại" />
+		<put-attribute name="main-content"
+			value="/main-content-fragments-user/productOfBrand.jsp" />
+		<put-list-attribute name="stylesheets"
+			inherit="true">
+			<add-attribute value="/styles/productOfBrand.css" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts"
+			inherit="true">
+			<add-attribute value="/scripts/productOfBrand.js" />
+		</put-list-attribute>
+	</definition>
+	<!-- PRODUCT OF BRAND Page END -->
 </tiles-definitions>

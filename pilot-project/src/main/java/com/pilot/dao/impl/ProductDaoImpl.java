@@ -57,7 +57,7 @@ public class ProductDaoImpl implements ProductDao {
           String keyword = (String) searchConditionsMap.get("keyword");
           String priceFrom = (String) searchConditionsMap.get("priceFrom");
           String priceTo = (String) searchConditionsMap.get("priceTo");
-          List<String> brandIds = (List<String>) searchConditionsMap.get("brandIds");
+          List<String> brandIds = (List<String>) searchConditionsMap.get("brand");
           Join<ProductEntity, BrandEntity> brandRoot = productRoot.join("brand");
 
           // Keyword Predicate
@@ -96,5 +96,13 @@ public class ProductDaoImpl implements ProductDao {
       }
     };
   }
+
+  @Override
+  public List<ProductEntity> findByBrand(Long brand) {
+    // TODO Auto-generated method stub
+    return repo.findByBrand(brand);
+  }
+
+
 
 }

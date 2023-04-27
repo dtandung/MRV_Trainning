@@ -1,5 +1,5 @@
 const TEMPLATE_BRAND =
-	"<a class=' dropdown-item btn-dropdown' href='<%= logo %>' data-toggle='lightbox' data-max-width='1000'>"
+	"<a class='dropdown-item btn-dropdown' id='brand-show'  data-id='<%= brand.brandName %>' href='/productofbrand?id=<%= brandId %>'>"
 	+ "<img src='<%= logo %>'>"
 	+ "</a>"
 const TEMPLATE_PRODUCT = "<li class='product-info'>"
@@ -130,6 +130,7 @@ $('#rangeMin').on('input', function(e) {
 	if (newValue >= rangeBalance)
 		$('#rangeMin').val(rangeBalance)
 	if (newValue > max) return;
+
 	min = newValue;
 	$('#thumbMin').css('left', calcLeftPosition(newValue) + '%');
 	$('#min').html(newValue);

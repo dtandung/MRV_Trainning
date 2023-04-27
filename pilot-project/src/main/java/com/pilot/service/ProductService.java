@@ -19,6 +19,8 @@ public interface ProductService {
   
   ResponseDataModel findByProductIdForApi (Long productId);
   
+  ResponseDataModel findByBrandForApi (Map<String, Object> searchDataMap);
+  
   ResponseDataModel delete (Long productId);
   
 //  List<ProductEntity> getAll();
@@ -30,4 +32,5 @@ public interface ProductService {
   ResponseDataModel searchWithPager(Map<String, Object> searchDataMap);
   
   ResponseDataModel getAllProduct(Map<String, Object> searchDataMap);
+
 }
