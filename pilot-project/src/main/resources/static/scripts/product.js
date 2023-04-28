@@ -53,7 +53,7 @@ var Product = (function() {
 		};
 
 		_self.drawProductTableContent = function(data) {
-
+			_self.$brandName.empty();
 			_self.$productInfoTableBody.empty();
 			_self.$paginator.empty();
 
