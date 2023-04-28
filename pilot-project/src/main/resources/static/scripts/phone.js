@@ -1,10 +1,10 @@
 const TEMPLATE_BRAND =
-	"<a class='dropdown-item btn-dropdown' id='brand-show'  data-id='<%= brand.brandName %>' href='/productofbrand?id=<%= brandId %>'>"
+	"<a class='dropdown-item btn-dropdown'  href='/productofbrand?id=<%= brandId %>'>"
 	+ "<img src='<%= logo %>'>"
 	+ "</a>"
 const TEMPLATE_PRODUCT = "<li class='product-info'>"
 	+ "<div class='prod-avatar'>"
-	+ "<a href='<%= image %>' data-toggle='lightbox' data-max-width='1000'><img src='<%= image %>'></a>"
+	+ "<a href='/detailproduct?id=<%= productId %>'><img src='<%= image %>'></a>"
 	+ "</div>"
 	+ "<div class='prod-name'> <%= productName %> <span class='new-prod-label'>Mới 2023</span> </div>"
 	+ "<span class='prod-price'><%= price %></span>"

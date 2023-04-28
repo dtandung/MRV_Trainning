@@ -4,7 +4,7 @@ const TEMPLATE_BRAND =
 	+ "</a>"
 const TEMPLATE_PRODUCT = "<li class='product-info'>"
 	+ "<div class='prod-avatar'>"
-	+ "<a href='#' ><img id='imageProduct' src='<%= image %>'></a>"
+	+ "<a href='/detailproduct?id=<%= productId %>' ><img id='imageProduct' src='<%= image %>'></a>"
 	+ "</div>"
 	+ "<div class='prod-name'> <%= productName %> <span class='new-prod-label'>Mới 2023</span> </div>"
 	+ "<span class='prod-price'><%= price %></span>"

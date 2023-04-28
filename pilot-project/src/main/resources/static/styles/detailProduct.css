@@ -643,7 +643,6 @@ footer .icondmx-share3 {
 
 .discount-in-day .group-tabs {
     width: 100%;
-    margin-bottom: 10px;
 }
 .discount-in-day .group-tabs .box-filter {
     display: flex;
@@ -698,12 +697,10 @@ footer .icondmx-share3 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
-.filter-product button{
-	background:#fff;
+.filter-product {
+	font-size: 18px;
 }
-.filter-product button:hover{
-	border: 1px solid rgb(42, 115, 240);
-}
+
 .range-slide {
     position: relative;
     margin: 20px 40px 40px 40px;
@@ -810,6 +807,82 @@ input::-webkit-slider-thumb {
     padding-left: 5px;
 }
 
+.box-main {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 70% 30%;
+    border-top: 1px solid #989696;
+    padding-top: 15px;
+    overflow: hidden;
+    margin-top: 15px;
+    clear: both;
+}
+.box_left {
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    height: fit-content;
+}
+.box_left img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    max-width: 100%;
+}
+.box_right {
+    margin-left: 10px;
+    border-radius: 10px;
+    /* background-color: #fff; */
+}
+.box-price {
+    color: #d0021c;
+    border-top: 4px solid #4a90e2;
+    border-left: 1px solid #4a90e2;
+    border-right: 1px solid #4a90e2;
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
+    background-color: #fff;
+    padding: 12px 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 25px;
+}
+.box-detail {
+    border: 1px solid #4a90e2;
+    border-top: 0;
+    padding: 10px;
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+}
+.box-detail-content {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.box-detail--top {
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 8px 10px;
+}
+.box-detail--main {
+    padding: 15px 10px 10px 10px;
+}
+
+.button-buy-now{
+	background-color: #fb6e2e;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-size: 15px;
+    padding: 14px 10px;
+    text-align: center;
+}
+
+.button-buy-now:hover{
+	text-decoration: none;
+	color: #fff;
+}
 
 .pagination {
 	margin-top: 30px;

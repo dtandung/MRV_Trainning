@@ -11,37 +11,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.pilot.entity.BrandEntity;
 import com.pilot.entity.ProductEntity;
 import com.pilot.model.ResponseDataModel;
-import com.pilot.service.BrandService;
 import com.pilot.service.ProductService;
 
 
 @Controller
-@RequestMapping(value = {"/productofbrand"})
-public class ProductOfBrandController {
+//@RequestMapping
+public class DetailProductController {
 
-  @Autowired
-  private BrandService brandService;
-  
   @Autowired
   private ProductService productService;
 
-  @GetMapping
-  public String initPage(@RequestParam(value = "id", required = false) Long brandId,
+  @GetMapping(value = {"/detailproduct"})
+  public String initPage(@RequestParam(value = "id", required = false) Long productId,
       HttpServletRequest request, Model model) {
-    BrandEntity bra = brandService.findByBrandId(brandId);
-    if (bra != null && brandId != null) {
-      model.addAttribute("brand", bra);
+    ProductEntity pro = productService.findProductById(productId);
+    if (pro != null && productId != null) {
+      model.addAttribute("productDetail", pro);
     }
-    return "tiles.productofbrand";
-  }
-
-  @PostMapping("/findById")
-  @ResponseBody
-  public ResponseDataModel findById(@RequestBody Map<String, Object> searchDataMap) {
-    return productService.findByBrandForApi(searchDataMap);
+    return "tiles.detailproduct";
   }
 
 }

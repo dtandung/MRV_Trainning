@@ -5,7 +5,13 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <main class="container">
 	<section class="row discount-in-day">
-		<div class="section-title">Điện Thoại <i class="fa-solid fa-chevron-right"></i> <b></b> điện thoại</div>
+		<div class="section-title">
+			<div class="section-title d-flex">
+				<span class="mr-1">Điện Thoại</span> <span style="color: #999;">›</span>
+				<div class="detail-title ml-1"><b></b> Điện thoại
+					(${brand.brandName})</div>
+			</div>
+		</div>
 		<div class="group-tabs">
 			<div class="box-filter mb-3 ">
 				<div class="dropdown">
@@ -17,8 +23,7 @@
 						<div class="mb-3">
 							<b>Hãng</b>
 						</div>
-						<div class="grid-dropdown-item brandInfo">
-						</div>
+						<div class="grid-dropdown-item brandInfo"></div>
 						<div class="dropdown-divider"></div>
 						<div class="filter-all">
 							<div>
@@ -35,18 +40,17 @@
 									<b>Giá</b>
 								</div>
 								<div class="grid-dropdown-item">
-									<a class="dropdown-item  " href="#">Dưới 2 triệu</a>
-									<a class="dropdown-item   " href="#">Từ 2 - 4
-										triệu</a> <a class="dropdown-item  " href="#">Từ 4
-										- 7 triệu</a> <a class="dropdown-item  " href="#">Từ
-										7 - 13 triệu</a> <a class="dropdown-item  " href="#">Từ
-										13 - 20 triệu</a> <a class="dropdown-item  " href="#">Trên
-										20 triệu</a>
+									<a class="dropdown-item  " href="#">Dưới 2 triệu</a> <a
+										class="dropdown-item   " href="#">Từ 2 - 4 triệu</a> <a
+										class="dropdown-item  " href="#">Từ 4 - 7 triệu</a> <a
+										class="dropdown-item  " href="#">Từ 7 - 13 triệu</a> <a
+										class="dropdown-item  " href="#">Từ 13 - 20 triệu</a> <a
+										class="dropdown-item  " href="#">Trên 20 triệu</a>
 								</div>
 								<form class="range-price">
 									<div class="display m-0 mt-3">
-										<span class=" text-center  " id="min">300000</span>
-										<span class=" text-center  " id="max">42000000</span>
+										<span class=" text-center  " id="min">300000</span> <span
+											class=" text-center  " id="max">42000000</span>
 									</div>
 								</form>
 								<div class="range-slide">
@@ -78,8 +82,7 @@
 						id="dropdownMenuButton2" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Hãng</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-						<div class="grid-dropdown-item brandInfo">
-						</div>
+						<div class="grid-dropdown-item brandInfo"></div>
 					</div>
 				</div>
 				<div class="dropdown">
@@ -89,17 +92,16 @@
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
 						<div class="grid-dropdown-item">
 							<a class="dropdown-item  " href="#">Dưới 2 triệu</a> <a
-								class="dropdown-item   " href="#">Từ 2 - 4 triệu</a>
-							<a class="dropdown-item  " href="#">Từ 4 - 7 triệu</a>
-							<a class="dropdown-item  " href="#">Từ 7 - 13
-								triệu</a> <a class="dropdown-item  " href="#">Từ 13 -
-								20 triệu</a> <a class="dropdown-item  " href="#">Trên
-								20 triệu</a>
+								class="dropdown-item   " href="#">Từ 2 - 4 triệu</a> <a
+								class="dropdown-item  " href="#">Từ 4 - 7 triệu</a> <a
+								class="dropdown-item  " href="#">Từ 7 - 13 triệu</a> <a
+								class="dropdown-item  " href="#">Từ 13 - 20 triệu</a> <a
+								class="dropdown-item  " href="#">Trên 20 triệu</a>
 						</div>
 						<form class="range-price">
 							<div class="display ">
-								<span class=" text-center  " id="min2">300000</span>
-								<span class=" text-center  " id="max2">42000000</span>
+								<span class=" text-center  " id="min2">300000</span> <span
+									class=" text-center  " id="max2">42000000</span>
 							</div>
 						</form>
 						<div class="range-slide">
@@ -115,7 +117,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="dropdown " >
+				<div class="dropdown ">
 					<button class="btn dropdown-toggle" type="button"
 						id="dropdownMenuButton4" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Loại Điện
@@ -128,8 +130,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="filter-product">
-			</div>
+			<div class="filter-product"></div>
 			<!-- <div class="grid-dropdown-item brandInfo radius">
 			</div> -->
 		</div>
@@ -149,7 +150,7 @@
 					</li> -->
 				</ul>
 			</div>
-			
+
 		</div>
 	</section>
 	<div class="d-flex justify-content-center">
