@@ -26,8 +26,8 @@ var Product = (function() {
 		_self.searchProducts = function() { // Search Brand by keyword
 			let searchData = {
 				keyword: $("#keyword").val(),
-				fromPrice: $("#priceFrom").val(),
-				toPrice: $("#priceTo").val(),
+				priceFrom: $("#priceFrom").val(),
+				priceTo: $("#priceTo").val(),
 				currentPage: Number(_self.currentPageNumber)
 			}
 

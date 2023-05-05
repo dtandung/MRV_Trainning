@@ -57,7 +57,7 @@ public class ProductDaoImpl implements ProductDao {
           String keyword = (String) searchConditionsMap.get("keyword");
           String priceFrom = (String) searchConditionsMap.get("priceFrom");
           String priceTo = (String) searchConditionsMap.get("priceTo");
-          List<String> brandIds = (List<String>) searchConditionsMap.get("brand");
+          //List<String> brandIds = (List<String>) searchConditionsMap.get("brand");
           Join<ProductEntity, BrandEntity> brandRoot = productRoot.join("brand");
 
           // Keyword Predicate
@@ -82,15 +82,15 @@ public class ProductDaoImpl implements ProductDao {
           }
 
           // Brand Predicate
-          if (!CollectionUtils.isEmpty(brandIds)) {
-            List<Predicate> brandIdPredicateList = new ArrayList<>();
-            for (String brandId : brandIds) {
-              brandIdPredicateList
-                  .add(criteriaBuilder.equal(brandRoot.get("brandId"), Long.parseLong(brandId)));
-            }
-            predicates.add(criteriaBuilder
-                .or(brandIdPredicateList.toArray(new Predicate[brandIdPredicateList.size()])));
-          }
+//          if (!CollectionUtils.isEmpty(brandIds)) {
+//            List<Predicate> brandIdPredicateList = new ArrayList<>();
+//            for (String brandId : brandIds) {
+//              brandIdPredicateList
+//                  .add(criteriaBuilder.equal(brandRoot.get("brandId"), Long.parseLong(brandId)));
+//            }
+//            predicates.add(criteriaBuilder
+//                .or(brandIdPredicateList.toArray(new Predicate[brandIdPredicateList.size()])));
+//          }
         }
         return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
       }

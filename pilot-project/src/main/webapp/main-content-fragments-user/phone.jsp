@@ -17,7 +17,7 @@
 						<div class="mb-3">
 							<b>Hãng</b>
 						</div>
-						<div class="grid-dropdown-item brandInfo">
+						<div class="grid-dropdown-item ">
 						</div>
 						<div class="dropdown-divider"></div>
 						<div class="filter-all">
@@ -78,7 +78,7 @@
 						id="dropdownMenuButton2" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Hãng</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-						<div class="grid-dropdown-item brandInfo">
+						<div class="grid-dropdown-item ">
 						</div>
 					</div>
 				</div>

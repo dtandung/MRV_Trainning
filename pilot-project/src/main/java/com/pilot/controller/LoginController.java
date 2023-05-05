@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.pilot.common.constant.Constants;
-import com.pilot.common.util.CommonUtil;
 import com.pilot.entity.UserInfoEntity;
 import com.pilot.service.UserInfoService;
 

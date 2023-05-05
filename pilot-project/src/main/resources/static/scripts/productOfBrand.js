@@ -22,10 +22,14 @@ var Brand = (function() {
 		_self.$brandInfo = $('.brandInfo');
 		//_self.$paginator = $('ul.pagination');
 		_self.$filter = $('.filter-product');
-
+		var brandList ;
+		var brandId ;
 
 		//$('.dropdown button').attr("disabled", true);
-
+		
+		_self.changeTitle = function(brand){
+			document.title = `Điện thoại ${brand}`;
+		}
 
 		_self.searchBrands = function() {
 			// Search Brand by keyword
@@ -42,27 +46,23 @@ var Brand = (function() {
 				contentType: 'application/json',
 				success: function(responseData) {
 					if (responseData.responseCode == 100) {
+						brandList = responseData.data.brandsListUser
 						_self.drawBrandTableContent(responseData.data);
+						
 					}
 				},
 			});
 		};
+		
+		if(brandId){
+			_self.changeTitle(brandList.brandName)
+		}
 
 		_self.drawBrandTableContent = function(data) {
-
 			// Render brand content
 			$.each(data.brandsListUser, function(key, value) {
 				_self.$brandInfo.append(_self.templateList.brandInfoRowTemplate(value));
 			});
-			
-			var url = new URL(window.location.href);
-			let data2 = {
-				brandId: url.searchParams.get("id").toString()
-			};
-			if(data2.brandId === data.brandsListUser){
-				console.log(data.brandName)
-			}
-			
 		};
 
 
@@ -75,8 +75,10 @@ var Brand = (function() {
 			let data = {
 				brandId: url.searchParams.get("id").toString()
 			};
+			brandId = url.searchParams.get("id").toString()
+			
 			$.ajax({
-				url: "/productofbrand/findById",
+				url: "/productofbrand/findByBrandId",
 				type: 'POST',
 				dataType: 'json',
 				data: JSON.stringify(data),

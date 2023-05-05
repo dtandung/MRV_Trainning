@@ -16,7 +16,7 @@
 			<div class="search-area__select-fields-price-from">
 				<b>Price From:</b> <select class="form-select"
 					aria-label="Default select example" id="priceFrom">
-					<option value = "0" selected>--Select from Price--</option>
+					<option value = "" >--Select from Price--</option>
 					<option value="2000000">2.000.000</option>
 					<option value="4000000">4.000.000</option>
 					<option value="6000000">6.000.000</option>
@@ -27,12 +27,12 @@
 			<div class="search-area__select-fields-price-to">
 				<b>Price To:</b> <select class="form-select"
 					aria-label="Default select example" id="priceTo">
-					<option value ="0"selected>--Select to Price--</option>
+					<option value ="">--Select to Price--</option>
 					<option value="12000000">12.000.000</option>
 					<option value="14000000">14.000.000</option>
 					<option value="16000000">16.000.000</option>
 					<option value="18000000">18.000.000</option>
-					<option value="20490000">20.000.000</option>
+					<option value="20000000">20.000.000</option>
 				</select>
 			</div>
 		</div>

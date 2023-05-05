@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.pilot.entity.BrandEntity;
-import com.pilot.entity.ProductEntity;
 import com.pilot.model.ResponseDataModel;
 import com.pilot.service.BrandService;
 import com.pilot.service.ProductService;
@@ -38,7 +37,7 @@ public class ProductOfBrandController {
     return "tiles.productofbrand";
   }
 
-  @PostMapping("/findById")
+  @PostMapping("/findByBrandId")
   @ResponseBody
   public ResponseDataModel findById(@RequestBody Map<String, Object> searchDataMap) {
     return productService.findByBrandForApi(searchDataMap);
