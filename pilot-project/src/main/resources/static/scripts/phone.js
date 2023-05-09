@@ -1,11 +1,14 @@
-const TEMPLATE_BRAND =
-	"<a class='dropdown-item btn-dropdown'  href='/productofbrand?id=<%= brandId %>'>"
+const TEMPLATE_BRAND = "<label class='imagetips'>"
+	+ "<a class='imagetips_tip'  href='/productofbrand?id=<%= brandId %>'>"
 	+ "<img src='<%= logo %>'>"
 	+ "</a>"
-const TEMPLATE_BRAND_FILTER =
-	"<a class='dropdown-item btn-dropdown ' >"
-	+ "<img src='<%= logo %>'>"
-	+ "</a>"
+	+ "</label > "
+const TEMPLATE_BRAND_FILTER = "<label class='imagetips'>"
+	+ "<input type = 'checkbox' name='brand' class='btn-check' autocomplete='off' value='<%= brandId %>' />"
+	+ "<span class='imagetips_tip' for='btn-check'>"
+	+ "<img src='<%= logo %>'/></span>"
+	+ "</label > "
+
 const TEMPLATE_PRODUCT = "<li class='product-info'>"
 	+ "<a class='none-textdecor' href='/detailproduct?id=<%= productId %>'><div class='prod-avatar'>"
 	+ "<img id='imageProduct' src='<%= image %>'>"
@@ -22,12 +25,12 @@ var Brand = (function() {
 		_self.$brandInfoFilter = $('.brandInfoFilter');
 		_self.$productInfo = $('#productInfo');
 		_self.$paginator = $('ul.pagination');
-
-
+		var brandIdFilter = [];
+		var brandIdListForm = [];
+		var list;
 		_self.searchBrands = function() {
 			// Search Brand by keyword
 			let searchData = {
-				keyword: $('#keyword').val(),
 				currentPage: Number(_self.currentPageNumber),
 			};
 
@@ -49,7 +52,8 @@ var Brand = (function() {
 				keyword: $("#keyword").val(),
 				fromPrice: $("#fromPrice").val(),
 				toPrice: $("#toPrice").val(),
-				currentPage: Number(_self.currentPageNumber)
+				currentPage: Number(_self.currentPageNumber),
+				brandIdFilter: [...brandIdFilter]
 			}
 
 
@@ -78,12 +82,21 @@ var Brand = (function() {
 			$.each(data.brandsListUser, function(key, value) {
 				_self.$brandInfo.append(_self.templateList.brandInfoRowTemplate(value));
 			});
-			
+
 			$.each(data.brandsListUser, function(key, value) {
 				_self.$brandInfoFilter.append(_self.templateList.brandInfoFilterRowTemplate(value));
 			});
 
+			function showValues() {
+				var fields = $(":input").serializeArray();
+				//console.log(fields)
+				//$("#results").empty();
+				brandIdListForm = fields;
+				brandIdFilter = []
+				brandIdListForm.forEach(item => brandIdFilter.push(item.value))
 
+			}
+			$(":checkbox").on("click", showValues);
 		};
 		_self.drawProductTableContent = function(data) {
 
@@ -94,6 +107,7 @@ var Brand = (function() {
 			$.each(data.productsListUser, function(key, value) {
 				_self.$productInfo.append(_self.templateList.productInfoRowTemplate(value));
 			});
+
 
 			// Render paginator
 			let paginationInfo = data.paginationInfo;
@@ -107,18 +121,21 @@ var Brand = (function() {
 				_self.currentPageNumber = $(this).attr("data-index");
 				_self.searchProducts();
 			});
-			$('.dropdown-menu').on('click', '.dropdown-item', function() {
-				if ($(this).hasClass('active-brand')) {
-					$(this).removeClass('active-brand')
-				} else
-					$(this).addClass('active-brand');
+
+			$(".section-title").on('click', function() {
+				console.log(brandIdFilter);
+			});
+
+			$(".btn-filter-readmore").on('click', function() {
+				_self.searchProducts()
 			});
 		};
+
 		_self.templateList = {
 			brandInfoRowTemplate: _.template(TEMPLATE_BRAND),
 			paginatorTemplate: _.template(TEMPLATE_PAGINATOR),
 			productInfoRowTemplate: _.template(TEMPLATE_PRODUCT),
-			brandInfoFilterRowTemplate:_.template(TEMPLATE_BRAND_FILTER)
+			brandInfoFilterRowTemplate: _.template(TEMPLATE_BRAND_FILTER)
 		};
 		_self.initialize = function() {
 			// Show brands list when opening page

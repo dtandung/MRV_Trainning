@@ -27,7 +27,7 @@
 }
 
 .search-area__select-fields {
-	margin-right: 10px;
+/* 	margin-right: 10px; */
 	display: flex;
 	width: fit-content;
 }

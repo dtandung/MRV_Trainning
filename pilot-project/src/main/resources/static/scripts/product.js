@@ -147,21 +147,21 @@ var Product = (function() {
 						imageFiles: {
 							required: isAddAction,
 						},
-						quantity:{
-							required:true,
-							number:true,
-							integer:true
+						quantity: {
+							required: true,
+							number: true,
+							integer: true
 						},
-						price:{
-							required:true,
-							number:true,
-							integer:true
+						price: {
+							required: true,
+							number: true,
+							integer: true
 						},
-						brand:{
-							required:true
+						brand: {
+							required: true
 						},
-						saleDate:{
-							required:true
+						saleDate: {
+							required: true
 						}
 					},
 					messages: {
@@ -172,17 +172,17 @@ var Product = (function() {
 						imageFiles: {
 							required: "Please upload Product Image",
 						},
-						quantity:{
-							required:"Please input Quantity",
+						quantity: {
+							required: "Please input Quantity",
 						},
-						price:{
-							required:"Please input Quantity",
+						price: {
+							required: "Please input Quantity",
 						},
-						brand:{
-							required:"Please input Brand Name",
+						brand: {
+							required: "Please input Brand Name",
 						},
-						saleDate:{
-							required:"Please input Opening For Sale",
+						saleDate: {
+							required: "Please input Opening For Sale",
 						}
 					},
 					errorElement: "div",
@@ -274,6 +274,8 @@ var Product = (function() {
 			// Search product after search fields when click clear search field button
 			$('#clearSearchFieldBtn').on('click', function() {
 				$("#keyword").val("");
+				$("#priceFrom").val();
+				$("#priceTo").val();
 				_self.currentPageNumber = 1;
 				_self.searchProducts();
 			});

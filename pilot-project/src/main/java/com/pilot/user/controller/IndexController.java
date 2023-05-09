@@ -17,31 +17,31 @@ import com.pilot.service.ProductService;
  * 
  */
 @Controller
-@RequestMapping(value = { "/home" })
+@RequestMapping(value = {"/home"})
 public class IndexController {
 
-    @Autowired
-    BrandService brandService;
-    
-    @Autowired
-    ProductService productService;
-  
-	@GetMapping
-	public String initPage() {
-		return "tiles.phone";
-	}
-	
-	@PostMapping("/api/getallbrand")
-    @ResponseBody
-    public ResponseDataModel getAllBrand(@RequestBody Map<String, Object> searchDataMap) {
-        return brandService.getAllBrand(searchDataMap);
-    }
-	
-    
-      @PostMapping("/api/getallproduct")
-      @ResponseBody
-      public ResponseDataModel getAllProduct(@RequestBody Map<String, Object> searchDataMap) {
-        return productService.getAllProduct(searchDataMap);
-      }
+  @Autowired
+  BrandService brandService;
+
+  @Autowired
+  ProductService productService;
+
+  @GetMapping
+  public String initPage() {
+    return "tiles.phone";
+  }
+
+  @PostMapping("/api/getallbrand")
+  @ResponseBody
+  public ResponseDataModel getAllBrand(@RequestBody Map<String, Object> searchDataMap) {
+    return brandService.getAllBrand(searchDataMap);
+  }
+
+
+  @PostMapping("/api/getallproduct")
+  @ResponseBody
+  public ResponseDataModel getAllProduct(@RequestBody Map<String, Object> searchDataMap) {
+    return productService.getAllProduct(searchDataMap);
+  }
 
 }

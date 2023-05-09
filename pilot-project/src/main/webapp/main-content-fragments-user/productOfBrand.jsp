@@ -20,65 +20,84 @@
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="fa-solid fa-filter" style="color: #050505;"></i> Bộ lọc
 					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					<form class="range-price">
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 							<div class="mb-3">
 								<b>Hãng</b>
 							</div>
-						<form>
+
 							<div class="grid-dropdown-item brandInfoFilter"></div>
-						</form>
-						<div class="dropdown-divider"></div>
-						<div class="filter-all">
-							<div>
-								<div class="mb-3">
-									<b>Loại điện thoại</b>
+							<div class="dropdown-divider"></div>
+							<div class="filter-all">
+								<div>
+									<div class="mb-3">
+										<b>Loại điện thoại</b>
+									</div>
+									<div class="grid-dropdown-item mr-1">
+										<label class="imagetips"> <input type="checkbox"
+											class="btn-check" autocomplete="off" /> <span
+											class="imagetips_tip" for="btn-check">Android</span>
+										</label> <label class="imagetips"> <input type="checkbox"
+											class="btn-check" autocomplete="off" /> <span
+											class="imagetips_tip" for="btn-check">Iphone(iOS)</span>
+										</label>
+									</div>
 								</div>
-								<div class="d-flex">
-									<a class="dropdown-item  " href="#">Adroid</a> <a
-										class="dropdown-item  " href="#">Iphone(IOS)</a>
-								</div>
-							</div>
-							<div>
-								<div class="mb-3">
-									<b>Giá</b>
-								</div>
-								<div class="grid-dropdown-item">
-									<a class="dropdown-item  " href="#">Dưới 2 triệu</a> <a
-										class="dropdown-item   " href="#">Từ 2 - 4 triệu</a> <a
-										class="dropdown-item  " href="#">Từ 4 - 7 triệu</a> <a
-										class="dropdown-item  " href="#">Từ 7 - 13 triệu</a> <a
-										class="dropdown-item  " href="#">Từ 13 - 20 triệu</a> <a
-										class="dropdown-item  " href="#">Trên 20 triệu</a>
-								</div>
-								<form class="range-price">
+								<div>
+									<div class="mb-3">
+										<b>Giá</b>
+									</div>
+									<div class="grid-dropdown-item">
+										<label class="imagetips"> <input type="checkbox"
+											class="btn-check" autocomplete="off" /> <span
+											class="imagetips_tip" for="btn-check">Dưới 2 triệu</span>
+										</label> <label class="imagetips"> <input type="checkbox"
+											class="btn-check" autocomplete="off" /> <span
+											class="imagetips_tip" for="btn-check">Từ 2 - 4 triệu</span>
+										</label> <label class="imagetips"> <input type="checkbox"
+											class="btn-check" autocomplete="off" /> <span
+											class="imagetips_tip" for="btn-check">Từ 4 - 7 triệu</span>
+										</label> <label class="imagetips"> <input type="checkbox"
+											class="btn-check" autocomplete="off" /> <span
+											class="imagetips_tip" for="btn-check">Từ 7 - 13 triệu</span>
+										</label> <label class="imagetips"> <input type="checkbox"
+											class="btn-check" autocomplete="off" /> <span
+											class="imagetips_tip" for="btn-check">Từ 13 - 20 triệu</span>
+										</label> <label class="imagetips"> <input type="checkbox"
+											class="btn-check" autocomplete="off" /> <span
+											class="imagetips_tip" for="btn-check">Trên 20 triệu</span>
+										</label>
+									</div>
+									<!-- <form class="range-price"> -->
 									<div class="display m-0 mt-3">
 										<span class=" text-center  " id="min">300000</span> <span
 											class=" text-center  " id="max">42000000</span>
 									</div>
-								</form>
-								<div class="range-slide">
-									<div class="slide">
-										<div class="line" id="line" style="left: 0%; right: 0%;"></div>
-										<span class="thumb" id="thumbMin" style="left: 0%;"></span> <span
-											class="thumb" id="thumbMax" style="left: 100%;"></span>
+									<!-- </form> -->
+									<div class="range-slide">
+										<div class="slide">
+											<div class="line" id="line" style="left: 0%; right: 0%;"></div>
+											<span class="thumb" id="thumbMin" style="left: 0%;"></span> <span
+												class="thumb" id="thumbMax" style="left: 100%;"></span>
+										</div>
+										<input id="rangeMin" type="range" max="42000000" min="300000"
+											step="100000" value="0"> <input id="rangeMax"
+											type="range" max="42000000" min="300000" step="100000"
+											value="42000000">
 									</div>
-									<input id="rangeMin" type="range" max="42000000" min="300000"
-										step="100000" value="0"> <input id="rangeMax"
-										type="range" max="42000000" min="300000" step="100000"
-										value="42000000">
 								</div>
 							</div>
+							<div
+								class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
+								style="display: block;">
+								<a class="btn btn-primary" href="javascript:void(0)"
+									class="btn-filter-close">Bỏ chọn</a> <a class="btn btn-danger"
+									href="javascript:;" class="btn-filter-readmore">Xem <b
+									class="total-reloading">6</b> kết quả
+								</a>
+							</div>
 						</div>
-						<div
-							class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
-							style="display: block;">
-							<a class="btn btn-primary" href="javascript:void(0)"
-								class="btn-filter-close">Bỏ chọn</a> <a class="btn btn-danger"
-								href="javascript:;" class="btn-filter-readmore">Xem <b
-								class="total-reloading">6</b> kết quả
-							</a>
-						</div>
-					</div>
+					</form>
 				</div>
 
 				<div class="dropdown">
@@ -96,49 +115,70 @@
 					<button class="btn dropdown-toggle" type="button"
 						id="dropdownMenuButton3" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Giá</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-						<div class="grid-dropdown-item">
-							<a class="dropdown-item  " href="#">Dưới 2 triệu</a> <a
-								class="dropdown-item   " href="#">Từ 2 - 4 triệu</a> <a
-								class="dropdown-item  " href="#">Từ 4 - 7 triệu</a> <a
-								class="dropdown-item  " href="#">Từ 7 - 13 triệu</a> <a
-								class="dropdown-item  " href="#">Từ 13 - 20 triệu</a> <a
-								class="dropdown-item  " href="#">Trên 20 triệu</a>
-						</div>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
 						<form class="range-price">
+							<div class="grid-dropdown-item">
+								<label class="imagetips"> <input type="checkbox"
+									class="btn-check" autocomplete="off" /> <span
+									class="imagetips_tip" for="btn-check">Dưới 2 triệu</span>
+								</label> <label class="imagetips"> <input type="checkbox"
+									class="btn-check" autocomplete="off" /> <span
+									class="imagetips_tip" for="btn-check">Từ 2 - 4 triệu</span>
+								</label> <label class="imagetips"> <input type="checkbox"
+									class="btn-check" autocomplete="off" /> <span
+									class="imagetips_tip" for="btn-check">Từ 4 - 7 triệu</span>
+								</label> <label class="imagetips"> <input type="checkbox"
+									class="btn-check" autocomplete="off" /> <span
+									class="imagetips_tip" for="btn-check">Từ 7 - 13 triệu</span>
+								</label> <label class="imagetips"> <input type="checkbox"
+									class="btn-check" autocomplete="off" /> <span
+									class="imagetips_tip" for="btn-check">Từ 13 - 20 triệu</span>
+								</label> <label class="imagetips"> <input type="checkbox"
+									class="btn-check" autocomplete="off" /> <span
+									class="imagetips_tip" for="btn-check">Trên 20 triệu</span>
+								</label>
+							</div>
+
 							<div class="display ">
 								<span class=" text-center  " id="min2">300000</span> <span
 									class=" text-center  " id="max2">42000000</span>
 							</div>
 						</form>
 						<div class="range-slide">
-							<div class="slide">
-								<div class="line" id="line2" style="left: 0%; right: 0%;"></div>
-								<span class="thumb" id="thumbMin2" style="left: 0%;"></span> <span
-									class="thumb" id="thumbMax2" style="left: 100%;"></span>
-							</div>
-							<input id="rangeMin2" type="range" max="42000000" min="300000"
-								step="100000" value="0"> <input id="rangeMax2"
-								type="range" max="42000000" min="300000" step="100000"
-								value="42000000">
+						<div class="slide">
+							<div class="line" id="line2" style="left: 0%; right: 0%;"></div>
+							<span class="thumb" id="thumbMin2" style="left: 0%;"></span> <span
+								class="thumb" id="thumbMax2" style="left: 100%;"></span>
 						</div>
+						<input id="rangeMin2" type="range" max="42000000" min="300000"
+							step="100000" value="0"> <input id="rangeMax2"
+							type="range" max="42000000" min="300000" step="100000"
+							value="42000000">
 					</div>
 				</div>
-				<div class="dropdown ">
-					<button class="btn dropdown-toggle" type="button"
-						id="dropdownMenuButton4" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">Loại Điện
-						Thoại</button>
+
+			</div>
+			<div class="dropdown ">
+				<button class="btn dropdown-toggle" type="button"
+					id="dropdownMenuButton4" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">Loại Điện Thoại</button>
+				<form>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
 						<div class="d-flex">
-							<a class="dropdown-item  " href="#">Adroid</a> <a
-								class="dropdown-item  " href="#">Iphone(IOS)</a>
+							<label class="imagetips mr-1"> <input type="checkbox"
+								class="btn-check" autocomplete="off" /> <span
+								class="imagetips_tip" for="btn-check">Android</span>
+							</label> <label class="imagetips"> <input type="checkbox"
+								class="btn-check" autocomplete="off" /> <span
+								class="imagetips_tip" for="btn-check">Iphone(iOS)</span>
+							</label>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
-			<!-- <div class="filter-product"></div> -->
-			<!-- <div class="grid-dropdown-item brandInfo radius">
+		</div>
+		<!-- <div class="filter-product"></div> -->
+		<!-- <div class="grid-dropdown-item brandInfo radius">
 			</div> -->
 		</div>
 		<div class="content">

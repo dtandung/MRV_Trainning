@@ -2,10 +2,11 @@ const TEMPLATE_BRAND =
 	"<a class='dropdown-item btn-dropdown'  data-id='<%= brandId %>' href='/productofbrand?id=<%= brandId %>'>"
 	+ "<img src='<%= logo %>'>"
 	+ "</a>"
-const TEMPLATE_BRAND_FILTER =
-	"<a class='dropdown-item btn-dropdown' >"
-	+ "<img src='<%= logo %>'>"
-	+ "</a>"
+const TEMPLATE_BRAND_FILTER = "<label class='imagetips'>"
+	+ "<input type = 'checkbox' class='btn-check' autocomplete='off' value='<%= brandId %>' />"
+	+ "<span class='imagetips_tip' for='btn-check'>"
+	+ "<img src='<%= logo %>'/></span>"
+	+ "</label > "
 const TEMPLATE_PRODUCT = "<li class='product-info'>"
 	+ "<a class='none-textdecor' href='/detailproduct?id=<%= productId %>'><div class='prod-avatar'>"
 	+ "<img id='imageProduct' src='<%= image %>'>"
@@ -170,3 +171,106 @@ var Brand = (function() {
 		brand.initialize();
 	});
 })(new Brand());
+
+
+
+let min = 300000;
+let max = 42000000;
+
+const calcLeftPosition = (value) => (100 / (42000000 - 300000)) * (value - 300000);
+var rangeBalance;
+
+$('#rangeMin').on('input', function(e) {
+	let newValue = parseFloat(e.target.value);
+	if (newValue === parseFloat($("#rangeMax").val()))
+		rangeBalance = newValue
+	if (newValue >= rangeBalance)
+		$('#rangeMin').val(rangeBalance)
+	if (newValue > max) return;
+
+	min = newValue;
+	$('#thumbMin').css('left', calcLeftPosition(newValue) + '%');
+	$('#min').html(newValue);
+	$('#line').css({
+		left: calcLeftPosition(newValue) + '%',
+		right: 100 - calcLeftPosition(max) + '%',
+	});
+
+	if (newValue === $('#rangeMax').val()) {
+		$('#rangeMax').hide()
+	}
+	else {
+		$('#rangeMax').show()
+	}
+});
+
+
+$('#rangeMax').on('input', function(e) {
+	let newValue = parseFloat(e.target.value);
+	if (newValue === parseFloat($("#rangeMin").val()))
+		rangeBalance = newValue
+	if (newValue <= rangeBalance)
+		$('#rangeMax').val(rangeBalance)
+	if (newValue < min) return;
+	max = newValue;
+	$('#thumbMax').css('left', calcLeftPosition(newValue) + '%');
+	$('#max').html(newValue);
+	$('#line').css({
+		left: calcLeftPosition(min) + '%',
+		right: 100 - calcLeftPosition(newValue) + '%',
+	});
+
+	if (newValue === $('#rangeMin').val()) {
+		$('#rangeMin').hide()
+	}
+	else {
+		$('#rangeMin').show()
+	}
+});
+
+
+$('#rangeMin2').on('input', function(e) {
+	let newValue = parseFloat(e.target.value);
+	if (newValue === parseFloat($("#rangeMax2").val()))
+		rangeBalance = newValue
+	if (newValue >= rangeBalance)
+		$('#rangeMin2').val(rangeBalance)
+	if (newValue > max) return;
+	min = newValue;
+	$('#thumbMin2').css('left', calcLeftPosition(newValue) + '%');
+	$('#min2').html(newValue);
+	$('#line2').css({
+		left: calcLeftPosition(newValue) + '%',
+		right: 100 - calcLeftPosition(max) + '%',
+	});
+
+	if (newValue === $('#rangeMax').val()) {
+		$('#rangeMax2').hide()
+	}
+	else {
+		$('#rangeMax2').show()
+	}
+});
+
+$('#rangeMax2').on('input', function(e) {
+	let newValue = parseFloat(e.target.value);
+	if (newValue === parseFloat($("#rangeMin2").val()))
+		rangeBalance = newValue
+	if (newValue <= rangeBalance)
+		$('#rangeMax2').val(rangeBalance)
+	if (newValue < min) return;
+	max = newValue;
+	$('#thumbMax2').css('left', calcLeftPosition(newValue) + '%');
+	$('#max2').html(newValue);
+	$('#line2').css({
+		left: calcLeftPosition(min) + '%',
+		right: 100 - calcLeftPosition(newValue) + '%',
+	});
+
+	if (newValue === $('#rangeMin2').val()) {
+		$('#rangeMin2').hide()
+	}
+	else {
+		$('#rangeMin2').show()
+	}
+});
