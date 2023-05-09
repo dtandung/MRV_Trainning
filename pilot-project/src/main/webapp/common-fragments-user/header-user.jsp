@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="left-area float-left d-flex">
 				<div class="logo">
-					<a class="logo" title="Về trang chủ DienmayXanh.com" href="/"> <i class="icon-dmx dmx-logo"></i> </a>
+					<a class="logo" title="Về trang chủ DienmayXanh.com" href="/home"> <i class="icon-dmx dmx-logo"></i> </a>
 				</div>
 				<div class="province-box">
 					<b>Xem giá, tồn kho ở</b>

@@ -118,7 +118,7 @@
 	<!-- DMX Page END -->
 	<!-- PHONE Page START -->
 	<definition name="tiles.phone" extends="base.template.user">
-		<put-attribute name="title" value="Điện thoại" />
+		
 		<put-attribute name="main-content"
 			value="/main-content-fragments-user/phone.jsp" />
 		<put-list-attribute name="stylesheets"
@@ -133,7 +133,6 @@
 	<!-- PHONE Page END -->
 	<!-- PRODUCT OF BRAND Page START -->
 	<definition name="tiles.productofbrand" extends="base.template.user">
-		<put-attribute name="title" value="Điện thoại" />
 		<put-attribute name="main-content"
 			value="/main-content-fragments-user/productOfBrand.jsp" />
 		<put-list-attribute name="stylesheets"
@@ -148,7 +147,6 @@
 	<!-- PRODUCT OF BRAND Page END -->
 	<!-- DETAIL PRODUCT Page START -->
 	<definition name="tiles.detailproduct" extends="base.template.user">
-		<put-attribute name="title" value="Điện thoại" />
 		<put-attribute name="main-content"
 			value="/main-content-fragments-user/detailProduct.jsp" />
 		<put-list-attribute name="stylesheets"

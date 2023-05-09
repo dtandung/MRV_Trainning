@@ -33,6 +33,7 @@ public class ProductOfBrandController {
     BrandEntity bra = brandService.findByBrandId(brandId);
     if (bra != null && brandId != null) {
       model.addAttribute("brand", bra);
+      model.addAttribute("specificPageTitle", bra.getBrandName());
     }
     return "tiles.productofbrand";
   }

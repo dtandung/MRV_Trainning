@@ -2,6 +2,10 @@ const TEMPLATE_BRAND =
 	"<a class='dropdown-item btn-dropdown'  href='/productofbrand?id=<%= brandId %>'>"
 	+ "<img src='<%= logo %>'>"
 	+ "</a>"
+const TEMPLATE_BRAND_FILTER =
+	"<a class='dropdown-item btn-dropdown ' >"
+	+ "<img src='<%= logo %>'>"
+	+ "</a>"
 const TEMPLATE_PRODUCT = "<li class='product-info'>"
 	+ "<a class='none-textdecor' href='/detailproduct?id=<%= productId %>'><div class='prod-avatar'>"
 	+ "<img id='imageProduct' src='<%= image %>'>"
@@ -15,8 +19,10 @@ var Brand = (function() {
 		var _self = this;
 		_self.currentPageNumber = 1;
 		_self.$brandInfo = $('.brandInfo');
+		_self.$brandInfoFilter = $('.brandInfoFilter');
 		_self.$productInfo = $('#productInfo');
 		_self.$paginator = $('ul.pagination');
+
 
 		_self.searchBrands = function() {
 			// Search Brand by keyword
@@ -65,11 +71,16 @@ var Brand = (function() {
 				}
 			});
 		};
+
 		_self.drawBrandTableContent = function(data) {
 
 			// Render brand content
 			$.each(data.brandsListUser, function(key, value) {
 				_self.$brandInfo.append(_self.templateList.brandInfoRowTemplate(value));
+			});
+			
+			$.each(data.brandsListUser, function(key, value) {
+				_self.$brandInfoFilter.append(_self.templateList.brandInfoFilterRowTemplate(value));
 			});
 
 
@@ -96,11 +107,18 @@ var Brand = (function() {
 				_self.currentPageNumber = $(this).attr("data-index");
 				_self.searchProducts();
 			});
+			$('.dropdown-menu').on('click', '.dropdown-item', function() {
+				if ($(this).hasClass('active-brand')) {
+					$(this).removeClass('active-brand')
+				} else
+					$(this).addClass('active-brand');
+			});
 		};
 		_self.templateList = {
 			brandInfoRowTemplate: _.template(TEMPLATE_BRAND),
 			paginatorTemplate: _.template(TEMPLATE_PAGINATOR),
-			productInfoRowTemplate: _.template(TEMPLATE_PRODUCT)
+			productInfoRowTemplate: _.template(TEMPLATE_PRODUCT),
+			brandInfoFilterRowTemplate:_.template(TEMPLATE_BRAND_FILTER)
 		};
 		_self.initialize = function() {
 			// Show brands list when opening page

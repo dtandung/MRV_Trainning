@@ -64,9 +64,9 @@ public class ProductDaoImpl implements ProductDao {
           if (StringUtils.isNotEmpty(keyword)) {
             predicates.add(criteriaBuilder.or(
                 criteriaBuilder.like(productRoot.get("productName"), "%" + keyword + "%"),
-                criteriaBuilder.like(brandRoot.get("brandName"), "%" + keyword + "%"),
-                criteriaBuilder.like(productRoot.get("description"), "%" + keyword + "%"),
-                criteriaBuilder.like(brandRoot.get("description"), "%" + keyword + "%")));
+                criteriaBuilder.like(brandRoot.get("brandName"), "%" + keyword + "%")));
+                //criteriaBuilder.like(productRoot.get("description"), "%" + keyword + "%"),
+                //criteriaBuilder.like(brandRoot.get("description"), "%" + keyword + "%")));
           }
 
           // Price From Predicate

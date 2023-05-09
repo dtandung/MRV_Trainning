@@ -9,7 +9,6 @@
 <head>
 	<tiles:insertAttribute name="head"/>
 	<!-- Local Import CSS START -->
-	<title><tiles:insertAttribute name="title"/></title>
 	<tiles:importAttribute name="stylesheets" ignore="true"/>
 	<c:forEach var="css" items="${stylesheets}">
 		<link rel="stylesheet" type="text/css" href="<c:url value='${css}'/>">

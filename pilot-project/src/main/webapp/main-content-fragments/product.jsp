@@ -106,13 +106,13 @@
 						<div class="form-group row">
 							<div class="col-sm-6">
 								<label for="quantity">Quantity <span
-									class="required-mask">(*)</span></label> <input type="text"
+									class="required-mask">(*)</span></label> <input type="number" min=0
 									class="form-control " id="quantity" name="quantity"
 									placeholder="Quantity">
 							</div>
 							<div class="col-sm-6 ">
 								<label for="price">Price <span class="required-mask">(*)</span></label>
-								<input type="text" class="form-control" id="price" name="price"
+								<input type="number" class="form-control" id="price" name="price" min=0
 									placeholder="Price">
 							</div>
 						</div>
@@ -122,8 +122,6 @@
 							<div class="col-sm-9">
 								<select class="form-control" id="brand" name="brand"
 									aria-label="Default select example">
-									<option>--Select Brand Name--</option>
-
 								</select>
 							</div>
 						</div>
@@ -137,8 +135,7 @@
 										class="form-control cursor-pointer" name="saleDate"
 										id="saleDate">
 									<div class="input-group-append">
-										<span class="input-group-text"><i
-											class="fa fa-calendar cursor-pointer"></i></span>
+										
 									</div>
 								</div>
 							</div>
@@ -163,6 +160,7 @@
 										<h3>Drag and drop a file or select add Image</h3>
 									</div>
 								</div>
+								<div id="imageFiles-error" class="error-message-invalid"></div>
 								<input type="hidden" class="old-img" id="imageProduct"
 									name="image">
 								<div class="file-upload-content">

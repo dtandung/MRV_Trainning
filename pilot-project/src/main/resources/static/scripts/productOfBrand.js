@@ -2,6 +2,10 @@ const TEMPLATE_BRAND =
 	"<a class='dropdown-item btn-dropdown'  data-id='<%= brandId %>' href='/productofbrand?id=<%= brandId %>'>"
 	+ "<img src='<%= logo %>'>"
 	+ "</a>"
+const TEMPLATE_BRAND_FILTER =
+	"<a class='dropdown-item btn-dropdown' >"
+	+ "<img src='<%= logo %>'>"
+	+ "</a>"
 const TEMPLATE_PRODUCT = "<li class='product-info'>"
 	+ "<a class='none-textdecor' href='/detailproduct?id=<%= productId %>'><div class='prod-avatar'>"
 	+ "<img id='imageProduct' src='<%= image %>'>"
@@ -20,14 +24,16 @@ var Brand = (function() {
 		_self.currentPageNumber = 1;
 		_self.$productInfo = $('#productInfo');
 		_self.$brandInfo = $('.brandInfo');
+		_self.$brandInfoFilter = $('.brandInfoFilter');
 		//_self.$paginator = $('ul.pagination');
 		_self.$filter = $('.filter-product');
-		var brandList ;
-		var brandId ;
+
+		var brandList = [];
+		var brandId;
 
 		//$('.dropdown button').attr("disabled", true);
-		
-		_self.changeTitle = function(brand){
+
+		_self.changeTitle = function(brand) {
 			document.title = `Điện thoại ${brand}`;
 		}
 
@@ -48,21 +54,32 @@ var Brand = (function() {
 					if (responseData.responseCode == 100) {
 						brandList = responseData.data.brandsListUser
 						_self.drawBrandTableContent(responseData.data);
-						
+
 					}
 				},
 			});
 		};
-		
-		if(brandId){
-			_self.changeTitle(brandList.brandName)
-		}
 
 		_self.drawBrandTableContent = function(data) {
 			// Render brand content
 			$.each(data.brandsListUser, function(key, value) {
 				_self.$brandInfo.append(_self.templateList.brandInfoRowTemplate(value));
 			});
+			$.each(data.brandsListUser, function(key, value) {
+				_self.$brandInfoFilter.append(_self.templateList.brandInfoFilterRowTemplate(value));
+			});
+
+
+
+			// Change title 
+			//brandList.forEach((item) => {
+			//if(item.brandId == brandId)
+			//_self.changeTitle(item.brandName)
+			//})
+			$(".mr-1").on("click", function() {
+				console.log(brandList)
+				console.log(brandId)
+			})
 		};
 
 
@@ -76,7 +93,7 @@ var Brand = (function() {
 				brandId: url.searchParams.get("id").toString()
 			};
 			brandId = url.searchParams.get("id").toString()
-			
+
 			$.ajax({
 				url: "/productofbrand/findByBrandId",
 				type: 'POST',
@@ -95,9 +112,9 @@ var Brand = (function() {
 				}
 			});
 		};
-		
+
 		_self.drawProductTableContent = function(data) {
-			 
+
 			_self.$productInfo.empty();
 			//_self.$paginator.empty();
 
@@ -126,12 +143,19 @@ var Brand = (function() {
 			//	_self.currentPageNumber = $(this).attr("data-index");
 			//	_self.searchProducts();
 			//});
+			$('.dropdown-menu').on('click', '.dropdown-item', function() {
+				if ($(this).hasClass('active-brand')) {
+					$(this).removeClass('active-brand')
+				} else
+					$(this).addClass('active-brand');
+			});
 		};
 		_self.templateList = {
 			brandInfoRowTemplate: _.template(TEMPLATE_BRAND),
 			//paginatorTemplate: _.template(TEMPLATE_PAGINATOR),
 			productInfoRowTemplate: _.template(TEMPLATE_PRODUCT),
 			filterTemplate: _.template(TEMPLATE_FILTER),
+			brandInfoFilterRowTemplate: _.template(TEMPLATE_BRAND_FILTER)
 		};
 		_self.initialize = function() {
 			// Show brands list when opening page

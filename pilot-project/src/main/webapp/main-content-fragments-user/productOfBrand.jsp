@@ -8,8 +8,9 @@
 		<div class="section-title">
 			<div class="section-title d-flex">
 				<span class="mr-1">Điện Thoại</span> <span style="color: #999;">›</span>
-				<div class="detail-title ml-1"><b></b> Điện thoại
-					(${brand.brandName})</div>
+				<div class="detail-title ml-1">
+					<b></b> Điện thoại (${brand.brandName})
+				</div>
 			</div>
 		</div>
 		<div class="group-tabs">
@@ -20,10 +21,12 @@
 						<i class="fa-solid fa-filter" style="color: #050505;"></i> Bộ lọc
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						<div class="mb-3">
-							<b>Hãng</b>
-						</div>
-						<div class="grid-dropdown-item brandInfo"></div>
+							<div class="mb-3">
+								<b>Hãng</b>
+							</div>
+						<form>
+							<div class="grid-dropdown-item brandInfoFilter"></div>
+						</form>
 						<div class="dropdown-divider"></div>
 						<div class="filter-all">
 							<div>
@@ -77,14 +80,18 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="dropdown">
 					<button class="btn dropdown-toggle" type="button"
 						id="dropdownMenuButton2" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Hãng</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-						<div class="grid-dropdown-item brandInfo"></div>
-					</div>
+					<form>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+							<div class="grid-dropdown-item brandInfoFilter"></div>
+						</div>
+					</form>
 				</div>
+
 				<div class="dropdown">
 					<button class="btn dropdown-toggle" type="button"
 						id="dropdownMenuButton3" data-toggle="dropdown"
@@ -130,7 +137,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="filter-product"></div>
+			<!-- <div class="filter-product"></div> -->
 			<!-- <div class="grid-dropdown-item brandInfo radius">
 			</div> -->
 		</div>

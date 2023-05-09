@@ -78,6 +78,7 @@ var Product = (function() {
 		_self.add = function() { // Show add brand modal
 			$('#addProductInfoModal').on('click', function() {
 				resetFormModal(_self.$productInfoForm);
+				_self.$brandName.append("<option value='' selected>--Select Brand Name--</option>")
 				showModalWithCustomizedTitle(_self.$productInfoModal, "Add Product");
 				$('#productId').closest(".form-group").addClass("d-none");
 				$('.file-upload-content').hide();
@@ -145,6 +146,22 @@ var Product = (function() {
 						},
 						imageFiles: {
 							required: isAddAction,
+						},
+						quantity:{
+							required:true,
+							number:true,
+							integer:true
+						},
+						price:{
+							required:true,
+							number:true,
+							integer:true
+						},
+						brand:{
+							required:true
+						},
+						saleDate:{
+							required:true
 						}
 					},
 					messages: {
@@ -154,6 +171,18 @@ var Product = (function() {
 						},
 						imageFiles: {
 							required: "Please upload Product Image",
+						},
+						quantity:{
+							required:"Please input Quantity",
+						},
+						price:{
+							required:"Please input Quantity",
+						},
+						brand:{
+							required:"Please input Brand Name",
+						},
+						saleDate:{
+							required:"Please input Opening For Sale",
 						}
 					},
 					errorElement: "div",
@@ -226,8 +255,8 @@ var Product = (function() {
 			$('.pagination').on('click', '.page-item', function() {
 				_self.currentPageNumber = $(this).attr("data-index");
 				_self.searchProducts();
+				_self.$brandName.append("<option value='' selected>--Select Brand Name--</option>")
 				_self.$brandName.empty()
-				_self.$brandName.append("<option selected>--Select Brand Name--</option>")
 			});
 
 			// Search product with search fields when click search button

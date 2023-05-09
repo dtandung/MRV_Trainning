@@ -226,3 +226,6 @@ footer .icondmx-share3 {
     vertical-align: middle;
 }
 /* Common Style END */
+.active-brand{
+	border:1px solid #4a90e2!important;
+}

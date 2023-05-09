@@ -13,93 +13,95 @@
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="fa-solid fa-filter" style="color: #050505;"></i> Bộ lọc
 					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						<div class="mb-3">
-							<b>Hãng</b>
-						</div>
-						<div class="grid-dropdown-item ">
-						</div>
-						<div class="dropdown-divider"></div>
-						<div class="filter-all">
-							<div>
-								<div class="mb-3">
-									<b>Loại điện thoại</b>
+					<form>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<div class="mb-3">
+								<b>Hãng</b>
+							</div>
+							<div class="grid-dropdown-item brandInfoFilter"></div>
+							<div class="dropdown-divider"></div>
+							<div class="filter-all">
+								<div>
+									<div class="mb-3">
+										<b>Loại điện thoại</b>
+									</div>
+									<div class="d-flex">
+										<a class="dropdown-item  ">Adroid</a> <a
+											class="dropdown-item  ">Iphone(IOS)</a>
+									</div>
 								</div>
-								<div class="d-flex">
-									<a class="dropdown-item  " href="#">Adroid</a> <a
-										class="dropdown-item  " href="#">Iphone(IOS)</a>
+								<div>
+									<div class="mb-3">
+										<b>Giá</b>
+									</div>
+									<div class="grid-dropdown-item">
+										<a class="dropdown-item  ">Dưới 2 triệu</a> <a
+											class="dropdown-item   ">Từ 2 - 4 triệu</a> <a
+											class="dropdown-item  ">Từ 4 - 7 triệu</a> <a
+											class="dropdown-item  ">Từ 7 - 13 triệu</a> <a
+											class="dropdown-item  ">Từ 13 - 20 triệu</a> <a
+											class="dropdown-item  ">Trên 20 triệu</a>
+									</div>
+									<form class="range-price">
+										<div class="display m-0 mt-3">
+											<span class=" text-center  " id="min">300000</span> <span
+												class=" text-center  " id="max">42000000</span>
+										</div>
+									</form>
+									<div class="range-slide">
+										<div class="slide">
+											<div class="line" id="line" style="left: 0%; right: 0%;"></div>
+											<span class="thumb" id="thumbMin" style="left: 0%;"></span> <span
+												class="thumb" id="thumbMax" style="left: 100%;"></span>
+										</div>
+										<input id="rangeMin" type="range" max="42000000" min="300000"
+											step="100000" value="0"> <input id="rangeMax"
+											type="range" max="42000000" min="300000" step="100000"
+											value="42000000">
+									</div>
 								</div>
 							</div>
-							<div>
-								<div class="mb-3">
-									<b>Giá</b>
-								</div>
-								<div class="grid-dropdown-item">
-									<a class="dropdown-item  " href="#">Dưới 2 triệu</a>
-									<a class="dropdown-item   " href="#">Từ 2 - 4
-										triệu</a> <a class="dropdown-item  " href="#">Từ 4
-										- 7 triệu</a> <a class="dropdown-item  " href="#">Từ
-										7 - 13 triệu</a> <a class="dropdown-item  " href="#">Từ
-										13 - 20 triệu</a> <a class="dropdown-item  " href="#">Trên
-										20 triệu</a>
-								</div>
-								<form class="range-price">
-									<div class="display m-0 mt-3">
-										<span class=" text-center  " id="min">300000</span>
-										<span class=" text-center  " id="max">42000000</span>
-									</div>
-								</form>
-								<div class="range-slide">
-									<div class="slide">
-										<div class="line" id="line" style="left: 0%; right: 0%;"></div>
-										<span class="thumb" id="thumbMin" style="left: 0%;"></span> <span
-											class="thumb" id="thumbMax" style="left: 100%;"></span>
-									</div>
-									<input id="rangeMin" type="range" max="42000000" min="300000"
-										step="100000" value="0"> <input id="rangeMax"
-										type="range" max="42000000" min="300000" step="100000"
-										value="42000000">
-								</div>
+							<div
+								class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
+								style="display: block;">
+								<a class="btn btn-primary" href="javascript:void(0)"
+									class="btn-filter-close">Bỏ chọn</a> <a class="btn btn-danger"
+									href="javascript:;" class="btn-filter-readmore">Xem <b
+									class="total-reloading">6</b> kết quả
+								</a>
 							</div>
 						</div>
-						<div
-							class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
-							style="display: block;">
-							<a class="btn btn-primary" href="javascript:void(0)"
-								class="btn-filter-close">Bỏ chọn</a> <a class="btn btn-danger"
-								href="javascript:;" class="btn-filter-readmore">Xem <b
-								class="total-reloading">6</b> kết quả
-							</a>
-						</div>
-					</div>
+					</form>
 				</div>
 				<div class="dropdown">
 					<button class="btn dropdown-toggle" type="button"
 						id="dropdownMenuButton2" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Hãng</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-						<div class="grid-dropdown-item ">
+					<form>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+							<div class="grid-dropdown-item brandInfoFilter "></div>
 						</div>
-					</div>
+					</form>
 				</div>
 				<div class="dropdown">
 					<button class="btn dropdown-toggle" type="button"
 						id="dropdownMenuButton3" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Giá</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-						<div class="grid-dropdown-item">
-							<a class="dropdown-item  " href="#">Dưới 2 triệu</a> <a
-								class="dropdown-item   " href="#">Từ 2 - 4 triệu</a>
-							<a class="dropdown-item  " href="#">Từ 4 - 7 triệu</a>
-							<a class="dropdown-item  " href="#">Từ 7 - 13
-								triệu</a> <a class="dropdown-item  " href="#">Từ 13 -
-								20 triệu</a> <a class="dropdown-item  " href="#">Trên
-								20 triệu</a>
-						</div>
+						<form>
+							<div class="grid-dropdown-item">
+								<a class="dropdown-item  ">Dưới 2 triệu</a> <a
+									class="dropdown-item   ">Từ 2 - 4 triệu</a> <a
+									class="dropdown-item  ">Từ 4 - 7 triệu</a> <a
+									class="dropdown-item  ">Từ 7 - 13 triệu</a> <a
+									class="dropdown-item  ">Từ 13 - 20 triệu</a> <a
+									class="dropdown-item  ">Trên 20 triệu</a>
+							</div>
+						</form>
 						<form class="range-price">
 							<div class="display ">
-								<span class=" text-center  " id="min2">300000</span>
-								<span class=" text-center  " id="max2">42000000</span>
+								<span class=" text-center  " id="min2">300000</span> <span
+									class=" text-center  " id="max2">42000000</span>
 							</div>
 						</form>
 						<div class="range-slide">
@@ -120,16 +122,16 @@
 						id="dropdownMenuButton4" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Loại Điện
 						Thoại</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-						<div class="d-flex">
-							<a class="dropdown-item  " href="#">Adroid</a> <a
-								class="dropdown-item  " href="#">Iphone(IOS)</a>
+					<form>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+							<div class="d-flex">
+								<a class="dropdown-item  ">Adroid</a> <a class="dropdown-item  ">Iphone(IOS)</a>
+							</div>
 						</div>
-					</div>
+					</form>
 				</div>
 			</div>
-			<div class="grid-dropdown-item brandInfo radius">
-			</div>
+			<div class="grid-dropdown-item brandInfo radius"></div>
 		</div>
 		<div class="content">
 			<div class="panel">
@@ -147,7 +149,7 @@
 					</li> -->
 				</ul>
 			</div>
-			
+
 		</div>
 	</section>
 	<div class="d-flex justify-content-center">
