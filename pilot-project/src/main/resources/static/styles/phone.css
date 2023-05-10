@@ -191,7 +191,13 @@ input[type='checkbox'] {
     margin: 20px 40px 40px 40px;
     height: 4px;
 }
-
+.range-toggle {
+	color:#4a90e2;
+}
+.range-toggle:hover{
+	cursor: pointer;
+	color: #004080;
+}
 .slide {
     position: absolute;
     top: 0;
@@ -253,6 +259,9 @@ input::-webkit-slider-thumb {
     justify-content: space-between;
 }
 .display span {
+	padding:5px;
+	border:1px solid #ccc ;
+	border-radius:8px;
     width: 135px;
 }
 .filter-button {

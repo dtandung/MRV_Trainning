@@ -76,7 +76,7 @@ var Product = (function() {
 		};
 
 		_self.add = function() { // Show add brand modal
-			$('#addProductInfoModal').on('click', function() {
+			$('#addProductInfoModal').on('click', function(e) {
 				resetFormModal(_self.$productInfoForm);
 				_self.$brandName.append("<option value='' selected>--Select Brand Name--</option>")
 				showModalWithCustomizedTitle(_self.$productInfoModal, "Add Product");
@@ -150,12 +150,11 @@ var Product = (function() {
 						quantity: {
 							required: true,
 							number: true,
-							integer: true
+							
 						},
 						price: {
 							required: true,
 							number: true,
-							integer: true
 						},
 						brand: {
 							required: true

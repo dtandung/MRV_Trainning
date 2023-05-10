@@ -27,7 +27,12 @@ var Brand = (function() {
 		_self.$paginator = $('ul.pagination');
 		var brandIdFilter = [];
 		var brandIdListForm = [];
-		var list;
+		var priceFilter = [];
+		var priceListForm = [];
+		let min = 300000;
+		let max = 42000000;
+		const calcLeftPosition = (value) => (100 / (42000000 - 300000)) * (value - 300000);
+		var rangeBalance;
 		_self.searchBrands = function() {
 			// Search Brand by keyword
 			let searchData = {
@@ -50,10 +55,11 @@ var Brand = (function() {
 		_self.searchProducts = function() { // Search Brand by keyword
 			let searchData = {
 				keyword: $("#keyword").val(),
-				fromPrice: $("#fromPrice").val(),
-				toPrice: $("#toPrice").val(),
+				priceFrom: min.toString(),
+				priceTo: max.toString(),
 				currentPage: Number(_self.currentPageNumber),
-				brandIdFilter: [...brandIdFilter]
+				brandIdFilter: [...brandIdFilter],
+				priceFilter: [...priceFilter]
 			}
 
 
@@ -88,14 +94,16 @@ var Brand = (function() {
 			});
 
 			function showValues() {
-				var fields = $(":input").serializeArray();
-				//console.log(fields)
-				//$("#results").empty();
-				brandIdListForm = fields;
-				brandIdFilter = []
+				var fieldsBrand = $(":input[name=brand]").serializeArray();
+				var fieldsPrice = $(":input[name=price]").serializeArray();
+				brandIdListForm = fieldsBrand;
+				priceListForm = fieldsPrice;
+				brandIdFilter = [];
+				priceFilter = [];
 				brandIdListForm.forEach(item => brandIdFilter.push(item.value))
-
+				priceListForm.forEach(item => priceFilter.push(item.value))
 			}
+
 			$(":checkbox").on("click", showValues);
 		};
 		_self.drawProductTableContent = function(data) {
@@ -108,13 +116,90 @@ var Brand = (function() {
 				_self.$productInfo.append(_self.templateList.productInfoRowTemplate(value));
 			});
 
+			var fieldsBrand = $(":input[name=brand]");
+			fieldsBrand.each(function(key, value) {
+				if (brandIdFilter.includes($(value).val())) {
+					$(value).attr("checked", true)
+				}
+			})
+
+			$(":checkbox").on("click", function() {
+				fieldsBrand.each(function(key, value) {
+					if (brandIdFilter.includes($(value).val())) {
+						$(value).prop("checked", true)
+					}
+				})
+			})
+
+			$('.btn-filter-close').click(function() {
+				location.reload();
+			});
 
 			// Render paginator
 			let paginationInfo = data.paginationInfo;
 			if (paginationInfo.pageNumberList.length > 0) {
 				_self.$paginator.append(_self.templateList.paginatorTemplate(paginationInfo));
 			}
+
+			//var priceConvert = $('.convert-money').text();
+			//var priceConvert = Number($('.convert-money').text()).toLocaleString('it-IT', {
+			//	style: 'currency', currency: 'VND'
+			//})
+			//$('input[type=range]').change(function() {
+			//	$('.convert-money').text(priceConvert)
+			//});
+
+			//console.log(priceConvert)
+
+			$('.fromPrice').on('input', function(e) {
+				let newValue = parseFloat(e.target.value);
+				if (newValue === parseFloat($(".toPrice").val()))
+					rangeBalance = newValue
+				if (newValue >= rangeBalance)
+					$('.fromPrice').val(rangeBalance)
+				if (newValue > max) return;
+				min = newValue;
+				$('.fromPrice').val(min)
+				$('.thumbMin').css('left', calcLeftPosition(newValue) + '%');
+				$('.min').html(newValue);
+				$('.line').css({
+					left: calcLeftPosition(newValue) + '%',
+					right: 100 - calcLeftPosition(max) + '%',
+				});
+				console.log("minnn" + min)
+				if (newValue === $('.toPrice').val()) {
+					$('.toPrice').hide()
+				}
+				else {
+					$('.toPrice').show()
+				}
+			});
+
+			$('.toPrice').on('input', function(e) {
+				let newValue = parseFloat(e.target.value);
+				if (newValue === parseFloat($(".fromPrice").val()))
+					rangeBalance = newValue
+				if (newValue <= rangeBalance)
+					$('.toPrice').val(rangeBalance)
+				if (newValue < min) return;
+				max = newValue;
+				$('.toPrice').val(max)
+				$('.thumbMax').css('left', calcLeftPosition(newValue) + '%');
+				$('.max').html(newValue);
+				$('.line').css({
+					left: calcLeftPosition(min) + '%',
+					right: 100 - calcLeftPosition(newValue) + '%',
+				});
+				console.log("maxxx" + max)
+				if (newValue === $('.fromPrice').val()) {
+					$('.fromPrice').hide()
+				}
+				else {
+					$('.fromPrice').show()
+				}
+			});
 		};
+
 		_self.bindEvent = function() {
 			// Show products list when clicking pagination button
 			$('.pagination').on('click', '.page-item', function() {
@@ -124,11 +209,60 @@ var Brand = (function() {
 
 			$(".section-title").on('click', function() {
 				console.log(brandIdFilter);
+				console.log(priceFilter);
 			});
 
 			$(".btn-filter-readmore").on('click', function() {
 				_self.searchProducts()
 			});
+			$(".price-slider").hide()
+			$(".range-toggle").on('click', function(e) {
+				e.preventDefault();
+				$(".price-slider").toggle(500)
+				$("input[name=price]").prop('checked', false)
+				priceFilter = [];
+			})
+
+			$("input[name=price]").on('click', function() {
+				$(".price-slider").hide(500)
+				min = "";
+				max = "";
+
+
+			})
+
+			/*$('.min').html(300000);
+				$('.max').html(42000000);
+				$('.fromPrice').val(300000)
+				$('.toPrice').val(42000000)
+				$('.thumbMax').css('left', 100 + '%');
+				$('.thumbMin').css('left', 0 + '%');
+				$('.line').css({
+					left: 0 + '%',
+					right:0 + '%',
+				});*/
+
+			/*$(".range-toggle").on('click', function(e) {
+			   e.preventDefault();
+			   if ($(".price-slider").hasClass("d-none") === true) {
+				   $(".price-slider").removeClass("d-none");
+				   
+				   $("input[name=price]").prop('checked', false)
+				   priceFilter = [];
+			   }
+			   else if ($(".price-slider").hasClass("d-none") === false) {
+				   $(".price-slider").addClass("d-none");
+			   }
+		   })
+
+		   $("input[name=price]").on('click', function() {
+			   if (!$(".price-slider").hasClass("d-none")) {
+				   $(".price-slider").addClass("d-none");
+			   }
+			   min = "";
+			   max = "";
+		   })*/
+
 		};
 
 		_self.templateList = {
@@ -150,105 +284,3 @@ var Brand = (function() {
 		brand.initialize();
 	});
 })(new Brand());
-
-
-let min = 300000;
-let max = 42000000;
-
-const calcLeftPosition = (value) => (100 / (42000000 - 300000)) * (value - 300000);
-var rangeBalance;
-
-$('#rangeMin').on('input', function(e) {
-	let newValue = parseFloat(e.target.value);
-	if (newValue === parseFloat($("#rangeMax").val()))
-		rangeBalance = newValue
-	if (newValue >= rangeBalance)
-		$('#rangeMin').val(rangeBalance)
-	if (newValue > max) return;
-
-	min = newValue;
-	$('#thumbMin').css('left', calcLeftPosition(newValue) + '%');
-	$('#min').html(newValue);
-	$('#line').css({
-		left: calcLeftPosition(newValue) + '%',
-		right: 100 - calcLeftPosition(max) + '%',
-	});
-
-	if (newValue === $('#rangeMax').val()) {
-		$('#rangeMax').hide()
-	}
-	else {
-		$('#rangeMax').show()
-	}
-});
-
-
-$('#rangeMax').on('input', function(e) {
-	let newValue = parseFloat(e.target.value);
-	if (newValue === parseFloat($("#rangeMin").val()))
-		rangeBalance = newValue
-	if (newValue <= rangeBalance)
-		$('#rangeMax').val(rangeBalance)
-	if (newValue < min) return;
-	max = newValue;
-	$('#thumbMax').css('left', calcLeftPosition(newValue) + '%');
-	$('#max').html(newValue);
-	$('#line').css({
-		left: calcLeftPosition(min) + '%',
-		right: 100 - calcLeftPosition(newValue) + '%',
-	});
-
-	if (newValue === $('#rangeMin').val()) {
-		$('#rangeMin').hide()
-	}
-	else {
-		$('#rangeMin').show()
-	}
-});
-
-
-$('#rangeMin2').on('input', function(e) {
-	let newValue = parseFloat(e.target.value);
-	if (newValue === parseFloat($("#rangeMax2").val()))
-		rangeBalance = newValue
-	if (newValue >= rangeBalance)
-		$('#rangeMin2').val(rangeBalance)
-	if (newValue > max) return;
-	min = newValue;
-	$('#thumbMin2').css('left', calcLeftPosition(newValue) + '%');
-	$('#min2').html(newValue);
-	$('#line2').css({
-		left: calcLeftPosition(newValue) + '%',
-		right: 100 - calcLeftPosition(max) + '%',
-	});
-
-	if (newValue === $('#rangeMax').val()) {
-		$('#rangeMax2').hide()
-	}
-	else {
-		$('#rangeMax2').show()
-	}
-});
-
-$('#rangeMax2').on('input', function(e) {
-	let newValue = parseFloat(e.target.value);
-	if (newValue === parseFloat($("#rangeMin2").val()))
-		rangeBalance = newValue
-	if (newValue <= rangeBalance)
-		$('#rangeMax2').val(rangeBalance)
-	if (newValue < min) return;
-	max = newValue;
-	$('#thumbMax2').css('left', calcLeftPosition(newValue) + '%');
-	$('#max2').html(newValue);
-	$('#line2').css({
-		left: calcLeftPosition(min) + '%',
-		right: 100 - calcLeftPosition(newValue) + '%',
-	});
-
-	if (newValue === $('#rangeMin2').val()) {
-		$('#rangeMin2').hide()
-	}
-	else {
-		$('#rangeMin2').show()
-	}
-});

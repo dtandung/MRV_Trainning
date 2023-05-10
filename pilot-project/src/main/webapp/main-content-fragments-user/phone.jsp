@@ -66,31 +66,36 @@
 											for="btn-check">Trên 20 triệu</span>
 										</label>
 									</div>
-									<!-- <form class="range-price"> -->
-									<div class="display m-0 mt-3">
-										<span class=" text-center  " id="min">300000</span> <span
-											class=" text-center  " id="max">42000000</span>
+									<span class="range-toggle">
+									<i class="fa-solid fa-sliders"></i> 
+									Hoặc chọn mức giá phù hợp với bạn
+							</span>
+
+							<div class="price-slider">
+								<div class="display ">
+									<span class=" text-center mr-1 min ">300000</span> <span
+										class=" text-center  max">42000000</span>
+								</div>
+
+								<div class="range-slide">
+									<div class="slide">
+										<div class="line" style="left: 0%; right: 0%;"></div>
+										<span class="thumb thumbMin" style="left: 0%;"></span> <span
+											class="thumb thumbMax" style="left: 100%;"></span>
 									</div>
-									<!-- </form> -->
-									<div class="range-slide">
-										<div class="slide">
-											<div class="line" id="line" style="left: 0%; right: 0%;"></div>
-											<span class="thumb" id="thumbMin" style="left: 0%;"></span> <span
-												class="thumb" id="thumbMax" style="left: 100%;"></span>
-										</div>
-										<input id="rangeMin" type="range" max="42000000" min="300000"
-											step="100000" value="0"> <input id="rangeMax"
-											type="range" max="42000000" min="300000" step="100000"
-											value="42000000">
-									</div>
+									<input class="fromPrice" type="range" max="42000000"
+										min="300000" step="100000" value="0"> <input
+										class="toPrice" type="range" max="42000000" min="300000"
+										step="100000" value="42000000">
+								</div>
+							</div>
 								</div>
 							</div>
 							<div
 								class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
 								style="display: block;">
 								<a class="btn btn-filter-close btn-primary">Bỏ chọn</a> <a
-									class="btn btn-filter-readmore btn-danger">Xem <b
-									class="total-reloading">6</b> kết quả
+									class="btn btn-filter-readmore btn-danger">Xem kết quả <!-- <b class="total-reloading">6</b>  -->
 								</a>
 							</div>
 						</div>
@@ -107,8 +112,7 @@
 								class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
 								style="display: block;">
 								<a class="btn btn-filter-close btn-primary">Bỏ chọn</a> <a
-									class="btn btn-filter-readmore btn-danger">Xem <b
-									class="total-reloading">6</b> kết quả
+									class="btn btn-filter-readmore btn-danger">Xem kết quả <!-- <b class="total-reloading">6</b>  -->
 								</a>
 							</div>
 						</div>
@@ -147,23 +151,37 @@
 									for="btn-check">Trên 20 triệu</span>
 								</label>
 							</div>
-							<div class="display ">
-								<span class=" text-center  " id="min2">300000</span> <span
-									class=" text-center  " id="max2">42000000</span>
+							<span class="range-toggle">
+									<i class="fa-solid fa-sliders"></i> 
+									Hoặc chọn mức giá phù hợp với bạn
+							</span>
+
+							<div class="price-slider">
+								<div class="display ">
+									<span class=" text-center min ">300000</span> <span
+										class=" text-center  max">42000000</span>
+								</div>
+
+								<div class="range-slide">
+									<div class="slide">
+										<div class="line" style="left: 0%; right: 0%;"></div>
+										<span class="thumb thumbMin" style="left: 0%;"></span> <span
+											class="thumb thumbMax" style="left: 100%;"></span>
+									</div>
+									<input class="fromPrice" type="range" max="42000000"
+										min="300000" step="100000" value="0"> <input
+										class="toPrice" type="range" max="42000000" min="300000"
+										step="100000" value="42000000">
+								</div>
 							</div>
 						</form>
-						<div class="range-slide">
-							<div class="slide">
-								<div class="line" id="line2" style="left: 0%; right: 0%;"></div>
-								<span class="thumb" id="thumbMin2" style="left: 0%;"></span> <span
-									class="thumb" id="thumbMax2" style="left: 100%;"></span>
-							</div>
-							<input id="rangeMin2" type="range" max="42000000" min="300000"
-								step="100000" value="0"> <input id="rangeMax2"
-								type="range" max="42000000" min="300000" step="100000"
-								value="42000000">
+						<div
+							class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
+							style="display: block;">
+							<a class="btn btn-filter-close btn-primary">Bỏ chọn</a> <a
+								class="btn btn-filter-readmore btn-danger">Xem kết quả <!-- <b class="total-reloading">6</b>  -->
+							</a>
 						</div>
-
 					</div>
 				</div>
 				<div class="dropdown">
@@ -181,6 +199,13 @@
 									class="btn-check" autocomplete="off" /> <span
 									class="imagetips_tip" for="btn-check">Iphone(iOS)</span>
 								</label>
+							</div>
+							<div
+								class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
+								style="display: block;">
+								<a class="btn btn-filter-close btn-primary">Bỏ chọn</a> <a
+									class="btn btn-filter-readmore btn-danger">Xem kết quả <!-- <b class="total-reloading">6</b>  -->
+								</a>
 							</div>
 						</div>
 					</form>
