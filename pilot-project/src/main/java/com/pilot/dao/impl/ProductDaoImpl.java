@@ -57,8 +57,6 @@ public class ProductDaoImpl implements ProductDao {
           String keyword = (String) searchConditionsMap.get("keyword");
           String priceFrom = (String) searchConditionsMap.get("priceFrom");
           String priceTo = (String) searchConditionsMap.get("priceTo");
-          System.out.println(priceFrom+"qqqqqqqq");
-          System.out.println(priceTo+"qqqqaaaaaaa");
           List<String> brandIds = (List<String>) searchConditionsMap.get("brandIdFilter");
           List<String> prices = (List<String>) searchConditionsMap.get("priceFilter");
           Join<ProductEntity, BrandEntity> brandRoot = productRoot.join("brand");

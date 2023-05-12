@@ -193,10 +193,10 @@
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
 							<div class="d-flex">
 								<label class="imagetips mr-1"> <input type="checkbox"
-									class="btn-check" autocomplete="off" /> <span
+									class="btn-check android" autocomplete="off" /> <span
 									class="imagetips_tip" for="btn-check">Android</span>
 								</label> <label class="imagetips"> <input type="checkbox"
-									class="btn-check" autocomplete="off" /> <span
+									class="btn-check ios" autocomplete="off" /> <span
 									class="imagetips_tip" for="btn-check">Iphone(iOS)</span>
 								</label>
 							</div>

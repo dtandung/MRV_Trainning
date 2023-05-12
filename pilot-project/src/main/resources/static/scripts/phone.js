@@ -9,7 +9,7 @@ const TEMPLATE_BRAND_FILTER = "<label class='imagetips'>"
 	+ "<img src='<%= logo %>'/></span>"
 	+ "</label > "
 
-const TEMPLATE_PRODUCT = "<li class='product-info'>"
+const TEMPLATE_PRODUCT = "<li name='product' class='product-info'>"
 	+ "<a class='none-textdecor' href='/detailproduct?id=<%= productId %>'><div class='prod-avatar'>"
 	+ "<img id='imageProduct' src='<%= image %>'>"
 	+ "</div>"
@@ -25,12 +25,17 @@ var Brand = (function() {
 		_self.$brandInfoFilter = $('.brandInfoFilter');
 		_self.$productInfo = $('#productInfo');
 		_self.$paginator = $('ul.pagination');
-		var brandIdFilter = [];
+		var brandIdFilterList = [];
 		var brandIdListForm = [];
+		var brandIos = [];
+		var brandSearch = [];
+		var brandAndroid = [];
 		var priceFilter = [];
 		var priceListForm = [];
 		let min = 300000;
 		let max = 42000000;
+		let minStr = "";
+		let maxStr = "";
 		const calcLeftPosition = (value) => (100 / (42000000 - 300000)) * (value - 300000);
 		var rangeBalance;
 		_self.searchBrands = function() {
@@ -55,10 +60,10 @@ var Brand = (function() {
 		_self.searchProducts = function() { // Search Brand by keyword
 			let searchData = {
 				keyword: $("#keyword").val(),
-				priceFrom: min.toString(),
-				priceTo: max.toString(),
+				priceFrom: minStr,
+				priceTo: maxStr,
 				currentPage: Number(_self.currentPageNumber),
-				brandIdFilter: [...brandIdFilter],
+				brandIdFilter: [...brandIdFilterList],
 				priceFilter: [...priceFilter]
 			}
 
@@ -72,11 +77,6 @@ var Brand = (function() {
 				success: function(responseData) {
 					if (responseData.responseCode == 100) {
 						_self.drawProductTableContent(responseData.data);
-						$(".prod-price").each(function(key, value) {
-							$(value).text(Number($(value).text()).toLocaleString('it-IT', {
-								style: 'currency', currency: 'VND'
-							}));
-						});
 					}
 				}
 			});
@@ -93,18 +93,61 @@ var Brand = (function() {
 				_self.$brandInfoFilter.append(_self.templateList.brandInfoFilterRowTemplate(value));
 			});
 
+
 			function showValues() {
-				var fieldsBrand = $(":input[name=brand]").serializeArray();
-				var fieldsPrice = $(":input[name=price]").serializeArray();
+				/*var fieldsBrand = []
+				var fieldsPrice = []
+				fieldsBrand = $(":input[name=brand]").serializeArray();
+				fieldsPrice = $(":input[name=price]").serializeArray();
 				brandIdListForm = fieldsBrand;
 				priceListForm = fieldsPrice;
-				brandIdFilter = [];
+				brandIdFilterList = [];
 				priceFilter = [];
-				brandIdListForm.forEach(item => brandIdFilter.push(item.value))
+				brandIdListForm.forEach(item => brandIdFilterList.push(item.value))
 				priceListForm.forEach(item => priceFilter.push(item.value))
+				console.log(brandIdFilterList)*/
+				var fieldsBrand = [];
+				var fieldsPrice = [];
+				//fieldsBrand = ($(":input[name=brand]").serializeArray());
+				fieldsBrand = $(this).parents("form").serializeArray();
+				fieldsPrice = $(this).parents("form").serializeArray();
+				if ($(this).attr('name') === 'brand') {
+					brandIdFilterList = [];
+					fieldsBrand.forEach(item => brandIdFilterList.push(item.value))
+				}
+				if ($(this).attr('name') === 'price') {
+					priceFilter = [];
+					fieldsPrice.forEach(item => priceFilter.push(item.value))
+				}
 			}
-
 			$(":checkbox").on("click", showValues);
+			/*$(":checkbox.ios").on("click", function() {
+				$.each(data.brandsListUser, function(key, value) {
+					if (value.brandId === 1) {
+						brandIos = [];
+						brandIos.push(value.brandId.toString())
+					}
+				})
+			});
+			$(":checkbox.android").on("click", function() {
+				$.each(data.brandsListUser, function(key, value) {
+					if (value.brandId !== 1) {
+						brandAndroid = [];
+						brandAndroid.push(value.brandId.toString())
+					}
+				})
+			});*/
+			/*$.each(data.brandsListUser, function(key, value) {
+				if (value.brandId != 1) {
+					brandAndroid = [];
+					brandAndroid.push(value.brandId)
+				} else {
+					brandIos = [];
+					brandIos.push(value.brandId)
+				}
+			})*/
+			//console.log(brandAndroid)
+			//console.log(brandIos)
 		};
 		_self.drawProductTableContent = function(data) {
 
@@ -113,24 +156,20 @@ var Brand = (function() {
 
 			// Render product content
 			$.each(data.productsListUser, function(key, value) {
+				value.price = value.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })
 				_self.$productInfo.append(_self.templateList.productInfoRowTemplate(value));
 			});
 
 			var fieldsBrand = $(":input[name=brand]");
 			fieldsBrand.each(function(key, value) {
-				if (brandIdFilter.includes($(value).val())) {
+				if (brandIdFilterList.includes($(value).val())) {
 					$(value).attr("checked", true)
 				}
-			})
-
-			$(":checkbox").on("click", function() {
-				fieldsBrand.each(function(key, value) {
-					if (brandIdFilter.includes($(value).val())) {
-						$(value).prop("checked", true)
-					}
+				$("input[name=brand]:checked").on('click', function(key, value) {
+					$(value).attr("checked", false)
 				})
-			})
-
+			});
+			//unchecked filter
 			$('.btn-filter-close').click(function() {
 				location.reload();
 			});
@@ -140,6 +179,17 @@ var Brand = (function() {
 			if (paginationInfo.pageNumberList.length > 0) {
 				_self.$paginator.append(_self.templateList.paginatorTemplate(paginationInfo));
 			}
+
+			/*if (brandIdFilterList.length != 0 || brandAndroid != 0 && brandIos != 0) {
+				brandSearch = [];
+				brandSearch = brandIdFilterList;
+			} else if (brandIdFilterList.length == 0 && brandAndroid == 0 && brandIos != 0) {
+				brandSearch = [];
+				brandSearch = brandIos;
+			} else if (brandIdFilterList.length == 0 && brandAndroid != 0 && brandIos == 0) {
+				brandSearch = [];
+				brandSearch = brandAndroid;
+			}*/
 
 			//var priceConvert = $('.convert-money').text();
 			//var priceConvert = Number($('.convert-money').text()).toLocaleString('it-IT', {
@@ -151,22 +201,29 @@ var Brand = (function() {
 
 			//console.log(priceConvert)
 
+
+		};
+		_self.sliderRange = function() {
 			$('.fromPrice').on('input', function(e) {
 				let newValue = parseFloat(e.target.value);
-				if (newValue === parseFloat($(".toPrice").val()))
+				if (newValue === parseFloat($('.toPrice').val()))
 					rangeBalance = newValue
 				if (newValue >= rangeBalance)
 					$('.fromPrice').val(rangeBalance)
+				minStr = newValue.toString()
+				maxStr = max.toString()
 				if (newValue > max) return;
+
 				min = newValue;
-				$('.fromPrice').val(min)
+
 				$('.thumbMin').css('left', calcLeftPosition(newValue) + '%');
+				$('.fromPrice').val(min)
+				//$('.min').toLocaleString('it-IT', {style: 'currency', currency: 'VND'}).html(newValue);
 				$('.min').html(newValue);
 				$('.line').css({
 					left: calcLeftPosition(newValue) + '%',
 					right: 100 - calcLeftPosition(max) + '%',
 				});
-				console.log("minnn" + min)
 				if (newValue === $('.toPrice').val()) {
 					$('.toPrice').hide()
 				}
@@ -181,8 +238,11 @@ var Brand = (function() {
 					rangeBalance = newValue
 				if (newValue <= rangeBalance)
 					$('.toPrice').val(rangeBalance)
+				maxStr = newValue.toString()
+				minStr = min.toString()
 				if (newValue < min) return;
 				max = newValue;
+
 				$('.toPrice').val(max)
 				$('.thumbMax').css('left', calcLeftPosition(newValue) + '%');
 				$('.max').html(newValue);
@@ -190,7 +250,6 @@ var Brand = (function() {
 					left: calcLeftPosition(min) + '%',
 					right: 100 - calcLeftPosition(newValue) + '%',
 				});
-				console.log("maxxx" + max)
 				if (newValue === $('.fromPrice').val()) {
 					$('.fromPrice').hide()
 				}
@@ -198,7 +257,7 @@ var Brand = (function() {
 					$('.fromPrice').show()
 				}
 			});
-		};
+		}
 
 		_self.bindEvent = function() {
 			// Show products list when clicking pagination button
@@ -208,7 +267,7 @@ var Brand = (function() {
 			});
 
 			$(".section-title").on('click', function() {
-				console.log(brandIdFilter);
+				console.log(brandIdFilterList);
 				console.log(priceFilter);
 			});
 
@@ -225,13 +284,11 @@ var Brand = (function() {
 
 			$("input[name=price]").on('click', function() {
 				$(".price-slider").hide(500)
-				min = "";
-				max = "";
-
-
-			})
-
-			/*$('.min').html(300000);
+				min = 2000000;
+				max = 42000000;
+				minStr = ""
+				maxStr = ""
+				$('.min').html(300000);
 				$('.max').html(42000000);
 				$('.fromPrice').val(300000)
 				$('.toPrice').val(42000000)
@@ -239,8 +296,12 @@ var Brand = (function() {
 				$('.thumbMin').css('left', 0 + '%');
 				$('.line').css({
 					left: 0 + '%',
-					right:0 + '%',
-				});*/
+					right: 0 + '%',
+				});
+			})
+
+
+
 
 			/*$(".range-toggle").on('click', function(e) {
 			   e.preventDefault();
@@ -275,6 +336,7 @@ var Brand = (function() {
 			// Show brands list when opening page
 			_self.searchBrands();
 			_self.searchProducts();
+			_self.sliderRange();
 			_self.bindEvent();
 		};
 	};

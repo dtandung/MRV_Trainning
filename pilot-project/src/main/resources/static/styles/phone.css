@@ -52,6 +52,10 @@
 }
 .product-info .prod-avatar img {
     max-height: 150px;
+    transition:0.3s;
+}
+.product-info:hover img{
+	margin-bottom: 10px
 }
 .product-info .prod-deal {
     width: 140px;

@@ -23,8 +23,6 @@ public interface ProductService {
   
   ResponseDataModel delete (Long productId);
   
-//  List<ProductEntity> getAll();
-  
   ProductEntity findProductById (Long productId);
   
   ProductEntity findByProductName(String productName);
