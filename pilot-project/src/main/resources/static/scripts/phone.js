@@ -4,7 +4,7 @@ const TEMPLATE_BRAND = "<label class='imagetips'>"
 	+ "</a>"
 	+ "</label > "
 const TEMPLATE_BRAND_FILTER = "<label class='imagetips'>"
-	+ "<input type = 'checkbox' name='brand' class='btn-check' autocomplete='off' value='<%= brandId %>' />"
+	+ "<input type = 'checkbox' name='brand' class='btn-check' value='<%= brandId %>' />"
 	+ "<span class='imagetips_tip' for='btn-check'>"
 	+ "<img src='<%= logo %>'/></span>"
 	+ "</label > "
@@ -32,6 +32,8 @@ var Brand = (function() {
 		var brandAndroid = [];
 		var priceFilter = [];
 		var priceListForm = [];
+		var countActiveFilter = [];
+		var activeList = [];
 		let min = 300000;
 		let max = 42000000;
 		let minStr = "";
@@ -111,16 +113,21 @@ var Brand = (function() {
 				//fieldsBrand = ($(":input[name=brand]").serializeArray());
 				fieldsBrand = $(this).parents("form").serializeArray();
 				fieldsPrice = $(this).parents("form").serializeArray();
-				if ($(this).attr('name') === 'brand') {
+
+				//fieldsBrand = $(":input[name=brand]:checked").serializeArray();
+				//fieldsPrice = $(":input[name=price]:checked").serializeArray();
+				if ($(this).prop('name') === 'brand') {
 					brandIdFilterList = [];
 					fieldsBrand.forEach(item => brandIdFilterList.push(item.value))
 				}
-				if ($(this).attr('name') === 'price') {
+				if ($(this).prop('name') === 'price') {
 					priceFilter = [];
 					fieldsPrice.forEach(item => priceFilter.push(item.value))
 				}
 			}
 			$(":checkbox").on("click", showValues);
+
+
 			/*$(":checkbox.ios").on("click", function() {
 				$.each(data.brandsListUser, function(key, value) {
 					if (value.brandId === 1) {
@@ -160,14 +167,23 @@ var Brand = (function() {
 				_self.$productInfo.append(_self.templateList.productInfoRowTemplate(value));
 			});
 
+
 			var fieldsBrand = $(":input[name=brand]");
 			fieldsBrand.each(function(key, value) {
 				if (brandIdFilterList.includes($(value).val())) {
 					$(value).attr("checked", true)
-				}
-				$("input[name=brand]:checked").on('click', function(key, value) {
+				} else {
 					$(value).attr("checked", false)
-				})
+					console.log("thang bao")
+				}
+			});
+			var fieldsPrice = $(":input[name=price]");
+			fieldsPrice.each(function(key, value) {
+				if (priceFilter.includes($(value).val())) {
+					$(value).attr("checked", true)
+				} else {
+					$(value).attr("checked", false)
+				}
 			});
 			//unchecked filter
 			$('.btn-filter-close').click(function() {
@@ -270,9 +286,16 @@ var Brand = (function() {
 				console.log(brandIdFilterList);
 				console.log(priceFilter);
 			});
-
+			$(".number").hide();
 			$(".btn-filter-readmore").on('click', function() {
-				_self.searchProducts()
+				_self.searchProducts();
+				$(".number").show();
+				/*let activeList = [];
+				activeList = Array.from(new Set(countActiveFilter))*/
+				countActiveFilter = brandIdFilterList.length + priceFilter.length;
+				console.log(countActiveFilter)
+				$(".number").text(countActiveFilter)
+
 			});
 			$(".price-slider").hide()
 			$(".range-toggle").on('click', function(e) {
@@ -315,7 +338,7 @@ var Brand = (function() {
 				   $(".price-slider").addClass("d-none");
 			   }
 		   })
-
+	
 		   $("input[name=price]").on('click', function() {
 			   if (!$(".price-slider").hasClass("d-none")) {
 				   $(".price-slider").addClass("d-none");

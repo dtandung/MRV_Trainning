@@ -161,6 +161,7 @@
 input[type='checkbox']:checked + .imagetips_tip {
     border: 1px solid rgb(42, 115, 240);
 }
+
 input[type='checkbox'] {
     position: absolute;
     margin: 0;
@@ -352,4 +353,19 @@ input::-webkit-slider-thumb {
 
 .ekko-lightbox .modal-header .close:hover span {
 	background: #212529;
+}
+.number {
+    background-color: #f89406;
+    border-radius: 50%;
+    color: #fff;
+    display: inline-block;
+    font-size: 10px;
+    height: 16px;
+    line-height: 16px;
+    position: absolute;
+    top: -8px;
+    text-align: center;
+    right: 5px;
+    width: 16px;
+    display: none;
 }

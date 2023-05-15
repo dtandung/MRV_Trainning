@@ -13,7 +13,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="group-tabs">
+		<!-- <div class="group-tabs">
 			<div class="box-filter mb-3 ">
 				<div class="dropdown">
 					<button class="btn" type="button" id="dropdownMenuButton1"
@@ -68,12 +68,12 @@
 											class="imagetips_tip" for="btn-check">Trên 20 triệu</span>
 										</label>
 									</div>
-									<!-- <form class="range-price"> -->
+									<form class="range-price">
 									<div class="display m-0 mt-3">
 										<span class=" text-center  " id="min">300000</span> <span
 											class=" text-center  " id="max">42000000</span>
 									</div>
-									<!-- </form> -->
+									</form>
 									<div class="range-slide">
 										<div class="slide">
 											<div class="line" id="line" style="left: 0%; right: 0%;"></div>
@@ -115,7 +115,7 @@
 					<button class="btn dropdown-toggle" type="button"
 						id="dropdownMenuButton3" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Giá</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
 						<form class="range-price">
 							<div class="grid-dropdown-item">
 								<label class="imagetips"> <input type="checkbox"
@@ -145,42 +145,43 @@
 							</div>
 						</form>
 						<div class="range-slide">
-						<div class="slide">
-							<div class="line" id="line2" style="left: 0%; right: 0%;"></div>
-							<span class="thumb" id="thumbMin2" style="left: 0%;"></span> <span
-								class="thumb" id="thumbMax2" style="left: 100%;"></span>
+							<div class="slide">
+								<div class="line" id="line2" style="left: 0%; right: 0%;"></div>
+								<span class="thumb" id="thumbMin2" style="left: 0%;"></span> <span
+									class="thumb" id="thumbMax2" style="left: 100%;"></span>
+							</div>
+							<input id="rangeMin2" type="range" max="42000000" min="300000"
+								step="100000" value="0"> <input id="rangeMax2"
+								type="range" max="42000000" min="300000" step="100000"
+								value="42000000">
 						</div>
-						<input id="rangeMin2" type="range" max="42000000" min="300000"
-							step="100000" value="0"> <input id="rangeMax2"
-							type="range" max="42000000" min="300000" step="100000"
-							value="42000000">
 					</div>
-				</div>
 
-			</div>
-			<div class="dropdown ">
-				<button class="btn dropdown-toggle" type="button"
-					id="dropdownMenuButton4" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false">Loại Điện Thoại</button>
-				<form>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-						<div class="d-flex">
-							<label class="imagetips mr-1"> <input type="checkbox"
-								class="btn-check" autocomplete="off" /> <span
-								class="imagetips_tip" for="btn-check">Android</span>
-							</label> <label class="imagetips"> <input type="checkbox"
-								class="btn-check" autocomplete="off" /> <span
-								class="imagetips_tip" for="btn-check">Iphone(iOS)</span>
-							</label>
+				</div>
+				<div class="dropdown ">
+					<button class="btn dropdown-toggle" type="button"
+						id="dropdownMenuButton4" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Loại Điện
+						Thoại</button>
+					<form>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+							<div class="d-flex">
+								<label class="imagetips mr-1"> <input type="checkbox"
+									class="btn-check" autocomplete="off" /> <span
+									class="imagetips_tip" for="btn-check">Android</span>
+								</label> <label class="imagetips"> <input type="checkbox"
+									class="btn-check" autocomplete="off" /> <span
+									class="imagetips_tip" for="btn-check">Iphone(iOS)</span>
+								</label>
+							</div>
 						</div>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
-		</div>
-		<!-- <div class="filter-product"></div> -->
-		<!-- <div class="grid-dropdown-item brandInfo radius">
-			</div> -->
-		</div>
+			<div class="filter-product"></div>
+			<div class="grid-dropdown-item brandInfo radius">
+			</div>
+		</div> -->
 		<div class="content">
 			<div class="panel">
 				<ul class="products-list " id="productInfo">
