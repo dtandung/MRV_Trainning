@@ -121,6 +121,12 @@ public class ProductDaoImpl implements ProductDao {
     return repo.findByBrand(brand);
   }
 
+  @Override
+  public List<ProductEntity> findByBrandName(String brandName) {
+    // TODO Auto-generated method stub
+    return repo.findByBrandName(brandName);
+  }
+
 
 
 }

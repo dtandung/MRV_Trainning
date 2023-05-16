@@ -201,14 +201,15 @@ public class ProductServiceImpl implements ProductService{
   }
 
   @Override
-  public ResponseDataModel findByBrandForApi(Map<String, Object> searchDataMap) {
+  public ResponseDataModel findByBrandForApi(String brandName) {
     int responseCode = Constants.RESULT_CD_FAIL;
     String responseMsg = StringUtils.EMPTY;
     List<ProductEntity> productEntity = null;
     Map<String, Object> responseMap = new HashMap<>();
     try {
-      long brandId = Long.parseLong(searchDataMap.get("brandId").toString());
-      productEntity = productDao.findByBrand(brandId);
+      //String brandName =searchDataMap.get("brandName").toString();
+      productEntity = productDao.findByBrandName(brandName);
+      System.out.println("dm thang quoc cho de"+productEntity);
         if (productEntity != null) {
             responseCode = Constants.RESULT_CD_SUCCESS;
             responseMap.put("productEntity", productEntity);

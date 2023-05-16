@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="container-fluid">
 	<div class="top-banner row">
-		<img class="mx-auto" src="images/dmx/Tragop-1200-44-1200x44-1.png" />
+		<img class="mx-auto" src="/images/dmx/Tragop-1200-44-1200x44-1.png" />
 	</div>
 </div>
 <header>

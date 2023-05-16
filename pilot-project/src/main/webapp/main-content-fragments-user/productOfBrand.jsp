@@ -9,7 +9,7 @@
 			<div class="section-title d-flex">
 				<span class="mr-1">Điện Thoại</span> <span style="color: #999;">›</span>
 				<div class="detail-title ml-1">
-					<b></b> Điện thoại (${brand.brandName})
+					<b></b> Điện thoại (${brand})
 				</div>
 			</div>
 		</div>

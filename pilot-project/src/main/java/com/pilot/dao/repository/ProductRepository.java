@@ -22,6 +22,10 @@ public interface ProductRepository
     @Query(value = "SELECT * FROM PRODUCT P WHERE P.BRAND_ID = :brandId",nativeQuery = true)
     List<ProductEntity> findByBrand(@Param("brandId") Long brandId);
     
+    @Transactional
+    @Query(value = "SELECT * FROM PRODUCT P left join BRAND B on P.BRAND_ID = B.BRAND_ID WHERE B.BRAND_NAME = :brandName",nativeQuery = true)
+    List<ProductEntity> findByBrandName(@Param("brandName") String brandName);
+    
 //    @Query(value="SELECT * FROM PRODUCT WHERE PRICE >= :fromPrice and PRICE <= toPrice ", nativeQuery = true)
 //    List<ProductEntity> findByPrice(@Param("fromPrice") String fromPrice, @Param("toPrice") String toPrice);
     

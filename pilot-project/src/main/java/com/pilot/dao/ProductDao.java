@@ -27,4 +27,6 @@ public interface ProductDao {
   
   List<ProductEntity> findByBrand(Long brand);
   
+  List<ProductEntity> findByBrandName(String brandName);
+  
 }

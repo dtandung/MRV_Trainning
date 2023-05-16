@@ -1,5 +1,5 @@
 const TEMPLATE_BRAND = "<label class='imagetips'>"
-	+ "<a class='imagetips_tip'  href='/productofbrand?id=<%= brandId %>'>"
+	+ "<a class='imagetips_tip url-brand'  href='/brand/<%= brandName %>'>"
 	+ "<img src='<%= logo %>'>"
 	+ "</a>"
 	+ "</label > "
@@ -10,7 +10,7 @@ const TEMPLATE_BRAND_FILTER = "<label class='imagetips'>"
 	+ "</label > "
 
 const TEMPLATE_PRODUCT = "<li name='product' class='product-info'>"
-	+ "<a class='none-textdecor' href='/detailproduct?id=<%= productId %>'><div class='prod-avatar'>"
+	+ "<a class='none-textdecor url-product' href='/product/<%= productName %>'><div class='prod-avatar'>"
 	+ "<img id='imageProduct' src='<%= image %>'>"
 	+ "</div>"
 	+ "<div class='prod-name'> <%= productName %> <span class='new-prod-label'>Mới 2023</span> </div>"
@@ -26,16 +26,12 @@ var Brand = (function() {
 		_self.$productInfo = $('#productInfo');
 		_self.$paginator = $('ul.pagination');
 		var brandIdFilterList = [];
-		var brandIdListForm = [];
-		var brandIos = [];
-		var brandSearch = [];
-		var brandAndroid = [];
 		var priceFilter = [];
-		var priceListForm = [];
 		var countActiveFilter = [];
-		var activeList = [];
 		let min = 300000;
+		const MIN = 300000;
 		let max = 42000000;
+		const MAX = 42000000;
 		let minStr = "";
 		let maxStr = "";
 		const calcLeftPosition = (value) => (100 / (42000000 - 300000)) * (value - 300000);
@@ -55,6 +51,10 @@ var Brand = (function() {
 				success: function(responseData) {
 					if (responseData.responseCode == 100) {
 						_self.drawBrandTableContent(responseData.data);
+						$(".url-brand").each(function(key, value) {
+							$(value).attr("href", $(value).attr("href").toString().replaceAll(" ", "-"))
+							
+						})
 					}
 				},
 			});
@@ -79,6 +79,9 @@ var Brand = (function() {
 				success: function(responseData) {
 					if (responseData.responseCode == 100) {
 						_self.drawProductTableContent(responseData.data);
+						$(".url-product").each(function(key, value) {
+							$(value).attr("href", $(value).attr("href").toString().replaceAll(" ", "-"))
+						})
 					}
 				}
 			});
@@ -90,32 +93,18 @@ var Brand = (function() {
 			$.each(data.brandsListUser, function(key, value) {
 				_self.$brandInfo.append(_self.templateList.brandInfoRowTemplate(value));
 			});
-
+			// Render brand content for filter
 			$.each(data.brandsListUser, function(key, value) {
 				_self.$brandInfoFilter.append(_self.templateList.brandInfoFilterRowTemplate(value));
 			});
 
-
+			//Filter List
 			function showValues() {
-				/*var fieldsBrand = []
-				var fieldsPrice = []
-				fieldsBrand = $(":input[name=brand]").serializeArray();
-				fieldsPrice = $(":input[name=price]").serializeArray();
-				brandIdListForm = fieldsBrand;
-				priceListForm = fieldsPrice;
-				brandIdFilterList = [];
-				priceFilter = [];
-				brandIdListForm.forEach(item => brandIdFilterList.push(item.value))
-				priceListForm.forEach(item => priceFilter.push(item.value))
-				console.log(brandIdFilterList)*/
 				var fieldsBrand = [];
 				var fieldsPrice = [];
 				//fieldsBrand = ($(":input[name=brand]").serializeArray());
 				fieldsBrand = $(this).parents("form").serializeArray();
 				fieldsPrice = $(this).parents("form").serializeArray();
-
-				//fieldsBrand = $(":input[name=brand]:checked").serializeArray();
-				//fieldsPrice = $(":input[name=price]:checked").serializeArray();
 				if ($(this).prop('name') === 'brand') {
 					brandIdFilterList = [];
 					fieldsBrand.forEach(item => brandIdFilterList.push(item.value))
@@ -126,35 +115,6 @@ var Brand = (function() {
 				}
 			}
 			$(":checkbox").on("click", showValues);
-
-
-			/*$(":checkbox.ios").on("click", function() {
-				$.each(data.brandsListUser, function(key, value) {
-					if (value.brandId === 1) {
-						brandIos = [];
-						brandIos.push(value.brandId.toString())
-					}
-				})
-			});
-			$(":checkbox.android").on("click", function() {
-				$.each(data.brandsListUser, function(key, value) {
-					if (value.brandId !== 1) {
-						brandAndroid = [];
-						brandAndroid.push(value.brandId.toString())
-					}
-				})
-			});*/
-			/*$.each(data.brandsListUser, function(key, value) {
-				if (value.brandId != 1) {
-					brandAndroid = [];
-					brandAndroid.push(value.brandId)
-				} else {
-					brandIos = [];
-					brandIos.push(value.brandId)
-				}
-			})*/
-			//console.log(brandAndroid)
-			//console.log(brandIos)
 		};
 		_self.drawProductTableContent = function(data) {
 
@@ -163,18 +123,18 @@ var Brand = (function() {
 
 			// Render product content
 			$.each(data.productsListUser, function(key, value) {
-				value.price = value.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })
+				value.price = value.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })
 				_self.$productInfo.append(_self.templateList.productInfoRowTemplate(value));
 			});
 
 
+			// Double active
 			var fieldsBrand = $(":input[name=brand]");
 			fieldsBrand.each(function(key, value) {
 				if (brandIdFilterList.includes($(value).val())) {
 					$(value).attr("checked", true)
 				} else {
 					$(value).attr("checked", false)
-					console.log("thang bao")
 				}
 			});
 			var fieldsPrice = $(":input[name=price]");
@@ -185,6 +145,7 @@ var Brand = (function() {
 					$(value).attr("checked", false)
 				}
 			});
+
 			//unchecked filter
 			$('.btn-filter-close').click(function() {
 				location.reload();
@@ -195,31 +156,11 @@ var Brand = (function() {
 			if (paginationInfo.pageNumberList.length > 0) {
 				_self.$paginator.append(_self.templateList.paginatorTemplate(paginationInfo));
 			}
-
-			/*if (brandIdFilterList.length != 0 || brandAndroid != 0 && brandIos != 0) {
-				brandSearch = [];
-				brandSearch = brandIdFilterList;
-			} else if (brandIdFilterList.length == 0 && brandAndroid == 0 && brandIos != 0) {
-				brandSearch = [];
-				brandSearch = brandIos;
-			} else if (brandIdFilterList.length == 0 && brandAndroid != 0 && brandIos == 0) {
-				brandSearch = [];
-				brandSearch = brandAndroid;
-			}*/
-
-			//var priceConvert = $('.convert-money').text();
-			//var priceConvert = Number($('.convert-money').text()).toLocaleString('it-IT', {
-			//	style: 'currency', currency: 'VND'
-			//})
-			//$('input[type=range]').change(function() {
-			//	$('.convert-money').text(priceConvert)
-			//});
-
-			//console.log(priceConvert)
-
-
 		};
+		//Range price slider
 		_self.sliderRange = function() {
+			$('.min').html(MIN.toLocaleString('vi', { style: 'currency', currency: 'VND' }));
+			$('.max').html(MAX.toLocaleString('vi', { style: 'currency', currency: 'VND' }));
 			$('.fromPrice').on('input', function(e) {
 				let newValue = parseFloat(e.target.value);
 				if (newValue === parseFloat($('.toPrice').val()))
@@ -235,7 +176,7 @@ var Brand = (function() {
 				$('.thumbMin').css('left', calcLeftPosition(newValue) + '%');
 				$('.fromPrice').val(min)
 				//$('.min').toLocaleString('it-IT', {style: 'currency', currency: 'VND'}).html(newValue);
-				$('.min').html(newValue);
+				$('.min').html(newValue.toLocaleString('vi', { style: 'currency', currency: 'VND' }));
 				$('.line').css({
 					left: calcLeftPosition(newValue) + '%',
 					right: 100 - calcLeftPosition(max) + '%',
@@ -261,7 +202,7 @@ var Brand = (function() {
 
 				$('.toPrice').val(max)
 				$('.thumbMax').css('left', calcLeftPosition(newValue) + '%');
-				$('.max').html(newValue);
+				$('.max').html(newValue.toLocaleString('vi', { style: 'currency', currency: 'VND' }));
 				$('.line').css({
 					left: calcLeftPosition(min) + '%',
 					right: 100 - calcLeftPosition(newValue) + '%',
@@ -281,22 +222,18 @@ var Brand = (function() {
 				_self.currentPageNumber = $(this).attr("data-index");
 				_self.searchProducts();
 			});
-
-			$(".section-title").on('click', function() {
-				console.log(brandIdFilterList);
-				console.log(priceFilter);
-			});
+			//Count active
 			$(".number").hide();
 			$(".btn-filter-readmore").on('click', function() {
 				_self.searchProducts();
 				$(".number").show();
-				/*let activeList = [];
-				activeList = Array.from(new Set(countActiveFilter))*/
-				countActiveFilter = brandIdFilterList.length + priceFilter.length;
-				console.log(countActiveFilter)
+				if (minStr !== "" && maxStr !== "") {
+					countActiveFilter = brandIdFilterList.length + priceFilter.length + 1;
+				} else
+					countActiveFilter = brandIdFilterList.length + priceFilter.length;
 				$(".number").text(countActiveFilter)
-
 			});
+			//Hide/show range price slider
 			$(".price-slider").hide()
 			$(".range-toggle").on('click', function(e) {
 				e.preventDefault();
@@ -304,17 +241,18 @@ var Brand = (function() {
 				$("input[name=price]").prop('checked', false)
 				priceFilter = [];
 			})
-
+			
+			//reload range price when button price checked
 			$("input[name=price]").on('click', function() {
 				$(".price-slider").hide(500)
-				min = 2000000;
-				max = 42000000;
+				min = MIN;
+				max = MAX;
 				minStr = ""
 				maxStr = ""
-				$('.min').html(300000);
-				$('.max').html(42000000);
-				$('.fromPrice').val(300000)
-				$('.toPrice').val(42000000)
+				$('.min').html(MIN.toLocaleString('vi', { style: 'currency', currency: 'VND' }));
+				$('.max').html(MAX.toLocaleString('vi', { style: 'currency', currency: 'VND' }));
+				$('.fromPrice').val(MIN)
+				$('.toPrice').val(MAX)
 				$('.thumbMax').css('left', 100 + '%');
 				$('.thumbMin').css('left', 0 + '%');
 				$('.line').css({
@@ -322,31 +260,6 @@ var Brand = (function() {
 					right: 0 + '%',
 				});
 			})
-
-
-
-
-			/*$(".range-toggle").on('click', function(e) {
-			   e.preventDefault();
-			   if ($(".price-slider").hasClass("d-none") === true) {
-				   $(".price-slider").removeClass("d-none");
-				   
-				   $("input[name=price]").prop('checked', false)
-				   priceFilter = [];
-			   }
-			   else if ($(".price-slider").hasClass("d-none") === false) {
-				   $(".price-slider").addClass("d-none");
-			   }
-		   })
-	
-		   $("input[name=price]").on('click', function() {
-			   if (!$(".price-slider").hasClass("d-none")) {
-				   $(".price-slider").addClass("d-none");
-			   }
-			   min = "";
-			   max = "";
-		   })*/
-
 		};
 
 		_self.templateList = {

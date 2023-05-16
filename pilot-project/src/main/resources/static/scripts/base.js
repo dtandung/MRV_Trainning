@@ -7,7 +7,6 @@ const TEMPLATE_PAGINATOR =
 		+ 	"<% }); %>"
 		+ 	"<li class='page-item <% if (nextPage == 0) { %> disabled <% } %>' data-index='<%= nextPage %>' title='Next'> > </li>"
 		+ 	"<li class='page-item <% if (lastPage == 0) { %> disabled <% } %>' data-index='<%= lastPage %>' title='Last'> >> </li>"
-
 $(document).ready(function() {
 
 	// Add "active" class for link in Header
@@ -15,10 +14,8 @@ $(document).ready(function() {
 	$("header .nav-link").each(function() {
 		let _self = $(this);
 		if (pathName.includes(_self.attr("href"))) {
-			_self.addClass("active");
-			_self.siblings().removeClass("active");
+			_self.parent().addClass("active");
 		}
-		
 	});
 
 	// Upload image preview

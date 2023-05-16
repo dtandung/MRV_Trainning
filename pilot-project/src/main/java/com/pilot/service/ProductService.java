@@ -19,7 +19,7 @@ public interface ProductService {
   
   ResponseDataModel findByProductIdForApi (Long productId);
   
-  ResponseDataModel findByBrandForApi (Map<String, Object> searchDataMap);
+  ResponseDataModel findByBrandForApi (String brandName);
   
   ResponseDataModel delete (Long productId);
   

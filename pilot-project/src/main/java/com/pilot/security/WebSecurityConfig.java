@@ -24,7 +24,7 @@ public class WebSecurityConfig {
     protected  SecurityFilterChain filterChain(HttpSecurity http) throws Exception  {
         http.csrf().disable()
             .authorizeRequests()
-                    .antMatchers("/","/home/**","detailproducttitle/**","/detailproduct/**","/productofbrand/**","/css/**", "/js/**","/styles/**","/scripts/**", "/images/**","/plugins/**","/login").permitAll()
+                    .antMatchers("/","/home/**","/detailproduct/**","/productofbrand/**","/css/**", "/js/**","/styles/**","/scripts/**", "/images/**","/plugins/**","/login").permitAll()
                     .antMatchers("/brand","/product").access("hasRole('ROLE_ADMIN')")
                     .anyRequest().authenticated()
             .and().formLogin().loginPage("/login")
