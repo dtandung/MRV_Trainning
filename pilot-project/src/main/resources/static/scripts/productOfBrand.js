@@ -8,16 +8,13 @@ const TEMPLATE_BRAND_FILTER = "<label class='imagetips'>"
 	+ "<img src='<%= logo %>'/></span>"
 	+ "</label > "
 const TEMPLATE_PRODUCT = "<li class='product-info'>"
-	+ "<a class='none-textdecor url-product' href='/product/<%= productName %>'><div class='prod-avatar'>"
+	+ "<a class='none-textdecor url-product' href='/product-detail/<%= productName %>'><div class='prod-avatar'>"
 	+ "<img id='imageProduct' src='/<%= image %>'>"
 	+ "</div>"
 	+ "<div class='prod-name'> <%= productName %> <span class='new-prod-label'>Mới 2023</span> </div>"
 	+ "<span class='prod-price'><%= price %></span> </a>"
 	+ "</li>"
-const TEMPLATE_FILTER = "<button class='btn' type='button' "
-	+ " aria-haspopup='true' aria-expanded='false'>"
-	+ " <%= productName %>"
-	+ "</button>"
+
 
 var ProductOfBrand = (function() {
 	return function() {
@@ -26,9 +23,8 @@ var ProductOfBrand = (function() {
 		_self.$productInfo = $('#productInfo');
 		_self.$brandInfo = $('.brandInfo');
 		_self.$brandInfoFilter = $('.brandInfoFilter');
-		//_self.$paginator = $('ul.pagination');
-		_self.$filter = $('.filter-product');
-
+		_self.$paginator = $('ul.pagination');
+		var brandName;
 		var brandList = [];
 		var brandId;
 
@@ -55,7 +51,7 @@ var ProductOfBrand = (function() {
 					if (responseData.responseCode == 100) {
 						brandList = responseData.data.brandsListUser
 						_self.drawBrandTableContent(responseData.data);
-						
+
 					}
 				},
 			});
@@ -85,17 +81,23 @@ var ProductOfBrand = (function() {
 
 
 		_self.searchProducts = function() { // Search Brand by keyword
-
 			var url = new URL(window.location.href);
-			brandName = url.pathname.toString().replaceAll("%20", "-")
-			url.pathname = brandName
+			var test = url.pathname.split('/')
+			brandName = test[test.length - 1].replaceAll("-", " ")
 			console.log(brandName)
 
+			let searchData = {
+				keyword: $("#keyword").val(),
+				priceSort: $(".click-sort").val(),
+				brandName: brandName,
+				currentPage: Number(_self.currentPageNumber),
+			}
+
 			$.ajax({
-				url: brandName.replaceAll("-", " "),
+				url: "/product-brand/" + brandName,
 				type: 'POST',
 				dataType: 'json',
-				//data: JSON.stringify(data),
+				data: JSON.stringify(searchData),
 				contentType: 'application/json',
 				success: function(responseData) {
 					if (responseData.responseCode == 100) {
@@ -111,47 +113,49 @@ var ProductOfBrand = (function() {
 		_self.drawProductTableContent = function(data) {
 
 			_self.$productInfo.empty();
-			//_self.$paginator.empty();
+			_self.$paginator.empty();
 
 			// Render product content
-			$.each(data.productEntity, function(key, value) {
-				console.log(value.image)
+			$.each(data.productsListUser, function(key, value) {
 				value.price = value.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })
 				_self.$productInfo.append(_self.templateList.productInfoRowTemplate(value));
 
 			});
-
-			$.each(data.productEntity, function(key, value) {
-				_self.$filter.append(_self.templateList.filterTemplate(value));
-			})
-
-			let count = (data.productEntity).length;
+			let count = (data.productsListUser).length;
 			$('.section-title b').text(count)
+			$('.sort-total b').text(count)
 
 			// Render paginator
-			//let paginationInfo = data.paginationInfo;
-			//if (paginationInfo.pageNumberList.length > 0) {
-			//	_self.$paginator.append(_self.templateList.paginatorTemplate(paginationInfo));
-			//}
+			let paginationInfo = data.paginationInfo;
+			if (paginationInfo.pageNumberList.length > 0) {
+				_self.$paginator.append(_self.templateList.paginatorTemplate(paginationInfo));
+			}
 		};
 		_self.bindEvent = function() {
 			// Show products list when clicking pagination button
-			//$('.pagination').on('click', '.page-item', function() {
-			//	_self.currentPageNumber = $(this).attr("data-index");
-			//	_self.searchProducts();
-			//});
-			$('.dropdown-menu').on('click', '.dropdown-item', function() {
-				if ($(this).hasClass('active-brand')) {
-					$(this).removeClass('active-brand')
-				} else
-					$(this).addClass('active-brand');
+			$('.pagination').on('click', '.page-item', function() {
+				_self.currentPageNumber = $(this).attr("data-index");
+				_self.searchProducts();
 			});
+			// Search product with search fields when click search button
+			$('#searchProductBtn').on('click', function() {
+				_self.currentPageNumber = 1;
+				_self.searchProducts();
+			});
+			$('#keyword').on('keydown', function(e) {
+				if (e.key === 'Enter' || e.keyCode === '13') {
+					_self.currentPageNumber = 1;
+					_self.searchProducts();
+				}
+			});
+			$('.click-sort').on('change', function() {
+				_self.searchProducts();
+			})
 		};
 		_self.templateList = {
 			brandInfoRowTemplate: _.template(TEMPLATE_BRAND),
-			//paginatorTemplate: _.template(TEMPLATE_PAGINATOR),
+			paginatorTemplate: _.template(TEMPLATE_PAGINATOR),
 			productInfoRowTemplate: _.template(TEMPLATE_PRODUCT),
-			filterTemplate: _.template(TEMPLATE_FILTER),
 			brandInfoFilterRowTemplate: _.template(TEMPLATE_BRAND_FILTER)
 		};
 		_self.initialize = function() {

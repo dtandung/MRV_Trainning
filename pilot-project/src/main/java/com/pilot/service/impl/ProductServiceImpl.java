@@ -35,8 +35,8 @@ import com.pilot.service.ProductService;
  */
 @Service
 @Transactional
-public class ProductServiceImpl implements ProductService{
-  
+public class ProductServiceImpl implements ProductService {
+
   private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
   @Value("${parent.folder.images.product}")
@@ -44,35 +44,35 @@ public class ProductServiceImpl implements ProductService{
 
   @Autowired
   ProductDao productDao;
-  
+
   @Autowired
   BrandDao brandDao;
-  
+
   @Autowired
   ProductRepository productRepo;
 
   @Override
   public ResponseDataModel add(ProductEntity productEntity) {
-    
+
     int responseCode = Constants.RESULT_CD_FAIL;
     String responseMsg = StringUtils.EMPTY;
     try {
-        if (findByProductName(productEntity.getProductName()) != null) {
-            responseMsg = "Product Name is duplicated";
-            responseCode = Constants.RESULT_CD_DUPL;
-        } else {
-            MultipartFile[] imageFiles = productEntity.getImageFiles();
-            if (imageFiles != null && imageFiles[0].getSize() > 0) {
-                String imagePath = FileHelper.addNewFile(productImageFolderPath, imageFiles);
-                productEntity.setImage(imagePath);
-            }
-            productRepo.saveAndFlush(productEntity);
-            responseMsg = "Product is added successfully";
-            responseCode = Constants.RESULT_CD_SUCCESS;
+      if (findByProductName(productEntity.getProductName()) != null) {
+        responseMsg = "Product Name is duplicated";
+        responseCode = Constants.RESULT_CD_DUPL;
+      } else {
+        MultipartFile[] imageFiles = productEntity.getImageFiles();
+        if (imageFiles != null && imageFiles[0].getSize() > 0) {
+          String imagePath = FileHelper.addNewFile(productImageFolderPath, imageFiles);
+          productEntity.setImage(imagePath);
         }
+        productRepo.saveAndFlush(productEntity);
+        responseMsg = "Product is added successfully";
+        responseCode = Constants.RESULT_CD_SUCCESS;
+      }
     } catch (Exception e) {
-        responseMsg = "Error when adding product";
-        LOGGER.error("Error when adding product: {}", e);
+      responseMsg = "Error when adding product";
+      LOGGER.error("Error when adding product: {}", e);
     }
     return new ResponseDataModel(responseCode, responseMsg);
   }
@@ -83,66 +83,68 @@ public class ProductServiceImpl implements ProductService{
     int responseCode = Constants.RESULT_CD_FAIL;
     String responseMsg = StringUtils.EMPTY;
     try {
-      ProductEntity duplicatedProduct = productDao.findByProductNameAndProductIdNot(productEntity.getProductName(), productEntity.getProductId());
+      ProductEntity duplicatedProduct = productDao.findByProductNameAndProductIdNot(
+          productEntity.getProductName(), productEntity.getProductId());
 
-        // Check if product name existed
-        if (duplicatedProduct != null) {
-            responseMsg = "Product Name is duplicated";
-            responseCode = Constants.RESULT_CD_DUPL;
-        } else {
-            MultipartFile[] imageFiles = productEntity.getImageFiles();
-            if (imageFiles != null && imageFiles[0].getSize() > 0) {
-                String imagePath = FileHelper.editFile(productImageFolderPath, imageFiles, productEntity.getImage());
-                productEntity.setImage(imagePath);
-            }
-            productRepo.saveAndFlush(productEntity);
-            responseMsg = "Product is updated successfully";
-            responseCode = Constants.RESULT_CD_SUCCESS;
+      // Check if product name existed
+      if (duplicatedProduct != null) {
+        responseMsg = "Product Name is duplicated";
+        responseCode = Constants.RESULT_CD_DUPL;
+      } else {
+        MultipartFile[] imageFiles = productEntity.getImageFiles();
+        if (imageFiles != null && imageFiles[0].getSize() > 0) {
+          String imagePath =
+              FileHelper.editFile(productImageFolderPath, imageFiles, productEntity.getImage());
+          productEntity.setImage(imagePath);
         }
+        productRepo.saveAndFlush(productEntity);
+        responseMsg = "Product is updated successfully";
+        responseCode = Constants.RESULT_CD_SUCCESS;
+      }
     } catch (Exception e) {
-        responseMsg = "Error when updating product";
-        LOGGER.error("Errorr when updating product: {}", e);
+      responseMsg = "Error when updating product";
+      LOGGER.error("Errorr when updating product: {}", e);
     }
     return new ResponseDataModel(responseCode, responseMsg);
   }
 
   @Override
   public ResponseDataModel findByProductIdForApi(Long productId) {
-    
+
     int responseCode = Constants.RESULT_CD_FAIL;
     String responseMsg = StringUtils.EMPTY;
     ProductEntity productEntity = null;
     try {
       productEntity = productDao.findByProductId(productId);
-        if (productEntity != null) {
-            responseCode = Constants.RESULT_CD_SUCCESS;
-        }
+      if (productEntity != null) {
+        responseCode = Constants.RESULT_CD_SUCCESS;
+      }
     } catch (Exception e) {
-        responseMsg = "Error when finding product by ID";
-        LOGGER.error("Error when finding product by ID: {}", e);
+      responseMsg = "Error when finding product by ID";
+      LOGGER.error("Error when finding product by ID: {}", e);
     }
     return new ResponseDataModel(responseCode, responseMsg, productEntity);
   }
 
   @Override
   public ResponseDataModel delete(Long productId) {
-    
+
     int responseCode = Constants.RESULT_CD_FAIL;
     String responseMsg = StringUtils.EMPTY;
     ProductEntity productEntity = productDao.findByProductId(productId);
     try {
-        if (productEntity != null) {
-          productRepo.deleteById(productId);
-          productRepo.flush();
+      if (productEntity != null) {
+        productRepo.deleteById(productId);
+        productRepo.flush();
 
-            // Remove image of brand from storage folder
-            FileHelper.deleteFile(productEntity.getImage());
-            responseMsg = "Product is deleted successfully";
-            responseCode = Constants.RESULT_CD_SUCCESS;
-        }
-    } catch(Exception e) {
-        responseMsg = "Error when deleting product";
-        LOGGER.error("Error when delete product: {}", e);
+        // Remove image of brand from storage folder
+        FileHelper.deleteFile(productEntity.getImage());
+        responseMsg = "Product is deleted successfully";
+        responseCode = Constants.RESULT_CD_SUCCESS;
+      }
+    } catch (Exception e) {
+      responseMsg = "Error when deleting product";
+      LOGGER.error("Error when delete product: {}", e);
     }
     return new ResponseDataModel(responseCode, responseMsg);
   }
@@ -159,43 +161,56 @@ public class ProductServiceImpl implements ProductService{
 
   @Override
   public ResponseDataModel searchWithPager(Map<String, Object> searchDataMap) {
-    
+
     int responseCode = Constants.RESULT_CD_FAIL;
     String responseMsg = StringUtils.EMPTY;
     Map<String, Object> responseMap = new HashMap<>();
     try {
-        int pageNumber = (int) searchDataMap.get("currentPage");
-        Sort sortInfo = Sort.by(Sort.Direction.DESC, "productId");
-        Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortInfo);
-        Page<ProductEntity> productEntitiesPage = productRepo.findAll(productDao.getSearchCriteria(searchDataMap), pageable);
-        responseMap.put("productsList", productEntitiesPage.getContent());
-        responseMap.put("paginationInfo", new PagerModel(pageNumber, productEntitiesPage.getTotalPages()));
-        responseMap.put("brandList", brandDao.findAll());
-        responseCode = Constants.RESULT_CD_SUCCESS;
+      int pageNumber = (int) searchDataMap.get("currentPage");
+      Sort sortInfo = Sort.by(Sort.Direction.DESC, "productId");
+      Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortInfo);
+      Page<ProductEntity> productEntitiesPage =
+          productRepo.findAll(productDao.getSearchCriteria(searchDataMap), pageable);
+      responseMap.put("productsList", productEntitiesPage.getContent());
+      responseMap.put("paginationInfo",
+          new PagerModel(pageNumber, productEntitiesPage.getTotalPages()));
+      responseMap.put("brandList", brandDao.findAll());
+      responseCode = Constants.RESULT_CD_SUCCESS;
     } catch (Exception e) {
-        responseMsg = e.getMessage();
-        LOGGER.error("Error when get all product: {}", e);
+      responseMsg = e.getMessage();
+      LOGGER.error("Error when get all product: {}", e);
     }
     return new ResponseDataModel(responseCode, responseMsg, responseMap);
   }
 
   @Override
   public ResponseDataModel getAllProduct(Map<String, Object> searchDataMap) {
-    
+
     int responseCode = Constants.RESULT_CD_FAIL;
     String responseMsg = StringUtils.EMPTY;
     Map<String, Object> responseMap = new HashMap<>();
     try {
-        int pageNumber = (int) searchDataMap.get("currentPage");
-        Sort sortInfo = Sort.by(Sort.Direction.DESC, "productId");
-        Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE_USER, sortInfo);
-        Page<ProductEntity> productEntitiesPage = productRepo.findAll(productDao.getSearchCriteria(searchDataMap), pageable);
-        responseMap.put("productsListUser", productEntitiesPage.getContent());
-        responseMap.put("paginationInfo", new PagerModel(pageNumber, productEntitiesPage.getTotalPages()));
-        responseCode = Constants.RESULT_CD_SUCCESS;
+      int pageNumber = (int) searchDataMap.get("currentPage");
+      Sort sortInfo = Sort.by(Sort.Direction.DESC, "productId");
+      String sortBy = (String) searchDataMap.get("priceSort");
+      if (sortBy.equals("2")) {
+        sortInfo = Sort.by(Sort.Direction.ASC, "price");
+      }
+      if (sortBy.equals("3")) {
+        sortInfo = Sort.by(Sort.Direction.DESC, "price");
+      }
+      Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE_USER, sortInfo);
+      Page<ProductEntity> productEntitiesPage =
+          productRepo.findAll(productDao.getSearchCriteria(searchDataMap), pageable);
+      List<ProductEntity> count = productRepo.findAll(productDao.getSearchCriteria(searchDataMap));
+      responseMap.put("count", count);
+      responseMap.put("productsListUser", productEntitiesPage.getContent());
+      responseMap.put("paginationInfo",
+          new PagerModel(pageNumber, productEntitiesPage.getTotalPages()));
+      responseCode = Constants.RESULT_CD_SUCCESS;
     } catch (Exception e) {
-        responseMsg = e.getMessage();
-        LOGGER.error("Error when get all product: {}", e);
+      responseMsg = e.getMessage();
+      LOGGER.error("Error when get all product: {}", e);
     }
     return new ResponseDataModel(responseCode, responseMsg, responseMap);
   }
@@ -207,16 +222,15 @@ public class ProductServiceImpl implements ProductService{
     List<ProductEntity> productEntity = null;
     Map<String, Object> responseMap = new HashMap<>();
     try {
-      //String brandName =searchDataMap.get("brandName").toString();
+      // String brandName =searchDataMap.get("brandName").toString();
       productEntity = productDao.findByBrandName(brandName);
-      System.out.println("dm thang quoc cho de"+productEntity);
-        if (productEntity != null) {
-            responseCode = Constants.RESULT_CD_SUCCESS;
-            responseMap.put("productEntity", productEntity);
-        }
+      if (productEntity != null) {
+        responseCode = Constants.RESULT_CD_SUCCESS;
+        responseMap.put("productEntity", productEntity);
+      }
     } catch (Exception e) {
-        responseMsg = "Error when finding product by ID";
-        LOGGER.error("Error when finding product by ID: {}", e);
+      responseMsg = "Error when finding product by ID";
+      LOGGER.error("Error when finding product by ID: {}", e);
     }
     return new ResponseDataModel(responseCode, responseMsg, responseMap);
   }

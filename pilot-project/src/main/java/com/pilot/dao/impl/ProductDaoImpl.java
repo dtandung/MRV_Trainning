@@ -10,6 +10,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,18 +58,23 @@ public class ProductDaoImpl implements ProductDao {
           String keyword = (String) searchConditionsMap.get("keyword");
           String priceFrom = (String) searchConditionsMap.get("priceFrom");
           String priceTo = (String) searchConditionsMap.get("priceTo");
+          String brandName = (String) searchConditionsMap.get("brandName");
           List<String> brandIds = (List<String>) searchConditionsMap.get("brandIdFilter");
           List<String> prices = (List<String>) searchConditionsMap.get("priceFilter");
           Join<ProductEntity, BrandEntity> brandRoot = productRoot.join("brand");
 
-
+          System.out.println("checkkkkk"+ brandName);
           // Keyword Predicate
           if (StringUtils.isNotEmpty(keyword)) {
             predicates.add(criteriaBuilder.or(
                 criteriaBuilder.like(productRoot.get("productName"), "%" + keyword + "%"),
-                criteriaBuilder.like(brandRoot.get("brandName"), "%" + keyword + "%")));
-            // criteriaBuilder.like(productRoot.get("description"), "%" + keyword + "%"),
-            // criteriaBuilder.like(brandRoot.get("description"), "%" + keyword + "%")));
+                criteriaBuilder.like(brandRoot.get("brandName"), "%" + keyword + "%"),
+                criteriaBuilder.like(productRoot.get("description"), "%" + keyword + "%"),
+                criteriaBuilder.like(brandRoot.get("description"), "%" + keyword + "%")));
+          }
+          if (StringUtils.isNotEmpty(brandName)) {
+            predicates.add(
+                criteriaBuilder.or(criteriaBuilder.equal(brandRoot.get("brandName"), brandName)));
           }
 
           // Price From Predicate

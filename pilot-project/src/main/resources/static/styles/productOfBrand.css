@@ -349,3 +349,40 @@ input::-webkit-slider-thumb {
 .ekko-lightbox .modal-header .close:hover span {
 	background: #212529;
 }
+
+.box-sort {
+	width: 100%;
+	display: flex;
+    justify-content: space-between;
+}
+
+.sort-select {
+	float:right;
+	width: fit-content;
+	position: relative;
+	margin-bottom: 10px;
+	align-items: end;
+}
+
+.sort-select .click-sort {
+	background: #fff; border : 1px solid #e0e0e0;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 12px;
+	line-height: 12px;
+	padding: 6px 10px 6px 8px;
+	border: 1px solid #e0e0e0;
+}
+
+.sort-select-main {
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, .2);
+	display: none;
+	position: absolute;
+	padding: 0 7px;
+	top: 30px;
+	right: 0;
+	width: 160px;
+	z-index: 2;
+}

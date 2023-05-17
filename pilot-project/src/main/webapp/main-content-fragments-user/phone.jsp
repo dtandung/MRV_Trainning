@@ -220,6 +220,18 @@
 			</div>
 			<div class="grid-dropdown-item brandInfo radius"></div>
 		</div>
+		<div class="box-sort">
+			<p class="sort-total">
+				<b></b>  <strong class="manu-sort">Điện thoại</strong>
+			</p>
+			<div class="sort-select ">
+				<select class="click-sort">
+					<option value="1" selected>Xếp theo: Nổi Bật</option>
+					<option value="2">Xếp theo: Giá thấp đến cao</option>
+					<option value="3">Xếp theo: Giá cao đến thấp</option>
+				</select>
+			</div>
+		</div>
 		<div class="content">
 			<div class="panel">
 				<ul class="products-list " id="productInfo">

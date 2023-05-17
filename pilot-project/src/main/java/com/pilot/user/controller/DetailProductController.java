@@ -23,7 +23,7 @@ public class DetailProductController {
   @Autowired
   private ProductService productService;
 
-  @GetMapping(value = {"/product/{productName}"})
+  @GetMapping(value = {"/product-detail/{productName}"})
   public String initPage(@PathVariable(value = "productName", required = false) String productName,
       HttpServletRequest request, Model model) {
     String convertProductName = productName.replaceAll("%20", "-");

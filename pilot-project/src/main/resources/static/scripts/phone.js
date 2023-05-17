@@ -1,5 +1,5 @@
 const TEMPLATE_BRAND = "<label class='imagetips'>"
-	+ "<a class='imagetips_tip url-brand'  href='/brand/<%= brandName %>'>"
+	+ "<a class='imagetips_tip url-brand'  href='/product-brand/<%= brandName %>'>"
 	+ "<img src='<%= logo %>'>"
 	+ "</a>"
 	+ "</label > "
@@ -10,7 +10,7 @@ const TEMPLATE_BRAND_FILTER = "<label class='imagetips'>"
 	+ "</label > "
 
 const TEMPLATE_PRODUCT = "<li name='product' class='product-info'>"
-	+ "<a class='none-textdecor url-product' href='/product/<%= productName %>'><div class='prod-avatar'>"
+	+ "<a class='none-textdecor url-product' href='/product-detail/<%= productName %>'><div class='prod-avatar'>"
 	+ "<img id='imageProduct' src='<%= image %>'>"
 	+ "</div>"
 	+ "<div class='prod-name'> <%= productName %> <span class='new-prod-label'>Mới 2023</span> </div>"
@@ -53,7 +53,7 @@ var Brand = (function() {
 						_self.drawBrandTableContent(responseData.data);
 						$(".url-brand").each(function(key, value) {
 							$(value).attr("href", $(value).attr("href").toString().replaceAll(" ", "-"))
-							
+
 						})
 					}
 				},
@@ -62,6 +62,7 @@ var Brand = (function() {
 		_self.searchProducts = function() { // Search Brand by keyword
 			let searchData = {
 				keyword: $("#keyword").val(),
+				priceSort: $(".click-sort").val(),
 				priceFrom: minStr,
 				priceTo: maxStr,
 				currentPage: Number(_self.currentPageNumber),
@@ -127,6 +128,8 @@ var Brand = (function() {
 				_self.$productInfo.append(_self.templateList.productInfoRowTemplate(value));
 			});
 
+			let count = (data.count).length;
+			$('.sort-total b').text(count)
 
 			// Double active
 			var fieldsBrand = $(":input[name=brand]");
@@ -222,6 +225,17 @@ var Brand = (function() {
 				_self.currentPageNumber = $(this).attr("data-index");
 				_self.searchProducts();
 			});
+			// Search product with search fields when click search button
+			$('#searchProductBtn').on('click', function() {
+				_self.currentPageNumber = 1;
+				_self.searchProducts();
+			});
+			$('#keyword').on('keydown', function(e) {
+				if (e.key === 'Enter' || e.keyCode === '13') {
+					_self.currentPageNumber = 1;
+					_self.searchProducts();
+				}
+			});
 			//Count active
 			$(".number").hide();
 			$(".btn-filter-readmore").on('click', function() {
@@ -232,6 +246,9 @@ var Brand = (function() {
 				} else
 					countActiveFilter = brandIdFilterList.length + priceFilter.length;
 				$(".number").text(countActiveFilter)
+				if (countActiveFilter == 0) {
+					$(".number").hide();
+				}
 			});
 			//Hide/show range price slider
 			$(".price-slider").hide()
@@ -241,7 +258,7 @@ var Brand = (function() {
 				$("input[name=price]").prop('checked', false)
 				priceFilter = [];
 			})
-			
+
 			//reload range price when button price checked
 			$("input[name=price]").on('click', function() {
 				$(".price-slider").hide(500)
@@ -260,6 +277,12 @@ var Brand = (function() {
 					right: 0 + '%',
 				});
 			})
+			//filter sort
+			$('.click-sort').on('change', function() {
+				_self.searchProducts();
+			})
+			
+			
 		};
 
 		_self.templateList = {

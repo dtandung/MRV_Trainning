@@ -55,14 +55,14 @@
 					</div>
 				</div>
 				<div class="search-area">
-					<form class="search-form">
+					<div class="search-form">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Bạn tìm gì...">
+							<input id="keyword" type="text" class="form-control" placeholder="Bạn tìm gì...">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-search"></i></span>
+								<button id="searchProductBtn" class="input-group-text"><i class="fas fa-search"></i></button>
 							</div>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 			<div class="right-area float-right">

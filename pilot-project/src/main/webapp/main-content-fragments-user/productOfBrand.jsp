@@ -182,20 +182,21 @@
 			<div class="grid-dropdown-item brandInfo radius">
 			</div>
 		</div> -->
+		<div class="box-sort">
+			<p class="sort-total">
+				<b></b>  <strong class="manu-sort">Điện thoại</strong>
+			</p>
+			<div class="sort-select ">
+				<select class="click-sort">
+					<option value="1" selected>Xếp theo: Nổi Bật</option>
+					<option value="2">Xếp theo: Giá thấp đến cao</option>
+					<option value="3">Xếp theo: Giá cao đến thấp</option>
+				</select>
+			</div>
+		</div>
 		<div class="content">
 			<div class="panel">
 				<ul class="products-list " id="productInfo">
-					<!-- <li class="product-info">
-						<div class="prod-avatar">
-							<img src="images/dmx/lg-rn7-1-600x600.jpg">
-						</div>
-						<div class="prod-deal">
-							<img src="images/dmx/giamsoc_optimized.png">
-						</div>
-						<div class="prod-name">
-							Loa Karaoke LG Xboom RN7 
-						</div> <span class="prod-price">8.990.000<sup>₫</sup></span>
-					</li> -->
 				</ul>
 			</div>
 
