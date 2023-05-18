@@ -7,7 +7,7 @@
 	<section class="row discount-in-day">
 		<div class="section-title">
 			<div class="section-title d-flex">
-				<span class="mr-1">Điện Thoại</span> <span style="color: #999;">›</span>
+				<span class="mr-1"><a href="/home">Điện thoại</a></span> <span style="color: #999;">›</span>
 				<div class="detail-title ml-1">
 					<b></b> Điện thoại (${brand})
 				</div>

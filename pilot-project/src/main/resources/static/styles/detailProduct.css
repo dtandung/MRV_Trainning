@@ -37,6 +37,11 @@ img {
     margin-top: 20px;
 }
 
+.section-title a{
+	color: #288ad6;
+	text-decoration: none;
+	cursor: pointer;
+}
 
 .carousel-control-prev,
 .carousel-control-next {

@@ -173,6 +173,16 @@ footer .icondmx-share3 {
     height: 16px;
     vertical-align: sub;
 }
+footer a:hover {
+    color: #1981f2;
+    text-decoration: none;
+}
+
+footer a {
+    color: #000;
+    background-color: transparent;
+}
+
 /* Fotter END */
 
 #online-support {

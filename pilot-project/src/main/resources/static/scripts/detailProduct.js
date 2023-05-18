@@ -8,6 +8,9 @@ var Detail = (function() {
 				style: 'currency', currency: 'VND'
 			}));
 		});
+		$(".url-product").each(function(key, value) {
+			$(value).attr("href", $(value).attr("href").toString().replaceAll(" ", "-"))
+		})
 	};
 
 }());

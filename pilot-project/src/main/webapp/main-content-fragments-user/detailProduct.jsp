@@ -6,14 +6,16 @@
 <main class="container">
 	<section class="row discount-in-day">
 		<div class="section-title d-flex">
-			<span class="mr-1">Điện Thoại</span> <span style="color: #999;">›</span>
-			<div class="detail-title ml-1">Điện thoại
-				${productDetail.brand.brandName}</div>
+			<span class="mr-1"><a href="/home">Điện thoại</a></span> <span
+				style="color: #999;">›</span>
+			<div class="detail-title ml-1">
+				<a class="url-product" href="/product-brand/${productDetail.brand.brandName}">Điện thoại ${productDetail.brand.brandName}</a>
+			</div>
 		</div>
 		<c:if test="${not empty productDetail }">
 			<div class="group-tabs">
 				<div class="filter-product">
-					<b>Điện thoại ${productDetail.productName}</b> 
+					<b>Điện thoại ${productDetail.productName}</b>
 				</div>
 			</div>
 			<div class="content">

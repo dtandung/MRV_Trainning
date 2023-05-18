@@ -5,6 +5,11 @@
     margin-bottom: 10px;
     margin-top: 20px;
 }
+.section-title a{
+	color: #288ad6;
+	text-decoration: none;
+	cursor: pointer;
+}
 .top-banner {
     background-color: #ac0911;
 }

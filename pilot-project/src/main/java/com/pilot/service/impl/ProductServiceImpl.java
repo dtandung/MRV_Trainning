@@ -214,7 +214,7 @@ public class ProductServiceImpl implements ProductService {
     }
     return new ResponseDataModel(responseCode, responseMsg, responseMap);
   }
-
+  //not using
   @Override
   public ResponseDataModel findByBrandForApi(String brandName) {
     int responseCode = Constants.RESULT_CD_FAIL;
