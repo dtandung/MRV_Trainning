@@ -1,3 +1,6 @@
+.col-lg-6 {
+	padding: 0;
+}
 
 .sub-header {
 	border: 1px solid #333;
@@ -17,27 +20,29 @@
 	padding-top: 3px;
 }
 
-.search-area {
+/* .search-area {
 	display: grid;
 	justify-content: start;
 	width: 100%;
 	grid-template-columns: 52% 30% 18%;
 	justify-content: end;
 	margin-bottom: 10px;
-}
-
+} */
 .search-area__select-fields {
-/* 	margin-right: 10px; */
+	/* 	margin-right: 10px; */
 	display: flex;
 	width: fit-content;
 }
 
-.search-area__select-fields-price-to {
+/* .search-area__select-fields-price-to {
 	margin-left: 20px;
+} */
+.input-group-text {
+	width: 100px
 }
 
 .search-area__select-fields .form-select {
-	margin-left: 10px;
+	width: 200px;
 	border-radius: 0.25rem;
 	height: calc(1.5em + 0.75rem + 2px);
 	padding: 0.375rem 0.75rem 0.385rem;
@@ -72,10 +77,9 @@
 	justify-content: end;
 }
 
-.search-area__btns .btn {
+/* .search-area__btns .btn {
 	margin-left: 10px;
-}
-
+} */
 .action-btns {
 	text-align: center;
 	color: #4a90e2;

@@ -8,49 +8,63 @@
 		<div class="float-left sub-title">Product Management</div>
 		<div class="float-right">
 			<a class="btn btn-success add-btn" id="addProductInfoModal"><i
-				class="fas fa-plus-square"></i> Add Product</a>
+				class="fas fa-plus-square"></i><span>Add Product</span></a>
 		</div>
 	</div>
-	<div class="search-area">
-		<div class="search-area__select-fields">
-			<div class="search-area__select-fields-price-from">
-				<b>Price From:</b> <select class="form-select"
-					aria-label="Default select example" id="priceFrom">
-					<option value = "" >--Select from Price--</option>
-					<option value="2000000">2.000.000</option>
-					<option value="4000000">4.000.000</option>
-					<option value="6000000">6.000.000</option>
-					<option value="8000000">8.000.000</option>
-					<option value="10000000">10.000.000</option>
-				</select>
+	<div class="search-area form-row">
+		<div class="search-area__select-fields col-md-12 col-lg-8 ">
+			<div class="search-area__select-fields-price-from col-lg-6 ">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<label class="input-group-text">Price From:</label>
+					</div>
+					<select class="form-select" aria-label="Default select example"
+						id="priceFrom">
+						<option value="">--Select from Price--</option>
+						<option value="2000000">2.000.000</option>
+						<option value="4000000">4.000.000</option>
+						<option value="6000000">6.000.000</option>
+						<option value="8000000">8.000.000</option>
+						<option value="10000000">10.000.000</option>
+					</select>
+				</div>
 			</div>
-			<div class="search-area__select-fields-price-to">
-				<b>Price To:</b> <select class="form-select"
-					aria-label="Default select example" id="priceTo">
-					<option value ="">--Select to Price--</option>
-					<option value="12000000">12.000.000</option>
-					<option value="14000000">14.000.000</option>
-					<option value="16000000">16.000.000</option>
-					<option value="18000000">18.000.000</option>
-					<option value="20000000">20.000.000</option>
-				</select>
+			<div class="search-area__select-fields-price-to col-lg-6 ">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<label class="input-group-text">Price To:</label>
+					</div>
+					<select class="form-select" aria-label="Default select example"
+						id="priceTo">
+						<option value="">--Select to Price--</option>
+						<option value="12000000">12.000.000</option>
+						<option value="14000000">14.000.000</option>
+						<option value="16000000">16.000.000</option>
+						<option value="18000000">18.000.000</option>
+						<option value="20000000">20.000.000</option>
+					</select>
+				</div>
 			</div>
 		</div>
-		<div class="search-area__search-fields">
-			<input type="text" id="keyword"
-				class="search-area__search-fields--text"
-				placeholder="Product, Brand Name, . v.v .">
-		</div>
-		<div class="search-area__btns">
-			<div class="search-area__btn">
-				<button class="btn btn-info" id="searchProductBtn">
-					<i class="fas fa-search"></i>&nbsp;Search
-				</button>
+		<div class="col-md-12 col-lg-4  form-row flex-nowrap">
+			<div class="search-area__search-fields input-group-append col-lg-10 col-md-11 col-10">
+				<input type="text" id="keyword"
+					class="search-area__search-fields--text"
+					placeholder="Product, Brand Name, . v.v .">
+				<div class="search-area__btn">
+					<button class="btn btn-info" id="searchProductBtn">
+						<i class="fas fa-search"></i>
+						<!-- <span>&nbsp;Search</span> -->
+					</button>
+				</div>
 			</div>
-			<div class="search-area__btn">
-				<button class="btn btn-secondary" id="clearSearchFieldBtn">
-					<i class="fas fa-times"></i>&nbsp;Clear
-				</button>
+			<div class="search-area__btns col-lg-2 col-md-1 col-2">
+				<div class="search-area__btn">
+					<button class="btn btn-secondary" id="clearSearchFieldBtn">
+						<i class="fas fa-times"></i>
+						<!-- <span>&nbsp;Clear</span> -->
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -59,7 +73,7 @@
 		<thead>
 			<tr class="text-center bg-white">
 				<th scope="col">#</th>
-				<th scope="col">Procduct</th>
+				<th scope="col">Product</th>
 				<th scope="col">Quantity</th>
 				<th scope="col">Price</th>
 				<th scope="col">Brand Name</th>
@@ -112,8 +126,8 @@
 							</div>
 							<div class="col-sm-6 ">
 								<label for="price">Price <span class="required-mask">(*)</span></label>
-								<input type="number" class="form-control" id="price" name="price" min=0
-									placeholder="Price">
+								<input type="number" class="form-control" id="price"
+									name="price" min=0 placeholder="Price">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -134,9 +148,7 @@
 									<input type="text" placeholder="Opening For Sale"
 										class="form-control cursor-pointer" name="saleDate"
 										id="saleDate">
-									<div class="input-group-append">
-										
-									</div>
+									<div class="input-group-append"></div>
 								</div>
 							</div>
 						</div>

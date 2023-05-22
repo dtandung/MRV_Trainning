@@ -150,7 +150,7 @@ var Product = (function() {
 						quantity: {
 							required: true,
 							number: true,
-							
+
 						},
 						price: {
 							required: true,
@@ -278,6 +278,15 @@ var Product = (function() {
 				_self.currentPageNumber = 1;
 				_self.searchProducts();
 			});
+
+			/*$(document).ready(function() {
+				$('#productInfoTable').DataTable({
+					rowReorder: {
+						selector: 'td:nth-child(2)'
+					},
+					responsive: true
+				});
+			});*/
 
 		};
 		_self.templateList = {

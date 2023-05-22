@@ -1,13 +1,28 @@
 const DEFAULT_IMAGE_PREVIEW = "/images/common/image-demo.png";
-const TEMPLATE_PAGINATOR = 
-		"	<li class='page-item <% if (firstPage == 0) { %> disabled <% } %>' data-index='<%= firstPage %>' title='First'> << </li>"
-		+ 	"<li class='page-item <% if (previousPage == 0) { %> disabled <% } %>' data-index='<%= previousPage %>' title='Previous'> < </li>"
-		+ 	"<% _.each(pageNumberList, function(item) { %>"
-		+ 	"<li class='page-item <% if (item == currentPage) { %> active <% } %>' data-index='<%= item %>'><%= item %></li>"
-		+ 	"<% }); %>"
-		+ 	"<li class='page-item <% if (nextPage == 0) { %> disabled <% } %>' data-index='<%= nextPage %>' title='Next'> > </li>"
-		+ 	"<li class='page-item <% if (lastPage == 0) { %> disabled <% } %>' data-index='<%= lastPage %>' title='Last'> >> </li>"
+const TEMPLATE_PAGINATOR =
+	"	<li class='page-item <% if (firstPage == 0) { %> disabled <% } %>' data-index='<%= firstPage %>' title='First'> << </li>"
+	+ "<li class='page-item <% if (previousPage == 0) { %> disabled <% } %>' data-index='<%= previousPage %>' title='Previous'> < </li>"
+	+ "<% _.each(pageNumberList, function(item) { %>"
+	+ "<li class='page-item <% if (item == currentPage) { %> active <% } %>' data-index='<%= item %>'><%= item %></li>"
+	+ "<% }); %>"
+	+ "<li class='page-item <% if (nextPage == 0) { %> disabled <% } %>' data-index='<%= nextPage %>' title='Next'> > </li>"
+	+ "<li class='page-item <% if (lastPage == 0) { %> disabled <% } %>' data-index='<%= lastPage %>' title='Last'> >> </li>"
 $(document).ready(function() {
+
+	var header = $('.nav-menu');
+	var mobileMenu = $('#icon-menu');
+	var headerHeight = header.height();
+	console.log(headerHeight)
+	mobileMenu.on('click', function() {
+		var isClosed = header.height() === headerHeight;
+		if (isClosed) {
+			header.height('auto')
+			mobileMenu.css('background', '#285891')
+		} else {
+			header.height(headerHeight);
+			mobileMenu.css('background', '#4a90e2')
+		}
+	})
 
 	// Add "active" class for link in Header
 	var pathName = window.location.pathname;
@@ -39,7 +54,7 @@ $(document).ready(function() {
 	});
 
 	// Open image in full size
-	$(document).on('click', '[data-toggle="lightbox"]', function (event) {
+	$(document).on('click', '[data-toggle="lightbox"]', function(event) {
 		event.preventDefault();
 		$(this).ekkoLightbox({
 			alwaysShowClose: true

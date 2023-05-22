@@ -1,12 +1,12 @@
 const TEMPLATE_BRAND_INFO_ROW = "<tr>"
-		+		"<td class='text-center'><%= brandId %></td>"
-		+		"<td class='text-center'><%= brandName %></td>"
-		+		"<td class='text-center'><a href='<%= logo %>' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='<%= logo %>'></td>"
-		+		"<td class='text-center'><%= description %></td>"
-		+		"<td class='action-btns text-center'>"
-		+			"<a class='edit-btn btn-sm btn-primary' data-id='<%= brandId %>'><i class='fas fa-edit text-white'></i></a> | <a class='delete-btn btn-sm btn-danger' data-name='<%= brandName %>' data-id='<%= brandId %>'><i class='fas fa-trash-alt text-white'></i></a>"
-		+		"</td>"
-		+	"</tr>";
+	+ "<td class='text-center'><%= brandId %></td>"
+	+ "<td class='text-center'><%= brandName %></td>"
+	+ "<td class='text-center'><a href='<%= logo %>' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='<%= logo %>'></td>"
+	+ "<td class='text-center'><%= description %></td>"
+	+ "<td class='action-btns text-center'>"
+	+ "<a class='edit-btn btn-sm btn-primary' data-id='<%= brandId %>'><i class='fas fa-edit text-white'></i></a> | <a class='delete-btn btn-sm btn-danger' data-name='<%= brandName %>' data-id='<%= brandId %>'><i class='fas fa-trash-alt text-white'></i></a>"
+	+ "</td>"
+	+ "</tr>";
 var Brand = (function() {
 	return function() {
 		var _self = this;
@@ -23,12 +23,12 @@ var Brand = (function() {
 				currentPage: Number(_self.currentPageNumber)
 			}
 			$.ajax({
-				url : "/brand/api/search",
-				type : 'POST',
-				dataType : 'json',
+				url: "/brand/api/search",
+				type: 'POST',
+				dataType: 'json',
 				data: JSON.stringify(searchData),
-				contentType : 'application/json',
-				success : function(responseData) {
+				contentType: 'application/json',
+				success: function(responseData) {
 					if (responseData.responseCode == 100) {
 						_self.drawBrandTableContent(responseData.data);
 					}
@@ -66,11 +66,11 @@ var Brand = (function() {
 
 				// Get brand info by brand ID
 				$.ajax({
-					url : "/brand/api/findById?id=" + $(this).data("id"),
-					type : 'GET',
-					dataType : 'json',
-					contentType : 'application/json',
-					success : function(responseData) {
+					url: "/brand/api/findById?id=" + $(this).data("id"),
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					success: function(responseData) {
 						if (responseData.responseCode == 100) {
 							var brandInfo = responseData.data;
 							resetFormModal(_self.$brandInfoForm);
@@ -92,9 +92,9 @@ var Brand = (function() {
 				});
 			});
 		};
-		_self.save = function () { // Submit add and update brand
+		_self.save = function() { // Submit add and update brand
 
-			$('#saveBrandBtn').on('click', function (event) {
+			$('#saveBrandBtn').on('click', function(event) {
 
 				event.preventDefault();
 				var formData = new FormData(_self.$brandInfoForm[0]);
@@ -143,7 +143,7 @@ var Brand = (function() {
 							// Else show error message in modal
 							if (responseData.responseCode == 100) {
 								_self.$brandInfoModal.modal('hide');
-								if(isAddAction) {
+								if (isAddAction) {
 									_self.currentPageNumber = 1;
 								}
 								_self.searchBrands();
@@ -156,7 +156,7 @@ var Brand = (function() {
 				}
 			});
 		};
-		_self.remove = function () {
+		_self.remove = function() {
 
 			// Show delete brand confirmation modal
 			_self.$brandInfoTable.on('click', '.delete-btn', function() {
@@ -166,13 +166,13 @@ var Brand = (function() {
 			});
 
 			// Submit delete brand
-			$("#deleteSubmitBtn").on('click' , function() {
+			$("#deleteSubmitBtn").on('click', function() {
 				$.ajax({
-					url : "/brand/api/delete/" + $(this).attr("data-id"),
-					type : 'DELETE',
-					dataType : 'json',
-					contentType : 'application/json',
-					success : function(responseData) {
+					url: "/brand/api/delete/" + $(this).attr("data-id"),
+					type: 'DELETE',
+					dataType: 'json',
+					contentType: 'application/json',
+					success: function(responseData) {
 						$('#confirmDeleteModal').modal('hide');
 						showNotification(responseData.responseCode == 100, responseData.responseMsg);
 						_self.searchBrands();
@@ -197,12 +197,13 @@ var Brand = (function() {
 				_self.currentPageNumber = 1;
 				_self.searchBrands();
 			});
-			$('#keyword').on('keydown', function (e) {
+			$('#keyword').on('keydown', function(e) {
 				if (e.key === 'Enter' || e.keyCode === '13') {
 					_self.currentPageNumber = 1;
 					_self.searchBrands();
 				}
 			});
+			
 
 			// Search brand after search fields when click clear search field button
 			$('#clearSearchFieldBtn').on('click', function() {
