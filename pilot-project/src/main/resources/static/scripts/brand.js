@@ -176,7 +176,12 @@ var Brand = (function() {
 						$('#confirmDeleteModal').modal('hide');
 						showNotification(responseData.responseCode == 100, responseData.responseMsg);
 						_self.searchBrands();
+					},
+					error: function() {
+						$('#confirmDeleteModal').modal('hide');
+						showNotification(false, "Can't delete this brand");
 					}
+
 				});
 			});
 		};
@@ -203,7 +208,7 @@ var Brand = (function() {
 					_self.searchBrands();
 				}
 			});
-			
+
 
 			// Search brand after search fields when click clear search field button
 			$('#clearSearchFieldBtn').on('click', function() {

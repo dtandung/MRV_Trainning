@@ -42,7 +42,7 @@ header .nav-link {
 	color: white;
 }
 
-header .nav-link.active {
+header .nav-menu-select .nav-link.active {
 	background-color: #3b699f;
 	color: #fff;
 }

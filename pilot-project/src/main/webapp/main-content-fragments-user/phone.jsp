@@ -109,104 +109,81 @@
 					</div>
 
 				</div>
-				<div class="dropdown">
-					<button class="btn dropdown-toggle" type="button"
-						id="dropdownMenuButton2" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">Hãng</button>
-					<form class="123">
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-							<div class="grid-dropdown-item brandInfoFilter "></div>
-							<div
-								class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
-								style="display: block;">
-								<a class="btn btn-filter-close btn-primary">Bỏ chọn</a> <a
-									class="btn btn-filter-readmore btn-danger">Xem kết quả <!-- <b class="total-reloading">6</b>  -->
-								</a>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="dropdown">
-					<button class="btn dropdown-toggle" type="button"
-						id="dropdownMenuButton3" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">Giá</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-						<form>
-							<div class="grid-dropdown-item">
-								<label class="imagetips"> <input type="checkbox"
-									name="price" value="0-2000000" class="btn-check"
-									autocomplete="off" /> <span class="imagetips_tip"
-									for="btn-check">Dưới 2 triệu</span>
-								</label> <label class="imagetips"> <input type="checkbox"
-									name="price" value="2000000-4000000" class="btn-check"
-									autocomplete="off" /> <span class="imagetips_tip"
-									for="btn-check">Từ 2 - 4 triệu</span>
-								</label> <label class="imagetips"> <input type="checkbox"
-									name="price" value="4000000-7000000" class="btn-check"
-									autocomplete="off" /> <span class="imagetips_tip"
-									for="btn-check">Từ 4 - 7 triệu</span>
-								</label> <label class="imagetips"> <input type="checkbox"
-									name="price" value="7000000-13000000" class="btn-check"
-									autocomplete="off" /> <span class="imagetips_tip"
-									for="btn-check">Từ 7 - 13 triệu</span>
-								</label> <label class="imagetips"> <input type="checkbox"
-									name="price" value="13000000-20000000" class="btn-check"
-									autocomplete="off" /> <span class="imagetips_tip"
-									for="btn-check">Từ 13 - 20 triệu</span>
-								</label> <label class="imagetips"> <input type="checkbox"
-									name="price" value="20000000-20000000" class="btn-check"
-									autocomplete="off" /> <span class="imagetips_tip"
-									for="btn-check">Trên 20 triệu</span>
-								</label>
-							</div>
-							<span class="range-toggle"> <i class="fa-solid fa-sliders"></i>
-								Hoặc chọn mức giá phù hợp với bạn
-							</span>
-
-							<div class="price-slider">
-								<div class="display ">
-									<span class=" text-center min ">300000</span> <span
-										class=" text-center  max">42000000</span>
-								</div>
-
-								<div class="range-slide">
-									<div class="slide">
-										<div class="line" style="left: 0%; right: 0%;"></div>
-										<span class="thumb thumbMin" style="left: 0%;"></span> <span
-											class="thumb thumbMax" style="left: 100%;"></span>
-									</div>
-									<input class="fromPrice" type="range" max="42000000"
-										min="300000" step="100000" value="0"> <input
-										class="toPrice" type="range" max="42000000" min="300000"
-										step="100000" value="42000000">
+				<div class="d-flex mobile-scroll">
+					<div class="dropdown">
+						<button class="btn dropdown-toggle" type="button"
+							id="dropdownMenuButton2" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Hãng</button>
+						<form class="123">
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+								<div class="grid-dropdown-item brandInfoFilter "></div>
+								<div
+									class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
+									style="display: block;">
+									<a class="btn btn-filter-close btn-primary">Bỏ chọn</a> <a
+										class="btn btn-filter-readmore btn-danger">Xem kết quả <!-- <b class="total-reloading">6</b>  -->
+									</a>
 								</div>
 							</div>
 						</form>
-						<div
-							class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
-							style="display: block;">
-							<a class="btn btn-filter-close btn-primary">Bỏ chọn</a> <a
-								class="btn btn-filter-readmore btn-danger">Xem kết quả <!-- <b class="total-reloading">6</b>  -->
-							</a>
-						</div>
 					</div>
-				</div>
-				<div class="dropdown">
-					<button class="btn dropdown-toggle" type="button"
-						id="dropdownMenuButton4" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">Loại Điện
-						Thoại</button>
-					<form>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-							<div class="d-flex">
-								<label class="imagetips mr-1"> <input type="checkbox"
-									class="btn-check android" autocomplete="off" /> <span
-									class="imagetips_tip" for="btn-check">Android</span>
-								</label> <label class="imagetips"> <input type="checkbox"
-									class="btn-check ios" autocomplete="off" /> <span
-									class="imagetips_tip" for="btn-check">Iphone(iOS)</span>
-								</label>
-							</div>
+					<div class="dropdown">
+						<button class="btn dropdown-toggle" type="button"
+							id="dropdownMenuButton3" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Giá</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+							<form>
+								<div class="grid-dropdown-item">
+									<label class="imagetips"> <input type="checkbox"
+										name="price" value="0-2000000" class="btn-check"
+										autocomplete="off" /> <span class="imagetips_tip"
+										for="btn-check">Dưới 2 triệu</span>
+									</label> <label class="imagetips"> <input type="checkbox"
+										name="price" value="2000000-4000000" class="btn-check"
+										autocomplete="off" /> <span class="imagetips_tip"
+										for="btn-check">Từ 2 - 4 triệu</span>
+									</label> <label class="imagetips"> <input type="checkbox"
+										name="price" value="4000000-7000000" class="btn-check"
+										autocomplete="off" /> <span class="imagetips_tip"
+										for="btn-check">Từ 4 - 7 triệu</span>
+									</label> <label class="imagetips"> <input type="checkbox"
+										name="price" value="7000000-13000000" class="btn-check"
+										autocomplete="off" /> <span class="imagetips_tip"
+										for="btn-check">Từ 7 - 13 triệu</span>
+									</label> <label class="imagetips"> <input type="checkbox"
+										name="price" value="13000000-20000000" class="btn-check"
+										autocomplete="off" /> <span class="imagetips_tip"
+										for="btn-check">Từ 13 - 20 triệu</span>
+									</label> <label class="imagetips"> <input type="checkbox"
+										name="price" value="20000000-20000000" class="btn-check"
+										autocomplete="off" /> <span class="imagetips_tip"
+										for="btn-check">Trên 20 triệu</span>
+									</label>
+								</div>
+								<span class="range-toggle"> <i
+									class="fa-solid fa-sliders"></i> Hoặc chọn mức giá phù hợp với
+									bạn
+								</span>
+
+								<div class="price-slider">
+									<div class="display ">
+										<span class=" text-center min ">300000</span> <span
+											class=" text-center  max">42000000</span>
+									</div>
+
+									<div class="range-slide">
+										<div class="slide">
+											<div class="line" style="left: 0%; right: 0%;"></div>
+											<span class="thumb thumbMin" style="left: 0%;"></span> <span
+												class="thumb thumbMax" style="left: 100%;"></span>
+										</div>
+										<input class="fromPrice" type="range" max="42000000"
+											min="300000" step="100000" value="0"> <input
+											class="toPrice" type="range" max="42000000" min="300000"
+											step="100000" value="42000000">
+									</div>
+								</div>
+							</form>
 							<div
 								class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
 								style="display: block;">
@@ -215,14 +192,40 @@
 								</a>
 							</div>
 						</div>
-					</form>
+					</div>
+					<div class="dropdown">
+						<button class="btn dropdown-toggle" type="button"
+							id="dropdownMenuButton4" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Loại Điện
+							Thoại</button>
+						<form>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+								<div class="d-flex">
+									<label class="imagetips mr-1"> <input type="checkbox"
+										class="btn-check android" autocomplete="off" /> <span
+										class="imagetips_tip" for="btn-check">Android</span>
+									</label> <label class="imagetips"> <input type="checkbox"
+										class="btn-check ios" autocomplete="off" /> <span
+										class="imagetips_tip" for="btn-check">Iphone(iOS)</span>
+									</label>
+								</div>
+								<div
+									class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
+									style="display: block;">
+									<a class="btn btn-filter-close btn-primary">Bỏ chọn</a> <a
+										class="btn btn-filter-readmore btn-danger">Xem kết quả <!-- <b class="total-reloading">6</b>  -->
+									</a>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 			<div class="grid-dropdown-item brandInfo radius"></div>
 		</div>
 		<div class="box-sort">
 			<p class="sort-total">
-				<b></b>  <strong class="manu-sort">Điện thoại</strong>
+				<b></b> <strong class="manu-sort">Điện thoại</strong>
 			</p>
 			<div class="sort-select ">
 				<select class="click-sort">

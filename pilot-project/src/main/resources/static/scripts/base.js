@@ -12,7 +12,6 @@ $(document).ready(function() {
 	var header = $('.nav-menu');
 	var mobileMenu = $('#icon-menu');
 	var headerHeight = header.height();
-	console.log(headerHeight)
 	mobileMenu.on('click', function() {
 		var isClosed = header.height() === headerHeight;
 		if (isClosed) {
@@ -26,10 +25,10 @@ $(document).ready(function() {
 
 	// Add "active" class for link in Header
 	var pathName = window.location.pathname;
-	$("header .nav-link").each(function() {
+	$("header .nav-menu-select .nav-link").each(function() {
 		let _self = $(this);
 		if (pathName.includes(_self.attr("href"))) {
-			_self.parent().addClass("active");
+			_self.addClass("active");
 		}
 	});
 

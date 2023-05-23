@@ -69,16 +69,19 @@
 					class="linkyt"> <i class="icon-dmx icondmx-share3"></i> 485k
 						đăng ký
 				</a> <br />
-					<p>Website cùng tập đoàn:</p> <a class="mwg-logo" target="_blank"
-					href="https://www.maiamtgdd.vn/"> <i
-						class="icon-dmx icondmx-logomaiam"></i>
-				</a> <a class="mwg-logo" target="_blank"
-					href="https://www.thegioididong.com/"> <i
-						class="icon-dmx  icondmx-logotgdd"></i>
-				</a> <a class="mwg-logo" target="_blank"
-					href="https://www.bachhoaxanh.com/"> <i
-						class="icon-dmx  icondmx-logobhx"></i>
-				</a></li>
+					<p>Website cùng tập đoàn:</p>
+					<div class="logo-company">
+						<a class="mwg-logo" target="_blank"
+							href="https://www.maiamtgdd.vn/"> <i
+							class="icon-dmx icondmx-logomaiam"></i>
+						</a> <a class="mwg-logo" target="_blank"
+							href="https://www.thegioididong.com/"> <i
+							class="icon-dmx  icondmx-logotgdd"></i>
+						</a> <a class="mwg-logo" target="_blank"
+							href="https://www.bachhoaxanh.com/"> <i
+							class="icon-dmx  icondmx-logobhx"></i>
+						</a>
+					</div></li>
 			</ul>
 		</div>
 	</div>

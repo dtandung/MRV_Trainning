@@ -7,7 +7,7 @@
 		<div class=" mobile-select d-flex">
 			<div class="main-logo">admin</div>
 			<div class="nav-menu-select ">
-				<div class="d-flex">
+				<div class="d-flex nav-item">
 					<a class="ml-5 nav-link" href="/home">Home Page</a> <a
 						class="nav-link" href="/product">Product</a> <a class="nav-link"
 						href="/brand">Brand</a>
