@@ -9,7 +9,7 @@ const TEMPLATE_PAGINATOR =
 	+ "<li class='page-item <% if (lastPage == 0) { %> disabled <% } %>' data-index='<%= lastPage %>' title='Last'> >> </li>"
 $(document).ready(function() {
 
-	var header = $('.nav-menu');
+	/*var header = $('.nav-menu');
 	var mobileMenu = $('#icon-menu');
 	var headerHeight = header.height();
 	mobileMenu.on('click', function() {
@@ -21,7 +21,18 @@ $(document).ready(function() {
 			header.height(headerHeight);
 			mobileMenu.css('background', '#4a90e2')
 		}
+	})*/
+
+	/*$('#icon-menu input[type=checkbox]').on('click', function() {
+		if ($('#icon-menu input[type=checkbox]:checked')) {
+			$('#menu').css('transform', 'translate(100%, 0)');
+		}
 	})
+	$('#icon-menu input[type=checkbox]:checked').on('click', function() {
+		if ($('#icon-menu input[type=checkbox]:checked').prop("checked", false)) {
+			$('#menu').css('transform', 'translate(200%, 0)');
+		}
+	})*/
 
 	// Add "active" class for link in Header
 	var pathName = window.location.pathname;

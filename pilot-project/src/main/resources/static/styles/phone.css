@@ -119,6 +119,7 @@
 }
 
 .discount-in-day .group-tabs .box-filter {
+	/* position:relative; */
 	display: flex;
 }
 
@@ -127,6 +128,9 @@
 	margin-right: 8px;
 }
 
+.position-count-total{
+	position: relative!important;
+}
 .dropdown button {
 	background-color: white;
 }
@@ -212,10 +216,10 @@ input[type='checkbox'] {
 	grid-gap: 5px;
 }
 
-.filter-all {
+/* .filter-all {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-}
+} */
 
 .range-slide {
 	position: relative;

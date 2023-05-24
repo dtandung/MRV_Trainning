@@ -3,7 +3,7 @@
 	.group-tabs {
 		white-space: nowrap;
 	}
-	.grid-dropdown-item {
+	.brandInfo {
 		overflow-x: auto;
 		overflow-y: hidden;
 		white-space: nowrap;
@@ -41,12 +41,28 @@
 	}
 	.right-area {
 		display: flex;
+		flex-direction: row-reverse;
 		align-items: center;
 		justify-content: center;
 		margin-bottom: 30px;
 	}
 	.products-list li {
 		width: calc(100%/ 2) !important;
+	}
+	.dropdown .dropdown-menu {
+		width: 370px !important;
+	}
+	.brandInfoFilter {
+		grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)) !important;
+	}
+	.dropdown {
+		position: static !important;
+	}
+	.form-price {
+		width: 350px;
+	}
+	.discount-in-day {
+		padding: 10px;
 	}
 	/*Detail Page*/
 	.box-main {
@@ -67,8 +83,23 @@
 	}
 	.right-area {
 		width: 100%;
+		flex-direction: row-reverse;
 		display: flex;
 		justify-content: space-around;
+	}
+}
+/*Tablet and PC*/
+@media only screen and (min-width: 1023px) and (max-width: 1200px) {
+	header .container .row {
+		flex-wrap: nowrap !important;
+	}
+	header {
+		height: 75px !important;
+	}
+	.right-area {
+		flex-direction: row-reverse;
+		display: flex !important;
+		flex-wrap: nowrap !important;
 	}
 }
 /* PC */

@@ -281,8 +281,7 @@ var Brand = (function() {
 			$('.click-sort').on('change', function() {
 				_self.searchProducts();
 			})
-			
-			
+
 		};
 
 		_self.templateList = {

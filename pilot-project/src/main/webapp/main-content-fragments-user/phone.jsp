@@ -8,7 +8,7 @@
 		<div class="section-title">Điện Thoại</div>
 		<div class="group-tabs">
 			<div class="box-filter mb-3 ">
-				<div class="dropdown">
+				<div class="dropdown position-count-total">
 					<button class="btn" type="button" id="dropdownMenuButton1"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="fa-solid fa-filter" style="color: #050505;"></i> Bộ lọc
@@ -24,7 +24,7 @@
 						</form>
 						<div class="dropdown-divider"></div>
 						<div class="filter-all">
-							<div>
+							<!-- <div>
 								<div class="mb-3">
 									<b>Loại điện thoại</b>
 								</div>
@@ -39,34 +39,34 @@
 										</label>
 									</div>
 								</form>
-							</div>
+							</div> -->
 							<div>
 								<div class="mb-3">
 									<b>Giá</b>
 								</div>
-								<form>
+								<form class="form-price">
 									<div class="grid-dropdown-item">
-										<label class="imagetips"> <input type="checkbox"
+										<label class="imagetips "> <input type="checkbox"
 											name="price" value="0-2000000" class="btn-check"
 											autocomplete="off" /> <span class="imagetips_tip"
 											for="btn-check">Dưới 2 triệu</span>
-										</label> <label class="imagetips"> <input type="checkbox"
+										</label> <label class="imagetips "> <input type="checkbox"
 											name="price" value="2000000-4000000" class="btn-check"
 											autocomplete="off" /> <span class="imagetips_tip"
 											for="btn-check">Từ 2 - 4 triệu</span>
-										</label> <label class="imagetips"> <input type="checkbox"
+										</label> <label class="imagetips "> <input type="checkbox"
 											name="price" value="4000000-7000000" class="btn-check"
 											autocomplete="off" /> <span class="imagetips_tip"
 											for="btn-check">Từ 4 - 7 triệu</span>
-										</label> <label class="imagetips"> <input type="checkbox"
+										</label> <label class="imagetips "> <input type="checkbox"
 											name="price" value="7000000-13000000" class="btn-check"
 											autocomplete="off" /> <span class="imagetips_tip"
 											for="btn-check">Từ 7 - 13 triệu</span>
-										</label> <label class="imagetips"> <input type="checkbox"
+										</label> <label class="imagetips "> <input type="checkbox"
 											name="price" value="13000000-20000000" class="btn-check"
 											autocomplete="off" /> <span class="imagetips_tip"
 											for="btn-check">Từ 13 - 20 triệu</span>
-										</label> <label class="imagetips"> <input type="checkbox"
+										</label> <label class="imagetips "> <input type="checkbox"
 											name="price" value="20000000-20000000" class="btn-check"
 											autocomplete="off" /> <span class="imagetips_tip"
 											for="btn-check">Trên 20 triệu</span>
@@ -109,12 +109,12 @@
 					</div>
 
 				</div>
-				<div class="d-flex mobile-scroll">
+				<!-- <div class="d-flex mobile-scroll"> -->
 					<div class="dropdown">
 						<button class="btn dropdown-toggle" type="button"
 							id="dropdownMenuButton2" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">Hãng</button>
-						<form class="123">
+						<form >
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
 								<div class="grid-dropdown-item brandInfoFilter "></div>
 								<div
@@ -193,7 +193,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="dropdown">
+					<!-- <div class="dropdown">
 						<button class="btn dropdown-toggle" type="button"
 							id="dropdownMenuButton4" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">Loại Điện
@@ -213,13 +213,13 @@
 									class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3"
 									style="display: block;">
 									<a class="btn btn-filter-close btn-primary">Bỏ chọn</a> <a
-										class="btn btn-filter-readmore btn-danger">Xem kết quả <!-- <b class="total-reloading">6</b>  -->
+										class="btn btn-filter-readmore btn-danger">Xem kết quả <b class="total-reloading">6</b> 
 									</a>
 								</div>
 							</div>
 						</form>
-					</div>
-				</div>
+					</div> -->
+<!-- 				</div> -->
 			</div>
 			<div class="grid-dropdown-item brandInfo radius"></div>
 		</div>

@@ -6,7 +6,11 @@ body {
 	outline: 0 !important;
 	box-shadow: none !important;
 }
-
+ul {
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 0;
+}
 header {
 	width: 100%;
 	background-color: #4a90e2;
@@ -31,15 +35,14 @@ header .nav-menu {
 }
 
 header .nav-link {
+	color: white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 120px;
+	height:100%;
 	font-weight: 700;
-}
-
-header .nav-link {
-	color: white;
+	white-space: nowrap;
 }
 
 header .nav-menu-select .nav-link.active {
@@ -48,6 +51,7 @@ header .nav-menu-select .nav-link.active {
 }
 
 header .nav-menu-select {
+	height: 100%;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;

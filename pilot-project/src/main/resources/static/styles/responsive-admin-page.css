@@ -24,17 +24,19 @@
 	}
 	/*Login*/
 	.card {
-		width: 100%!important;
+		width: 100% !important;
 	}
 }
 /* Mobile */
 @media only screen and (max-width: 739px) {
 	header .dropdown {
 		display: flex;
-		flex-direction: column;
 		justify-content: space-between;
+		width: 100%;
 	}
 	header .dropdown-content {
+		width: 25%!important;
+		font-size: 18px;
 		display: block;
 		position: initial;
 		min-width: 0;
@@ -42,35 +44,69 @@
 		z-index: initial;
 		background: #4a90e2;
 		font-weight: bold;
+		display: block;
 	}
 	header .dropdown-content a {
 		color: white;
 	}
-	header .icon-menu {
-		display: block;
-		text-align: center;
-		float: right;
-		width: 60px;
-		height: fit-content;
-		font-size: 30px;
-	}
 	header .mobile-select {
-		flex-direction: column;
-		overflow: hidden;
+		justify-content: space-between;
 	}
 	header .nav-item {
 		flex-direction: column;
 	}
 	header .nav-link {
+		font-size: 18px;
 		width: 100%;
 		justify-content: start;
 		margin-left: 0 !important;
+		width: 100%;
 	}
 	header .active {
 		justify-content: start;
 	}
-	header .nav-menu-select {
+	#icon-menu {
+		position: relative;
+		display: block;
+		text-align: center;
+		float: right;
+		width: 60px;
+		font-size: 30px;
+	}
+	#icon-menu input {
+		display: flex;
+		width: 60px;
+		height: 50px;
+		position: absolute;
+		opacity: 0;
+		z-index: 2;
+	}
+	#icon-menu input:checked ~ #menu {
+		transform: none;
+	}
+	#menu {
+		position: absolute;
+		top: 100px;
+		left: -291px;
+		box-shadow: 0px 15px 10px -15px #111;
 		flex-direction: column;
+		z-index: 11;
+		background: #4a90e2;
+		width: 410px;
+		height: 300px;
+		margin: -50px 0 0 -50px;
+		padding: 30px;
+		-webkit-font-smoothing: antialiased;
+		transform-origin: 0% 0%;
+		transform: translate(-100%, 0);
+		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+	}
+	#menu li {
+		padding: 10px 0;
+		transition-delay: 2s;
+	}
+	.dropbtn{
+		width: 75%!important;
 	}
 	.sub-header .add-btn span {
 		display: none;
@@ -81,6 +117,9 @@
 		margin-right: 2px !important;
 	}
 	.search-area .search-area__btn span {
+		display: none;
+	}
+	.input-group-text {
 		display: none;
 	}
 	/*Brand*/
@@ -99,10 +138,10 @@
 	#brandInfoTable thead tr th:nth-child(5) {
 		width: 100px;
 	}
-	/*Product*/
-	.search-area__select-fields {
-		flex-wrap: wrap !important;
+	.search-area__select-fields .form-select {
+		width: 95%;
 	}
+	/*Product*/
 	.search-area__select-fields-price-from {
 		margin-bottom: 10px
 	}
@@ -133,13 +172,36 @@
 }
 /* Tablet */
 @media only screen and (min-width: 740px) and (max-width: 1023px) {
+	#icon-menu input {
+		display: none;
+	}
+	#icon-menu i {
+		display: none;
+	}
 	header .icon-menu {
+		display: block;
+		width: 100%;
+	}
+	.search-area__select-fields .form-select {
+		width: 70%;
+	}
+	.nav-item i {
 		display: none;
 	}
 }
 /* PC */
 @media only screen and (min-width: 1024px) {
+	#icon-menu input {
+		display: none;
+	}
+	#icon-menu i {
+		display: none;
+	}
 	header .icon-menu {
+		display: block;
+		width: 100%;
+	}
+	.nav-item i {
 		display: none;
 	}
 }

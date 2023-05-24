@@ -32,7 +32,7 @@
 	/* 	margin-right: 10px; */
 	margin-bottom: 10px;
 	display: flex;
-	width: fit-content;
+	/* width: fit-content; */
 }
 
 /* .search-area__select-fields-price-to {
@@ -43,7 +43,6 @@
 }
 
 .search-area__select-fields .form-select {
-	width: 200px;
 	border-radius: 0.25rem;
 	height: calc(1.5em + 0.75rem + 2px);
 	padding: 0.375rem 0.75rem 0.385rem;

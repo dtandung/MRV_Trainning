@@ -12,15 +12,15 @@
 		</div>
 	</div>
 	<div class="search-area form-row">
-		<div class="search-area__select-fields col-md-12 col-lg-8 ">
-			<div class="search-area__select-fields-price-from col-lg-6 ">
+		<div class="search-area__select-fields col-12 col-lg-6 ">
+			<div class="search-area__select-fields-price-from col-6 col-lg-6 ">
 				<div class="input-group">
 					<div class="input-group-prepend">
 						<label class="input-group-text">Price From:</label>
 					</div>
 					<select class="form-select" aria-label="Default select example"
 						id="priceFrom">
-						<option value="">--Select from Price--</option>
+						<option value="">Price From</option>
 						<option value="2000000">2.000.000</option>
 						<option value="4000000">4.000.000</option>
 						<option value="6000000">6.000.000</option>
@@ -29,14 +29,14 @@
 					</select>
 				</div>
 			</div>
-			<div class="search-area__select-fields-price-to col-lg-6 ">
+			<div class="search-area__select-fields-price-to col-6 col-lg-6 ">
 				<div class="input-group">
 					<div class="input-group-prepend">
 						<label class="input-group-text">Price To:</label>
 					</div>
 					<select class="form-select" aria-label="Default select example"
 						id="priceTo">
-						<option value="">--Select to Price--</option>
+						<option value="">Price To</option>
 						<option value="12000000">12.000.000</option>
 						<option value="14000000">14.000.000</option>
 						<option value="16000000">16.000.000</option>
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-12 col-lg-4  form-row flex-nowrap">
+		<div class="col-md-12 col-lg-6  form-row flex-nowrap">
 			<div class="search-area__search-fields input-group-append col-lg-10 col-md-11 col-10">
 				<input type="text" id="keyword"
 					class="search-area__search-fields--text"
